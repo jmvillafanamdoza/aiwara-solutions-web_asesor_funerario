@@ -1,0 +1,45 @@
+---
+// Testimonios: PLACEHOLDERS. Reemplazar por testimonios reales con permiso escrito de cada familia.
+// Editar el arreglo de abajo: texto (máx. 3 líneas), nombre y distrito.
+const testimonios = [
+  { texto: '[TESTIMONIO REAL 1]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
+  { texto: '[TESTIMONIO REAL 2]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
+  { texto: '[TESTIMONIO REAL 3]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
+];
+const pendiente = (s: string) => s.startsWith('[');
+---
+<section class="seccion" aria-labelledby="testimonios-titulo">
+  <div class="contenedor">
+    <h2 id="testimonios-titulo" class="aparece">Lo que dicen las familias</h2>
+    <ul class="testimonios">
+      {testimonios.map((t, i) => (
+        <li class={`testimonio aparece ${i === 0 ? 'testimonio--destacado' : ''}`}>
+          <blockquote>
+            <p>{pendiente(t.texto) ? <span class="marcador">{t.texto}</span> : `“${t.texto}”`}</p>
+          </blockquote>
+          <p class="testimonio__autor">
+            {pendiente(t.autor) ? <span class="marcador">{t.autor}</span> : t.autor}
+            {', '}
+            {pendiente(t.lugar) ? <span class="marcador">{t.lugar}</span> : t.lugar}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .testimonios { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 20px; }
+  @media (min-width: 860px) {
+    .testimonios { grid-template-columns: 1.3fr 1fr; grid-template-rows: auto auto; }
+    .testimonio--destacado { grid-row: span 2; }
+  }
+  .testimonio {
+    background: var(--gris-claro); border-radius: var(--radio); padding: 28px;
+    border-left: 4px solid var(--dorado);
+  }
+  .testimonio--destacado { background: var(--verde-claro); }
+  .testimonio--destacado blockquote p { font: italic 600 1.5rem/1.35 var(--f-titulo); color: var(--verde-hondo); }
+  blockquote { margin: 0 0 12px; }
+  .testimonio__autor { margin: 0; font-weight: 600; color: var(--texto-2); }
+</style>

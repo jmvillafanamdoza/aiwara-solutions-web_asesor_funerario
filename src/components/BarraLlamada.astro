@@ -1,0 +1,31 @@
+---
+// Barra fija inferior SOLO en celular: llamada en un toque + WhatsApp.
+import Icono from './Icono.astro';
+import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
+interface Props { pagina: string; }
+const mensaje = SITE.mensajesWhatsApp[Astro.props.pagina] ?? SITE.mensajesWhatsApp.inicio;
+---
+<div class="barra-llamada">
+  <a class="btn btn--dorado barra-llamada__llamar" href={enlaceTelefono} data-ubicacion="barra-movil">
+    <Icono nombre="phone" tam={22} /> Llamar ahora
+  </a>
+  <a class="btn barra-llamada__wa" href={enlaceWhatsApp(mensaje)} target="_blank" rel="noopener" data-ubicacion="barra-movil">
+    <Icono nombre="whatsapp-logo" tam={22} /> WhatsApp
+  </a>
+</div>
+
+<style>
+  .barra-llamada { display: none; }
+  @media (max-width: 767px) {
+    .barra-llamada {
+      position: fixed; inset: auto 0 0 0; z-index: 45;
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      background: var(--verde-hondo);
+      box-shadow: 0 -8px 24px -12px rgb(0 0 0 / 0.4);
+    }
+    .barra-llamada .btn { min-height: 54px; white-space: nowrap; }
+    .barra-llamada__wa { background: #128c4a; color: #fff; }
+    .barra-llamada__wa:hover { color: #fff; }
+  }
+</style>

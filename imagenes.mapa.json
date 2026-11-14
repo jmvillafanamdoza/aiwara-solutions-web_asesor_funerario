@@ -1,0 +1,134 @@
+{
+  "_instrucciones": "Mapa de imágenes de la web. Cada clave es un ESPACIO de la página. Para cambiar una foto: edite 'origen' (ruta relativa a la carpeta web/) y, si hace falta, 'recorte' {x,y,w,h} en píxeles del original (null = imagen completa). Luego ejecute 'npm run imagenes' y 'npm run build'. 'alt' es el texto alternativo que se muestra a lectores de pantalla. Los originales nunca se modifican.",
+  "imagenes": {
+    "hero-inicio": {
+      "usado_en": "Inicio > hero (fondo)",
+      "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg",
+      "recorte": null,
+      "alt": "Pirámide del camposanto Jardines de la Paz en La Molina rodeada de jardines",
+      "reemplazar": false
+    },
+    "marco-retrato": {
+      "usado_en": "Inicio > hero (retrato circular) y bloque de contacto",
+      "origen": "../04_Facebook/Albumes-Jardines/06-Contacto-Marco/contacto-marco-25-anos.jpg",
+      "recorte": { "x": 250, "y": 384, "w": 500, "h": 500 },
+      "alt": "Marco Antonio Villafana Fajardo, asesor funerario autorizado",
+      "reemplazar": true,
+      "nota": "Recorte de una pieza de Facebook. Reemplazar por un retrato limpio en alta resolución (cuadrado, mín. 800x800)."
+    },
+    "marco-equipo": {
+      "usado_en": "Inicio > Quién es Marco",
+      "origen": "../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg",
+      "recorte": null,
+      "alt": "Marco Villafana junto al equipo de jardinería en el camposanto",
+      "reemplazar": false
+    },
+    "cs-la-molina": {
+      "usado_en": "Inicio > Camposantos (tarjeta La Molina)",
+      "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg",
+      "recorte": { "x": 0, "y": 0, "w": 1000, "h": 624 },
+      "alt": "Ingreso a la pirámide del camposanto de La Molina",
+      "reemplazar": false
+    },
+    "cs-lurin": {
+      "usado_en": "Inicio > Camposantos (tarjeta Lurín)",
+      "origen": "../04_Facebook/Albumes-Jardines/03-Nuestros-camposantos/camposantos-la-molina-lurin.jpg",
+      "recorte": { "x": 556, "y": 300, "w": 492, "h": 494 },
+      "alt": "Ingreso del camposanto de Lurín con su obelisco y pileta",
+      "reemplazar": true,
+      "nota": "Recorte pequeño de una pieza de Facebook. Reemplazar por foto propia de Lurín en alta resolución."
+    },
+    "galeria-1": {
+      "usado_en": "Inicio > Galería",
+      "origen": "../02_Fotos_Camposanto/arbol/jdlp_arbol_01_h.jpg",
+      "recorte": null,
+      "alt": "Árbol frondoso sobre el césped del camposanto con los cerros al fondo",
+      "reemplazar": false
+    },
+    "galeria-2": {
+      "usado_en": "Inicio > Galería",
+      "origen": "../02_Fotos_Camposanto/memorial/jdlp_memorial_03_h.jpg",
+      "recorte": null,
+      "alt": "Monumento de vidrio en Praderas de la Paz rodeado de jardines",
+      "reemplazar": false
+    },
+    "galeria-3": {
+      "usado_en": "Inicio > Galería",
+      "origen": "../02_Fotos_Camposanto/panoramica/jdlp_panoramica_11_h.jpg",
+      "recorte": null,
+      "alt": "Vista panorámica del camposanto con árboles en flor",
+      "reemplazar": false
+    },
+    "galeria-4": {
+      "usado_en": "Inicio > Galería",
+      "origen": "../02_Fotos_Camposanto/arbol/jdlp_arbol_03_v.jpg",
+      "recorte": null,
+      "alt": "Pinos y árboles en el camposanto al pie de los cerros",
+      "reemplazar": false
+    },
+    "galeria-5": {
+      "usado_en": "Inicio > Galería",
+      "origen": "../02_Fotos_Camposanto/zona-lapidas/jdlp_zona-lapidas_04_h.jpg",
+      "recorte": null,
+      "alt": "Zona de lápidas de granito sobre el césped",
+      "reemplazar": false
+    },
+    "servicio-hero": {
+      "usado_en": "Servicio funerario > cabecera",
+      "origen": "../02_Fotos_Camposanto/toldo-servicio/jdlp_toldo-servicio_01_h.jpg",
+      "recorte": null,
+      "alt": "Toldo de ceremonia de Jardines de la Paz preparado en el camposanto",
+      "reemplazar": false
+    },
+    "serv-capilla": {
+      "usado_en": "Servicio funerario > Qué incluye (capilla ardiente)",
+      "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg",
+      "recorte": { "x": 230, "y": 160, "w": 780, "h": 610 },
+      "alt": "Capilla ardiente de madera con arreglos florales y candelabros",
+      "reemplazar": true,
+      "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
+    },
+    "serv-carroza": {
+      "usado_en": "Servicio funerario > Qué incluye (carroza)",
+      "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg",
+      "recorte": { "x": 120, "y": 235, "w": 960, "h": 490 },
+      "alt": "Carroza fúnebre y coche portaflores",
+      "reemplazar": true,
+      "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
+    },
+    "serv-ataud": {
+      "usado_en": "Servicio funerario > Qué incluye (ataúd)",
+      "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/ATAUD PREMIUM CUADRADO.jpeg",
+      "recorte": { "x": 70, "y": 230, "w": 710, "h": 480 },
+      "alt": "Ataúd de cedro modelo Premium",
+      "reemplazar": true,
+      "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
+    },
+    "plan-hero": {
+      "usado_en": "Plan funerario > cabecera",
+      "origen": "../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg",
+      "recorte": null,
+      "alt": "Hileras de lotes en el césped del camposanto bajo cielo despejado",
+      "reemplazar": false
+    },
+    "plan-praderas": {
+      "usado_en": "Plan funerario > opción Praderas de la Paz",
+      "origen": "../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg",
+      "recorte": null,
+      "alt": "Monumento central de Praderas de la Paz",
+      "reemplazar": false
+    },
+    "plan-lotes": {
+      "usado_en": "Plan funerario > opción lotes",
+      "origen": "../02_Fotos_Camposanto/panoramica/jdlp_panoramica_05_h.jpg",
+      "recorte": null,
+      "alt": "Lotes en jardín con lápidas a ras del césped",
+      "reemplazar": false
+    }
+  },
+  "og": {
+    "usado_en": "Imagen al compartir en Facebook y WhatsApp (public/og-default.jpg, 1200x630)",
+    "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg",
+    "recorte": { "x": 230, "y": 0, "w": 1186, "h": 624 }
+  }
+}

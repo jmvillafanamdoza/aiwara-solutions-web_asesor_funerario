@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+---
+<Base
+  pagina="privacidad"
+  titulo="Política de Privacidad y Cookies | Marco Villafana, Asesor Funerario en Lima"
+  descripcion="Cómo se tratan los datos personales que usted comparte en esta web, conforme a la Ley N.° 29733 de Protección de Datos Personales del Perú."
+>
+  <article class="seccion">
+    <div class="contenedor legal">
+      <p><span class="marcador">[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]</span></p>
+      <h1>Política de privacidad</h1>
+      <p class="nota">Última actualización: <span class="marcador">[FECHA DE PUBLICACIÓN]</span></p>
+
+      <h2>Responsable de sus datos</h2>
+      <p>
+        {SITE.nombre}, {SITE.cargo.toLowerCase()} de {SITE.empresa}, con correo
+        <a href={`mailto:${SITE.correo}`}>{SITE.correo}</a> y teléfono {SITE.telefonoIntl}.
+        Este sitio es personal del asesor y no es el sitio oficial de Jardines de la Paz
+        (<a href={SITE.sitioOficial} rel="noopener" target="_blank">jardinesdelapaz.com</a>).
+      </p>
+
+      <h2>Qué datos recogemos</h2>
+      <p>Los que usted escribe en el formulario de cotización: nombre, número de celular, distrito y el producto que le interesa.</p>
+
+      <h2>Para qué los usamos</h2>
+      <p>
+        Solo para contactarlo y enviarle la cotización o información que solicitó sobre servicios funerarios y planes de previsión.
+        No vendemos ni cedemos sus datos a terceros con fines comerciales.
+      </p>
+
+      <h2>Cómo se envían</h2>
+      <p>
+        El formulario no guarda sus datos en esta web: al enviarlo se abre WhatsApp con el mensaje listo y usted decide si lo envía.
+        El mensaje queda en WhatsApp (servicio de Meta Platforms) y en el teléfono del asesor.
+      </p>
+
+      <h2>Por cuánto tiempo</h2>
+      <p>Mientras dure la atención de su consulta o la relación comercial, y luego el tiempo que exija la ley. <span class="marcador">[PLAZO POR CONFIRMAR]</span></p>
+
+      <h2>Sus derechos</h2>
+      <p>
+        Conforme a la Ley N.° 29733 y su reglamento, usted puede solicitar el acceso, la rectificación, la cancelación o la oposición
+        al tratamiento de sus datos escribiendo a <a href={`mailto:${SITE.correo}`}>{SITE.correo}</a>.
+        Si considera que no se atendió su solicitud, puede acudir a la Autoridad Nacional de Protección de Datos Personales.
+      </p>
+
+      <h2 id="cookies">Cookies</h2>
+      <p>
+        Esta web solo usa cookies de medición (Google Tag Manager, Google Analytics y Pixel de Meta) si usted las acepta en el aviso de cookies.
+        Sirven para saber cuántas personas visitan la web, desde qué anuncios llegan y qué botones de contacto usan.
+        Si las rechaza, la web funciona igual. Puede cambiar su decisión en cualquier momento con el enlace "Configurar cookies" al pie de la página.
+      </p>
+      <p>Su decisión se guarda en su navegador para no preguntarle de nuevo en cada visita.</p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal { max-width: 760px; }
+  .legal h2 { font-size: 1.7rem; margin-top: 1.6em; }
+</style>

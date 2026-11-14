@@ -1,0 +1,241 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icono from '../components/Icono.astro';
+import Contacto from '../components/Contacto.astro';
+import BarraLlamada from '../components/BarraLlamada.astro';
+import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
+import { imagen } from '../lib/imagenes';
+import { incluyenTodos, servicios, notasServicios } from '../data/servicios';
+
+const PAGINA = 'servicio-funerario';
+const hero = imagen('servicio-hero');
+const fotos = (['serv-capilla', 'serv-carroza', 'serv-ataud'] as const).map(imagen);
+const pies = ['Capilla ardiente', 'Carroza y coche portaflores', 'Ataúd'];
+
+const pasos = [
+  { titulo: 'Comuníquese conmigo', texto: 'Llame o escriba a cualquier hora. Le indico qué hacer según el lugar donde ocurrió el fallecimiento: casa, clínica u hospital.' },
+  { titulo: 'Tenga a la mano los documentos', texto: 'El DNI de la persona fallecida y el del familiar que hará los trámites.' },
+  { titulo: 'Solicite el certificado de defunción', texto: 'Lo emite el médico que atendió a la persona o el del establecimiento de salud. Si tiene dudas, lo vemos juntos.' },
+  { titulo: 'Elijamos juntos el servicio', texto: 'Entierro o cremación, el camposanto y el tipo de servicio, según lo que su familia desee.' },
+  { titulo: 'Yo me encargo del resto', texto: 'Coordino el traslado, el velatorio, los trámites y los horarios, para que su familia pueda despedirse con tranquilidad.' },
+];
+---
+<Base
+  pagina={PAGINA}
+  titulo="Servicio Funerario en Lima, Atención 24 Horas | Jardines de la Paz"
+  descripcion="Servicio funerario en Lima con atención las 24 horas. Entierro o cremación, traslados y trámites con un asesor autorizado de Jardines de la Paz. Llame al 998 160 591."
+>
+  <!-- TELÉFONO 24 H -->
+  <div class="franja-24h sobre-verde">
+    <div class="contenedor franja-24h__fila">
+      <p><Icono nombre="clock" tam={22} /><span><strong>Atención 24 horas</strong>, todos los días</span></p>
+      <a class="franja-24h__tel" href={enlaceTelefono} data-ubicacion="franja-24h">
+        <Icono nombre="phone" tam={24} /> {SITE.telefonoVisible}
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="s-hero">
+    <div class="contenedor s-hero__grid">
+      <div>
+        <h1>Servicio funerario en Lima</h1>
+        <p class="s-hero__sub">Cuando una familia necesita ayuda, lo primero es tener a alguien que se encargue. Lo guío paso a paso, a cualquier hora.</p>
+        <div class="s-hero__botones">
+          <a class="btn btn--verde btn--grande" href={enlaceTelefono} data-ubicacion="hero">
+            <Icono nombre="phone" /> Llamar ahora
+          </a>
+          <a class="btn btn--contorno btn--grande" href={enlaceWhatsApp(SITE.mensajesWhatsApp[PAGINA])} target="_blank" rel="noopener" data-ubicacion="hero">
+            <Icono nombre="whatsapp-logo" /> Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+      <Picture src={hero.src} alt={hero.alt} formats={['webp']} widths={[640, 960, 1280]} sizes="(min-width: 980px) 48vw, 100vw" loading="eager" fetchpriority="high" class="s-hero__foto" />
+    </div>
+  </section>
+
+  <!-- PRIMERAS HORAS -->
+  <section class="seccion seccion--gris" aria-labelledby="pasos-titulo">
+    <div class="contenedor">
+      <h2 id="pasos-titulo" class="aparece">Qué hacer en las primeras horas</h2>
+      <p class="intro aparece">No tiene que saberlo todo. Estos son los primeros pasos y en cada uno puedo ayudarle.</p>
+      <ol class="pasos">
+        {pasos.map((p) => (
+          <li class="paso aparece">
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="seccion" id="servicios" aria-labelledby="servicios-titulo">
+    <div class="contenedor">
+      <h2 id="servicios-titulo" class="aparece">Servicios funerarios</h2>
+      <p class="intro aparece">Cinco opciones para que cada familia elija según sus deseos. Le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
+
+      <div class="servicios">
+        <aside class="incluyen aparece" aria-labelledby="incluyen-titulo">
+          <h3 id="incluyen-titulo">Todos los servicios incluyen</h3>
+          <ul class="lista-check">
+            {incluyenTodos.map((i) => <li><Icono nombre="check" tam={20} />{i}</li>)}
+          </ul>
+        </aside>
+
+        <div class="niveles">
+          {servicios.map((s, i) => (
+            <details class="nivel aparece" open={i === 1}>
+              <summary>
+                <span class="nivel__nombre">Servicio {s.nombre}</span>
+                <span class="nivel__resumen">{s.resumen}</span>
+                <Icono nombre="caret-down" class="nivel__flecha" />
+              </summary>
+              <div class="nivel__cuerpo">
+                <p><strong>{s.ataud}</strong></p>
+                {s.ademas.length > 0 ? (
+                  <>
+                    <p class="nivel__ademas">Además:</p>
+                    <ul class="lista-check">
+                      {s.ademas.map((a) => <li><Icono nombre="check" tam={20} />{a}</li>)}
+                    </ul>
+                  </>
+                ) : (
+                  <p>Incluye lo esencial descrito en "Todos los servicios incluyen".</p>
+                )}
+                <a class="btn btn--verde nivel__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información del servicio funerario ${s.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`servicio-${s.id}`}>
+                  <Icono nombre="whatsapp-logo" tam={20} /> Consultar el {s.nombre}
+                </a>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <ul class="fotos-serv" aria-label="Imágenes referenciales del servicio">
+        {fotos.map((f, i) => (
+          <li class="aparece">
+            <figure>
+              <Picture src={f.src} alt={f.alt} formats={['webp']} widths={[360, 720]} sizes="(min-width: 860px) 33vw, 100vw" />
+              <figcaption>{pies[i]}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <ul class="notas">
+        {notasServicios.map((n) => <li>{n}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- TRASLADOS Y TRÁMITES -->
+  <section class="seccion seccion--gris" aria-labelledby="tramites-titulo">
+    <div class="contenedor">
+      <h2 id="tramites-titulo" class="aparece">Traslados y trámites</h2>
+      <div class="tramites">
+        <div class="tramite aparece">
+          <span class="tramite__icono"><Icono nombre="car-profile" tam={30} /></span>
+          <h3>Traslados</h3>
+          <p>Coordinamos el traslado desde la casa, clínica u hospital hacia el velatorio y luego al camposanto. Realizamos el servicio para entierro o cremación hacia todos los camposantos de Lima.</p>
+        </div>
+        <div class="tramite aparece">
+          <span class="tramite__icono"><Icono nombre="file-text" tam={30} /></span>
+          <h3>Trámites</h3>
+          <p>Le ayudo con la documentación y las coordinaciones con el camposanto. En caso de cremación, el servicio incluye los trámites ante el área de salud y la necropsia de ley.</p>
+        </div>
+        <div class="tramite tramite--verde sobre-verde aparece">
+          <h3>¿Prefiere que lo llame?</h3>
+          <p>Escríbame su número por WhatsApp y lo llamo de inmediato.</p>
+          <a class="btn btn--dorado" href={enlaceWhatsApp('Hola Marco, por favor llámame. Mi número es: ')} target="_blank" rel="noopener" data-ubicacion="pedir-llamada">
+            <Icono nombre="whatsapp-logo" tam={20} /> Pedir que me llame
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Contacto pagina={PAGINA} titulo="Estoy disponible las 24 horas" texto="Llame o escriba en cualquier momento. Le respondo personalmente y lo acompaño en cada paso." />
+  <BarraLlamada pagina={PAGINA} />
+</Base>
+
+<style>
+  .franja-24h { background: var(--verde-hondo); color: #fff; }
+  .franja-24h__fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 12px; }
+  .franja-24h p { margin: 0; display: flex; align-items: center; gap: 8px; }
+  .franja-24h p :global(.icono) { color: var(--dorado); }
+  .franja-24h__tel {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 48px;
+    font: 700 1.6rem/1 var(--f-texto); color: var(--dorado); text-decoration: none; letter-spacing: 0.01em;
+  }
+  .franja-24h__tel:hover { color: #fff; }
+  @media (max-width: 520px) { .franja-24h__fila { justify-content: center; text-align: center; } .franja-24h__tel { font-size: 1.75rem; } }
+
+  .s-hero { padding: 40px 0 56px; }
+  .s-hero__grid { display: grid; gap: 32px; align-items: center; }
+  @media (min-width: 980px) { .s-hero__grid { grid-template-columns: 1fr 1fr; gap: 56px; } .s-hero { padding: 64px 0 80px; } }
+  .s-hero__sub { font-size: 1.2rem; color: var(--texto-2); max-width: 42ch; margin-bottom: 28px; }
+  .s-hero__botones { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (max-width: 520px) { .s-hero__botones .btn { width: 100%; } }
+  .s-hero :global(.s-hero__foto) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); }
+
+  .pasos { list-style: none; counter-reset: paso; padding: 0; margin: 32px 0 0; display: grid; gap: 16px; }
+  @media (min-width: 860px) { .pasos { grid-template-columns: repeat(6, 1fr); } .paso { grid-column: span 2; } .paso:nth-child(4) { grid-column: 2 / span 2; } }
+  .paso {
+    counter-increment: paso; position: relative; background: #fff; border-radius: var(--radio);
+    padding: 24px 24px 22px 76px; box-shadow: 0 1px 0 var(--gris-borde);
+  }
+  .paso::before {
+    content: counter(paso); position: absolute; left: 20px; top: 22px;
+    width: 40px; height: 40px; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--verde); color: var(--dorado); font: 700 1.1rem/1 var(--f-texto);
+  }
+  .paso h3 { font-size: 1.4rem; margin-bottom: 6px; }
+  .paso p { margin: 0; color: var(--texto-2); }
+
+  .servicios { display: grid; gap: 24px; margin-top: 32px; }
+  @media (min-width: 980px) { .servicios { grid-template-columns: 340px 1fr; gap: 40px; align-items: start; } .incluyen { position: sticky; top: 104px; } }
+  .incluyen { background: var(--verde-claro); border-radius: var(--radio); padding: 28px; }
+  .incluyen h3 { margin-bottom: 16px; }
+  .niveles { display: grid; gap: 12px; }
+  .nivel { border: 1px solid var(--gris-borde); border-radius: var(--radio); background: #fff; }
+  .nivel[open] { border-color: var(--verde-medio); box-shadow: var(--sombra); }
+  .nivel summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2px 16px;
+    padding: 20px 22px; min-height: 64px;
+  }
+  .nivel summary::-webkit-details-marker { display: none; }
+  .nivel__nombre { font: 600 1.55rem/1.2 var(--f-titulo); color: var(--verde-hondo); }
+  .nivel__resumen { grid-row: 2; color: var(--texto-2); font-size: 0.98rem; }
+  .nivel summary :global(.nivel__flecha) { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--verde); transition: transform 0.2s ease; }
+  .nivel[open] summary :global(.nivel__flecha) { transform: rotate(180deg); }
+  .nivel__cuerpo { padding: 0 22px 22px; }
+  .nivel__ademas { margin: 0 0 8px; font-weight: 600; color: var(--verde); }
+  .nivel__cta { margin-top: 18px; }
+
+  .fotos-serv { list-style: none; padding: 0; margin: 40px 0 16px; display: grid; gap: 16px; }
+  @media (min-width: 860px) { .fotos-serv { grid-template-columns: 1fr 1.25fr 1fr; } }
+  @media (max-width: 859px) { .fotos-serv :global(img) { height: 220px; } }
+  .fotos-serv figure { margin: 0; }
+  .fotos-serv :global(img) { width: 100%; height: 240px; object-fit: contain; padding: 8px; border-radius: var(--radio); background: #fff; border: 1px solid var(--gris-borde); }
+  .fotos-serv li:nth-child(2) :global(img) { object-fit: cover; padding: 0; }
+  .fotos-serv figcaption { font-size: 0.95rem; color: var(--texto-2); margin-top: 8px; }
+  .notas { padding-left: 1.2em; margin: 0; font-size: 0.9rem; color: var(--texto-2); display: grid; gap: 4px; }
+
+  .tramites { display: grid; gap: 16px; margin-top: 28px; }
+  @media (min-width: 860px) { .tramites { grid-template-columns: 1fr 1fr 0.9fr; } }
+  .tramite { background: #fff; border-radius: var(--radio); padding: 28px; }
+  .tramite p { color: var(--texto-2); margin: 0; }
+  .tramite__icono {
+    display: inline-flex; width: 56px; height: 56px; border-radius: var(--radio); margin-bottom: 14px;
+    align-items: center; justify-content: center; background: var(--verde-claro); color: var(--verde);
+  }
+  .tramite--verde { background: var(--verde); color: #fff; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .tramite--verde h3 { color: #fff; margin: 0; }
+  .tramite--verde p { color: rgb(255 255 255 / 0.88); }
+
+  /* Espacio para la barra fija de llamada en celular */
+  @media (max-width: 767px) { :global(.pie) { padding-bottom: 120px; } }
+</style>

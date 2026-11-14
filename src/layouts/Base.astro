@@ -1,0 +1,126 @@
+---
+import '@fontsource/figtree/400.css';
+import '@fontsource/figtree/500.css';
+import '@fontsource/figtree/600.css';
+import '@fontsource/figtree/700.css';
+import '@fontsource/cormorant-garamond/600.css';
+import '@fontsource/cormorant-garamond/600-italic.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFlotante from '../components/WhatsAppFlotante.astro';
+import BannerCookies from '../components/BannerCookies.astro';
+import { SITE, idValido } from '../config/site';
+
+interface Props {
+  /** Id de página: define el mensaje de WhatsApp y el nombre en los eventos. */
+  pagina: string;
+  titulo: string;
+  descripcion: string;
+  noindex?: boolean;
+}
+const { pagina, titulo, descripcion, noindex = false } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, ''), SITE.url).href;
+const ogImagen = new URL('/og-default.jpg', SITE.url).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FuneralHome',
+  '@id': `${SITE.url}/#asesor`,
+  name: `${SITE.nombreCorto}, ${SITE.cargo} de ${SITE.empresa}`,
+  description: 'Asesoría en servicios funerarios, cremación y planes de previsión en cuotas en los camposantos de Jardines de la Paz en La Molina y Lurín, Lima.',
+  url: SITE.url,
+  image: ogImagen,
+  telephone: SITE.telefonoE164,
+  email: SITE.correo,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.sedes[0].direccion,
+    addressLocality: SITE.sedes[0].distrito,
+    addressRegion: 'Lima',
+    addressCountry: 'PE',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Lima' },
+    { '@type': 'AdministrativeArea', name: 'La Molina' },
+    { '@type': 'AdministrativeArea', name: 'Lurín' },
+  ],
+  openingHoursSpecification: SITE.atencion24h
+    ? [{
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '23:59',
+      }]
+    : undefined,
+  employee: {
+    '@type': 'Person',
+    name: SITE.nombre,
+    jobTitle: SITE.cargo,
+    telephone: SITE.telefonoE164,
+    email: SITE.correo,
+    sameAs: Object.values(SITE.redes),
+  },
+  sameAs: Object.values(SITE.redes),
+};
+
+// Configuración de medición que lee el script del navegador (solo IDs válidos).
+const tracking = {
+  pagina,
+  gtmId: idValido(SITE.tracking.gtmId) ? SITE.tracking.gtmId : '',
+  ga4Id: idValido(SITE.tracking.ga4Id) ? SITE.tracking.ga4Id : '',
+  metaPixelId: idValido(SITE.tracking.metaPixelId) ? SITE.tracking.metaPixelId : '',
+};
+---
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="theme-color" content="#1f4d36" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content={`${SITE.nombreCorto} · ${SITE.cargo}`} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImagen} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Camposanto Jardines de la Paz en La Molina" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      window.gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+    </script>
+    <script type="application/json" id="cfg-tracking" set:html={JSON.stringify(tracking)} />
+  </head>
+  <body>
+    <a class="salto" href="#contenido">Saltar al contenido</a>
+    <Header actual={Astro.url.pathname} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFlotante pagina={pagina} />
+    <BannerCookies />
+    <script>
+      import '../scripts/sitio.ts';
+    </script>
+  </body>
+</html>

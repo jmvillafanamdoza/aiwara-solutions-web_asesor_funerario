@@ -1,0 +1,124 @@
+---
+// Formulario de cotización SIN backend: al enviar, valida, registra el evento form_submit
+// y abre WhatsApp con los datos prellenados.
+import Icono from './Icono.astro';
+import { SITE } from '../config/site';
+
+const opcionesInteres = [
+  'Plan de servicio funerario a futuro',
+  'Lote personal (simple)',
+  'Lote doble',
+  'Lote triple',
+  'Nicho',
+  'Praderas de la Paz',
+  'Cinerario',
+  'Cremación',
+  'Aún no lo sé, quiero orientación',
+];
+---
+<form class="form" id="form-cotizacion" novalidate data-whatsapp={SITE.whatsapp}>
+  <div class="campo">
+    <label for="f-nombre">Nombre y apellido</label>
+    <input id="f-nombre" name="nombre" type="text" autocomplete="name" required minlength="3" maxlength="80" aria-describedby="e-nombre" />
+    <p class="campo__error" id="e-nombre" hidden>Escriba su nombre.</p>
+  </div>
+
+  <div class="campo">
+    <label for="f-celular">Celular</label>
+    <input id="f-celular" name="celular" type="tel" inputmode="numeric" autocomplete="tel-national" required pattern="9[0-9]{8}" maxlength="11" aria-describedby="a-celular e-celular" />
+    <p class="campo__ayuda" id="a-celular">9 dígitos, por ejemplo 987654321.</p>
+    <p class="campo__error" id="e-celular" hidden>Escriba un celular de 9 dígitos que empiece con 9.</p>
+  </div>
+
+  <div class="campo">
+    <label for="f-distrito">Distrito</label>
+    <input id="f-distrito" name="distrito" type="text" autocomplete="address-level2" required maxlength="60" aria-describedby="e-distrito" />
+    <p class="campo__error" id="e-distrito" hidden>Escriba su distrito.</p>
+  </div>
+
+  <div class="campo">
+    <label for="f-interes">¿Qué le interesa?</label>
+    <select id="f-interes" name="interes" required aria-describedby="e-interes">
+      <option value="">Elija una opción</option>
+      {opcionesInteres.map((o) => <option>{o}</option>)}
+    </select>
+    <p class="campo__error" id="e-interes" hidden>Elija una opción.</p>
+  </div>
+
+  <div class="campo campo--check">
+    <input id="f-consentimiento" name="consentimiento" type="checkbox" required aria-describedby="e-consentimiento" />
+    <label for="f-consentimiento">
+      Acepto que {SITE.nombre} use mis datos para contactarme y enviarme la cotización solicitada, según la{' '}
+      <a href="/privacidad" target="_blank">Política de privacidad</a> (Ley N.° 29733).
+    </label>
+    <p class="campo__error" id="e-consentimiento" hidden>Para enviar la solicitud debe aceptar el uso de sus datos.</p>
+  </div>
+
+  <button class="btn btn--verde btn--grande btn--bloque" type="submit">
+    <Icono nombre="whatsapp-logo" /> Enviar por WhatsApp
+  </button>
+  <p class="form__nota">Se abrirá WhatsApp con sus datos listos para enviar. Sin compromiso.</p>
+</form>
+
+<script>
+  import { evento } from '../scripts/medicion';
+
+  const form = document.getElementById('form-cotizacion') as HTMLFormElement | null;
+  if (form) {
+    const campos = ['nombre', 'celular', 'distrito', 'interes', 'consentimiento'] as const;
+    const el = (n: string) => form.elements.namedItem(n) as HTMLInputElement | HTMLSelectElement;
+
+    const validar = (n: string) => {
+      const c = el(n);
+      if (n === 'celular') c.value = c.value.replace(/\D/g, '').replace(/^51(?=9\d{8}$)/, '');
+      if (n !== 'consentimiento' && 'value' in c) c.value = c.value.trimStart();
+      const ok = c.checkValidity() && (n === 'consentimiento' || c.value.trim().length > 0);
+      const err = document.getElementById(`e-${n}`)!;
+      err.hidden = ok;
+      c.setAttribute('aria-invalid', String(!ok));
+      return ok;
+    };
+
+    campos.forEach((n) => el(n).addEventListener('blur', () => { if (el(n).getAttribute('aria-invalid')) validar(n); }));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const resultados = campos.map(validar);
+      const primero = campos[resultados.indexOf(false)];
+      if (primero) { el(primero).focus(); return; }
+
+      const v = (n: string) => el(n).value.trim();
+      const mensaje =
+        `Hola Marco, soy ${v('nombre')}, de ${v('distrito')}. ` +
+        `Me interesa: ${v('interes')}. Mi celular: ${v('celular')}. ` +
+        `Acepto el uso de mis datos para recibir la cotización.`;
+
+      evento('form_submit', { interes: v('interes'), distrito: v('distrito') });
+
+      const url = `https://wa.me/${form.dataset.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+      const ventana = window.open(url, '_blank');
+      if (!ventana) window.location.href = url;
+    });
+  }
+</script>
+
+<style>
+  .form { display: grid; gap: 20px; background: #fff; border-radius: var(--radio); padding: clamp(20px, 4vw, 32px); box-shadow: var(--sombra); }
+  .campo { display: grid; gap: 6px; }
+  .campo label { font-weight: 600; color: var(--tinta); }
+  .campo input[type='text'], .campo input[type='tel'], .campo select {
+    width: 100%; min-height: 52px; padding: 12px 14px;
+    font: 400 1.0625rem/1.3 var(--f-texto); color: var(--tinta);
+    background: #fff; border: 1.5px solid #8a948f; border-radius: var(--radio);
+  }
+  .campo select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--verde) 50%), linear-gradient(135deg, var(--verde) 50%, transparent 50%); background-position: calc(100% - 22px) 22px, calc(100% - 16px) 22px; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+  .campo input:focus-visible, .campo select:focus-visible { outline: 3px solid var(--dorado); outline-offset: 1px; border-color: var(--verde); }
+  .campo [aria-invalid='true'] { border-color: var(--error); }
+  .campo__ayuda { margin: 0; font-size: 0.9rem; color: var(--texto-2); }
+  .campo__error { margin: 0; font-size: 0.92rem; color: var(--error); font-weight: 600; }
+  .campo--check { grid-template-columns: 28px 1fr; align-items: start; column-gap: 12px; }
+  .campo--check input { width: 24px; height: 24px; margin: 2px 0 0; accent-color: var(--verde); }
+  .campo--check label { font-weight: 400; font-size: 0.95rem; line-height: 1.5; }
+  .campo--check .campo__error { grid-column: 2; }
+  .form__nota { margin: -8px 0 0; text-align: center; font-size: 0.9rem; color: var(--texto-2); }
+</style>

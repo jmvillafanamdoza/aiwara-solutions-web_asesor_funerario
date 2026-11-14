@@ -1,0 +1,13 @@
+---
+// Íconos Phosphor (peso regular). Uso: <Icono nombre="phone" />
+// Se incrustan como SVG en línea al compilar (sin peticiones extra).
+interface Props { nombre: string; tam?: number; class?: string; }
+const { nombre, tam = 24, class: clase = '' } = Astro.props;
+const iconos = import.meta.glob<string>('/node_modules/@phosphor-icons/core/assets/regular/*.svg', { query: '?raw', import: 'default' });
+const cargar = iconos[`/node_modules/@phosphor-icons/core/assets/regular/${nombre}.svg`];
+if (!cargar) throw new Error(`Ícono no encontrado: ${nombre}`);
+const svg = (await cargar())
+  .replace('<svg ', `<svg width="${tam}" height="${tam}" aria-hidden="true" focusable="false" class="icono ${clase}" `)
+  .replace(/fill="#000000"|fill="#000"/g, 'fill="currentColor"');
+---
+<Fragment set:html={svg} />

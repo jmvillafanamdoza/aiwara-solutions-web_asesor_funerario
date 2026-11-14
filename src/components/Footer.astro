@@ -1,0 +1,80 @@
+---
+import Icono from './Icono.astro';
+import { SITE, enlaceTelefono } from '../config/site';
+const anio = new Date().getFullYear();
+---
+<footer class="pie sobre-verde">
+  <div class="contenedor pie__grid">
+    <div>
+      <p class="pie__nombre">{SITE.nombre}</p>
+      <p class="pie__cargo">{SITE.cargo} de {SITE.empresa}</p>
+      <ul class="pie__redes" aria-label="Redes sociales">
+        <li><a href={SITE.redes.facebook} rel="noopener" target="_blank" aria-label="Facebook (abre en otra pestaña)"><Icono nombre="facebook-logo" /></a></li>
+        <li><a href={SITE.redes.instagram} rel="noopener" target="_blank" aria-label="Instagram (abre en otra pestaña)"><Icono nombre="instagram-logo" /></a></li>
+        <li><a href={SITE.redes.linkedin} rel="noopener" target="_blank" aria-label="LinkedIn (abre en otra pestaña)"><Icono nombre="linkedin-logo" /></a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="pie__titulo">Contacto</h2>
+      <ul class="pie__lista">
+        <li><Icono nombre="phone" tam={20} /><span><a href={enlaceTelefono} data-ubicacion="pie">{SITE.telefonoIntl}</a>{SITE.atencion24h && ' (24 horas)'}</span></li>
+        <li><Icono nombre="envelope-simple" tam={20} /><a href={`mailto:${SITE.correo}`}>{SITE.correo}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="pie__titulo">Camposantos</h2>
+      <ul class="pie__lista">
+        {SITE.sedes.map((s) => (
+          <li>
+            <Icono nombre="map-pin" tam={20} />
+            <span>
+              <a href={s.mapa} rel="noopener" target="_blank">{s.nombre}</a><br />
+              {s.direccion.startsWith('[') ? <span class="marcador">{s.direccion}</span> : s.direccion}, {s.distrito}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="contenedor pie__legal">
+    <p>
+      Asesor autorizado de Jardines de la Paz. Sitio oficial:{' '}
+      <a href={SITE.sitioOficial} rel="noopener" target="_blank">jardinesdelapaz.com</a>
+    </p>
+    <p class="pie__enlaces">
+      <span>© {anio} {SITE.nombreCorto}</span>
+      <a href="/privacidad">Política de privacidad</a>
+      <button type="button" class="pie__cookies" data-abrir-cookies>Configurar cookies</button>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pie { background: var(--verde-hondo); color: rgb(255 255 255 / 0.88); padding: 56px 0 96px; font-size: 1rem; }
+  .pie a { color: #fff; }
+  .pie a:hover { color: var(--dorado); }
+  .pie__grid { display: grid; gap: 32px; grid-template-columns: 1fr; }
+  @media (min-width: 768px) { .pie__grid { grid-template-columns: 1.2fr 1fr 1.2fr; } }
+  .pie__nombre { font: 600 1.6rem/1.15 var(--f-titulo); color: #fff; margin-bottom: 4px; }
+  .pie__cargo { margin-bottom: 16px; }
+  .pie__titulo { font: 600 0.95rem/1.4 var(--f-texto); color: var(--dorado); margin-bottom: 12px; }
+  .pie__lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .pie__lista li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+  .pie__lista :global(.icono) { margin-top: 3px; color: var(--dorado); }
+  .pie__redes { list-style: none; padding: 0; margin: 0; display: flex; gap: 10px; }
+  .pie__redes a {
+    display: inline-flex; width: 48px; height: 48px; align-items: center; justify-content: center;
+    border: 1px solid rgb(255 255 255 / 0.3); border-radius: var(--radio);
+  }
+  .pie__legal { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgb(255 255 255 / 0.18); font-size: 0.95rem; }
+  .pie__enlaces { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .pie__cookies {
+    background: none; border: 0; padding: 8px 0; color: #fff; text-decoration: underline;
+    text-underline-offset: 3px; font: inherit; cursor: pointer;
+  }
+  .pie__cookies:hover { color: var(--dorado); }
+  .pie .marcador { font-size: 0.8em; }
+</style>

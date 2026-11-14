@@ -1,0 +1,55 @@
+---
+// Bloque de contacto final (se usa en las 3 páginas).
+import { Picture } from 'astro:assets';
+import Icono from './Icono.astro';
+import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
+import { imagen } from '../lib/imagenes';
+interface Props { pagina: string; titulo?: string; texto?: string; }
+const {
+  pagina,
+  titulo = 'Hablemos cuando usted lo necesite',
+  texto = 'Atiendo personalmente, las 24 horas. Escríbame o llámeme y le respondo con calma y sin compromiso.',
+} = Astro.props;
+const retrato = imagen('marco-retrato');
+const mensaje = SITE.mensajesWhatsApp[pagina] ?? SITE.mensajesWhatsApp.inicio;
+---
+<section class="seccion seccion--verde sobre-verde contacto" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contenedor contacto__grid">
+    <div class="contacto__persona aparece">
+      <Picture src={retrato.src} alt={retrato.alt} formats={['webp']} widths={[160, 320]} sizes="160px" class="contacto__foto" />
+      <p class="contacto__nombre">{SITE.nombre}</p>
+      <p class="contacto__cargo">{SITE.cargo} de {SITE.empresa}</p>
+    </div>
+    <div class="aparece">
+      <h2 id="contacto-titulo">{titulo}</h2>
+      <p class="intro">{texto}</p>
+      <div class="contacto__botones">
+        <a class="btn btn--dorado btn--grande" href={enlaceWhatsApp(mensaje)} target="_blank" rel="noopener" data-ubicacion="contacto">
+          <Icono nombre="whatsapp-logo" /> Escribir por WhatsApp
+        </a>
+        <a class="btn btn--claro btn--grande" href={enlaceTelefono} data-ubicacion="contacto">
+          <Icono nombre="phone" /> Llamar al {SITE.telefonoVisible}
+        </a>
+      </div>
+      <p class="contacto__correo">
+        <Icono nombre="envelope-simple" tam={20} />
+        <a href={`mailto:${SITE.correo}`}>{SITE.correo}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto__grid { display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 860px) { .contacto__grid { grid-template-columns: 280px 1fr; gap: 64px; } }
+  .contacto__persona { text-align: center; }
+  .contacto :global(.contacto__foto) {
+    width: 160px; height: 160px; object-fit: cover; border-radius: 50%;
+    margin: 0 auto 16px; border: 4px solid var(--dorado);
+  }
+  .contacto__nombre { font: 600 1.45rem/1.2 var(--f-titulo); color: #fff; margin-bottom: 4px; }
+  .contacto__cargo { color: var(--dorado); font-size: 0.95rem; }
+  .contacto__botones { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 20px; }
+  .contacto__correo { display: flex; align-items: center; gap: 10px; }
+  .contacto__correo a { color: #fff; }
+</style>
