@@ -16,7 +16,7 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `galeria-3` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_11_h.jpg` |  |
 | `galeria-4` | Inicio > Galería | 960x1280 | No | `../02_Fotos_Camposanto/arbol/jdlp_arbol_03_v.jpg` |  |
 | `galeria-5` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/zona-lapidas/jdlp_zona-lapidas_04_h.jpg` |  |
-| `servicio-hero` | Servicio funerario > cabecera | 1280x960 | No | `../02_Fotos_Camposanto/toldo-servicio/jdlp_toldo-servicio_01_h.jpg` |  |
+| `servicio-hero` | Servicio funerario > cabecera | 605x424 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg` | Foto elegida por el usuario (605x424). Reemplazar por la misma toma en mayor resolución (mín. 1280 px de ancho) si existe. |
 | `serv-capilla` | Servicio funerario > Qué incluye (capilla ardiente) | 780x610 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
 | `serv-carroza` | Servicio funerario > Qué incluye (carroza) | 960x490 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
 | `serv-ataud` | Servicio funerario > Qué incluye (ataúd) | 710x480 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/ATAUD PREMIUM CUADRADO.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |

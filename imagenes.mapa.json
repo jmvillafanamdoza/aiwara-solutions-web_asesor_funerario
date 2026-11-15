@@ -89,10 +89,11 @@
     },
     "servicio-hero": {
       "usado_en": "Servicio funerario > cabecera",
-      "origen": "../02_Fotos_Camposanto/toldo-servicio/jdlp_toldo-servicio_01_h.jpg",
+      "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg",
       "recorte": null,
-      "alt": "Toldo de ceremonia de Jardines de la Paz preparado en el camposanto",
-      "reemplazar": false
+      "alt": "Interior de la capilla con bancas de madera y techo de vigas",
+      "reemplazar": true,
+      "nota": "Foto elegida por el usuario (605x424). Reemplazar por la misma toma en mayor resolución (mín. 1280 px de ancho) si existe."
     },
     "serv-capilla": {
       "usado_en": "Servicio funerario > Qué incluye (capilla ardiente)",
