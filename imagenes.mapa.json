@@ -41,16 +41,11 @@
     },
     "cs-lurin": {
       "usado_en": "Inicio > Camposantos (tarjeta Lurín)",
-      "origen": "../04_Facebook/Albumes-Jardines/03-Nuestros-camposantos/camposantos-la-molina-lurin.jpg",
-      "recorte": {
-        "x": 556,
-        "y": 300,
-        "w": 492,
-        "h": 494
-      },
-      "alt": "Ingreso del camposanto de Lurín con su obelisco y pileta",
+      "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg",
+      "recorte": null,
+      "alt": "Capilla del camposanto de Lurín rodeada de jardines",
       "reemplazar": true,
-      "nota": "Recorte pequeño de una pieza de Facebook. Reemplazar por foto propia de Lurín en alta resolución."
+      "nota": "Foto elegida por el usuario (607x416). Reemplazar por la misma toma en mayor resolución si existe."
     },
     "galeria-1": {
       "usado_en": "Inicio > Galería",

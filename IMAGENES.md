@@ -10,7 +10,7 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |
-| `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 492x494 | **Sí** | `../04_Facebook/Albumes-Jardines/03-Nuestros-camposantos/camposantos-la-molina-lurin.jpg` (recortada) | Recorte pequeño de una pieza de Facebook. Reemplazar por foto propia de Lurín en alta resolución. |
+| `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 607x416 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg` | Foto elegida por el usuario (607x416). Reemplazar por la misma toma en mayor resolución si existe. |
 | `galeria-1` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/arbol/jdlp_arbol_01_h.jpg` |  |
 | `galeria-2` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/memorial/jdlp_memorial_03_h.jpg` |  |
 | `galeria-3` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_11_h.jpg` |  |
