@@ -109,7 +109,6 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 
 | Marcador | Dónde | Qué falta |
 |---|---|---|
-| `[DIRECCIÓN POR CONFIRMAR]` | Camposanto Lurín (inicio y pie) | Dirección exacta de la sede de Lurín → `src/config/site.ts` |
 | `[TESTIMONIO REAL 1-3]`, `[NOMBRE]`, `[DISTRITO]` | Inicio > Lo que dicen las familias | 3 testimonios reales con permiso escrito (máx. 3 líneas cada uno) |
 | `[DETALLE POR CONFIRMAR]` | Plan funerario > Cinerarios | Qué incluyen los cinerarios y en qué sede están |
 | `[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]` | Privacidad | Revisión legal de la política |

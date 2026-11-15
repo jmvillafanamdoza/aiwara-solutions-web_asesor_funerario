@@ -54,9 +54,9 @@ export const SITE = {
     {
       id: 'lurin',
       nombre: 'Camposanto Lurín',
-      direccion: '[DIRECCIÓN POR CONFIRMAR]',
+      direccion: 'Panamericana Sur Km 32.5',
       distrito: 'Lurín',
-      mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Lurin',
+      mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Panamericana+Sur+Km+32.5+Lurin',
       recorrido3d: 'https://recorridolurin.jardines.pe/',
     },
   ],
