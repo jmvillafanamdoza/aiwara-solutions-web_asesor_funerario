@@ -4,12 +4,12 @@
 import type { ImageMetadata } from 'astro';
 import mapa from '../../imagenes.mapa.json';
 
-const archivos = import.meta.glob<{ default: ImageMetadata }>('../assets/img/*.jpg', { eager: true });
+const archivos = import.meta.glob<{ default: ImageMetadata }>('../assets/img/*.{jpg,png}', { eager: true });
 
 export type Espacio = keyof typeof mapa.imagenes;
 
 export function imagen(espacio: Espacio): { src: ImageMetadata; alt: string } {
-  const archivo = archivos[`../assets/img/${espacio}.jpg`];
+  const archivo = archivos[`../assets/img/${espacio}.jpg`] ?? archivos[`../assets/img/${espacio}.png`];
   if (!archivo) throw new Error(`Falta la imagen del espacio "${espacio}". Ejecute npm run imagenes.`);
   return { src: archivo.default, alt: mapa.imagenes[espacio].alt };
 }

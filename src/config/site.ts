@@ -36,10 +36,10 @@ export const SITE = {
   sitioOficial: 'https://www.jardinesdelapaz.com',
 
   /**
-   * Logo oficial de Jardines de la Paz: NO usar hasta confirmar la autorización.
-   * Cuando se confirme: poner el archivo en src/assets/logo-jdlp.svg (o .png) y cambiar a true.
+   * Logo de Jardines de la Paz en la cabecera (espacio "logo-jdlp" de imagenes.mapa.json).
+   * Activado a pedido del usuario el 2026-11-15. false = se oculta.
    */
-  logoJdlpAutorizado: false,
+  logoJdlpAutorizado: true,
 
   sedes: [
     {

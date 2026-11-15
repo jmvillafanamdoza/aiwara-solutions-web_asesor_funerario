@@ -2,11 +2,26 @@
   "_instrucciones": "Mapa de imágenes de la web. Cada clave es un ESPACIO de la página. Para cambiar una foto: edite 'origen' (ruta relativa a la carpeta web/) y, si hace falta, 'recorte' {x,y,w,h} en píxeles del original (null = imagen completa). Luego ejecute 'npm run imagenes' y 'npm run build'. 'alt' es el texto alternativo que se muestra a lectores de pantalla. Los originales nunca se modifican.",
   "imagenes": {
     "hero-inicio": {
-      "usado_en": "Inicio > hero (fondo)",
+      "usado_en": "Inicio > hero, foto 1 de 3 (se alternan)",
       "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg",
       "recorte": null,
       "alt": "Pirámide del camposanto Jardines de la Paz en La Molina rodeada de jardines",
       "reemplazar": false
+    },
+    "hero-2": {
+      "usado_en": "Inicio > hero, foto 2 de 3 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg",
+      "recorte": null,
+      "alt": "Jardines del camposanto bajo cielo despejado con los cerros al fondo",
+      "reemplazar": false
+    },
+    "hero-3": {
+      "usado_en": "Inicio > hero, foto 3 de 3 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg",
+      "recorte": null,
+      "alt": "Interior de la capilla con bancas de madera y techo de vigas",
+      "reemplazar": true,
+      "nota": "605x424; reemplazar por versión en mayor resolución si existe."
     },
     "marco-retrato": {
       "usado_en": "Inicio > hero (retrato circular) y bloque de contacto",
@@ -154,6 +169,15 @@
       "recorte": null,
       "alt": "Lotes en jardín con lápidas a ras del césped",
       "reemplazar": false
+    },
+    "logo-jdlp": {
+      "usado_en": "Cabecera, junto al nombre de Marco",
+      "origen": "../02_Fotos_Camposanto/Inicio/logojardines.png",
+      "recorte": null,
+      "alt": "Jardines de la Paz",
+      "formato": "png",
+      "reemplazar": true,
+      "nota": "PNG transparente de 266x78. Ideal: versión SVG o PNG de al menos 600 px de ancho para pantallas de alta densidad."
     }
   },
   "og": {

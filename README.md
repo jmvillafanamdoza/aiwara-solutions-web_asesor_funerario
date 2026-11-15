@@ -38,7 +38,7 @@ npm run preview      # http://localhost:4321
 | Qué | Archivo |
 |---|---|
 | Dominio, teléfono, WhatsApp, correo, redes, direcciones, mensajes de WhatsApp por página, IDs de medición, menú | `src/config/site.ts` (**único lugar**) |
-| Imágenes (qué foto va en cada espacio, recortes, textos alternativos) | `imagenes.mapa.json` → ver sección 6 |
+| Imágenes y logo (qué archivo va en cada espacio, recortes, textos alternativos; las 3 fotos del hero son hero-inicio, hero-2 y hero-3) | `imagenes.mapa.json` → ver sección 6 |
 | Lista de servicios funerarios y lo que incluyen | `src/data/servicios.ts` |
 | Testimonios | `src/components/Testimonios.astro` |
 | Opciones del formulario ("¿Qué le interesa?") | `src/components/FormCotizacion.astro` |
@@ -115,7 +115,6 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 | `[FECHA DE PUBLICACIÓN]` | Privacidad | Fecha en que se publica la política |
 | `[PLAZO POR CONFIRMAR]` | Privacidad | Plazo de conservación de los datos |
 | IDs `GTM-XXXXXXX`, `G-XXXXXXXXXX`, Pixel | `src/config/site.ts` | IDs reales de medición |
-| Logo de Jardines de la Paz | `src/config/site.ts` → `logoJdlpAutorizado: false` | Autorización de uso. Espacio reservado en la cabecera |
 
 **Datos y textos que Marco debe validar** (no son marcadores, pero conviene confirmarlos):
 - Que el número **998 160 591 atiende 24 horas** (se muestra en toda la web y en los datos estructurados).

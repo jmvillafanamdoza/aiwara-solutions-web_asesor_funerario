@@ -6,7 +6,9 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 
 | Espacio | Dónde se usa | Medida final | ¿Reemplazar? | Origen | Nota |
 |---|---|---|---|---|---|
-| `hero-inicio` | Inicio > hero (fondo) | 1640x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` |  |
+| `hero-inicio` | Inicio > hero, foto 1 de 3 (se alternan) | 1640x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` |  |
+| `hero-2` | Inicio > hero, foto 2 de 3 (se alternan) | 1280x960 | No | `../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg` |  |
+| `hero-3` | Inicio > hero, foto 3 de 3 (se alternan) | 605x424 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg` | 605x424; reemplazar por versión en mayor resolución si existe. |
 | `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |
@@ -23,4 +25,5 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `plan-hero` | Plan funerario > cabecera | 1280x960 | No | `../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg` |  |
 | `plan-praderas` | Plan funerario > opción Praderas de la Paz | 960x1280 | No | `../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg` |  |
 | `plan-lotes` | Plan funerario > opción lotes | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_05_h.jpg` |  |
+| `logo-jdlp` | Cabecera, junto al nombre de Marco | 266x78 | **Sí** | `../02_Fotos_Camposanto/Inicio/logojardines.png` | PNG transparente de 266x78. Ideal: versión SVG o PNG de al menos 600 px de ancho para pantallas de alta densidad. |
 | `og` | Imagen al compartir en Facebook y WhatsApp (public/og-default.jpg, 1200x630) | 1200x630 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` | |

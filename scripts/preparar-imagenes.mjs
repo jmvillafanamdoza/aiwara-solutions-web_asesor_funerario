@@ -1,7 +1,7 @@
 // Prepara las imágenes de la web a partir de imagenes.mapa.json.
 // Uso: npm run imagenes
 // - Lee cada espacio del mapa, recorta (si corresponde) y guarda una copia en src/assets/img/<espacio>.jpg
-//   (Astro luego genera las versiones WebP responsivas al compilar).
+//   (o .png si el espacio tiene "formato": "png"; Astro luego genera las versiones WebP responsivas al compilar).
 // - Genera public/og-default.jpg (1200x630) para compartir en redes.
 // - Escribe IMAGENES.md con la tabla de espacios para revisar qué falta reemplazar.
 // Los archivos originales NUNCA se modifican.
@@ -27,11 +27,12 @@ let errores = 0;
 const filas = [];
 for (const [clave, d] of Object.entries(mapa.imagenes)) {
   try {
-    const salida = path.join(destino, `${clave}.jpg`);
-    await cargar(d.origen, d.recorte)
-      .resize({ width: 2000, withoutEnlargement: true })
-      .jpeg({ quality: 90, mozjpeg: true })
-      .toFile(salida);
+    // formato "png" conserva la transparencia (logos); el resto se guarda como JPG.
+    const png = d.formato === 'png';
+    const salida = path.join(destino, `${clave}.${png ? 'png' : 'jpg'}`);
+    for (const ext of ['jpg', 'png']) { const vieja = path.join(destino, `${clave}.${ext}`); if (vieja !== salida && fs.existsSync(vieja)) fs.rmSync(vieja); }
+    const img = cargar(d.origen, d.recorte).resize({ width: 2000, withoutEnlargement: true });
+    await (png ? img.png({ compressionLevel: 9 }) : img.jpeg({ quality: 90, mozjpeg: true })).toFile(salida);
     const m = await sharp(salida).metadata();
     filas.push(`| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''} | ${d.nota ?? ''} |`);
     console.log(`ok  ${clave}  ${m.width}x${m.height}`);

@@ -1,6 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Icono from './Icono.astro';
 import { SITE, enlaceTelefono } from '../config/site';
+import { imagen } from '../lib/imagenes';
+const logo = SITE.logoJdlpAutorizado ? imagen('logo-jdlp') : null;
 interface Props { actual: string; }
 const actual = Astro.props.actual.replace(/\/$/, '') || '/';
 const items = SITE.nav.filter((i) => i.activo);
@@ -8,12 +11,16 @@ const items = SITE.nav.filter((i) => i.activo);
 <header class="cabecera">
   <div class="contenedor cabecera__fila">
     <a class="marca" href="/" aria-label={`${SITE.nombreCorto}, ${SITE.cargo} de ${SITE.empresa}. Ir al inicio`}>
-      {SITE.logoJdlpAutorizado && (
-        /* Espacio reservado para el logo oficial: agregar <img> cuando haya autorización. */
-        <span class="marca__logo" />
+      {logo && (
+        <>
+          <Image src={logo.src} alt="" height={40} densities={[1, 2]} loading="eager" class="marca__logo" />
+          <span class="marca__sep" aria-hidden="true"></span>
+        </>
       )}
-      <span class="marca__nombre">{SITE.nombreCorto}</span>
-      <span class="marca__cargo">{SITE.cargo} · {SITE.empresa}</span>
+      <span class="marca__texto">
+        <span class="marca__nombre">{SITE.nombreCorto}</span>
+        <span class="marca__cargo">{logo ? SITE.cargo : `${SITE.cargo} · ${SITE.empresa}`}</span>
+      </span>
     </a>
 
     <nav class="nav" aria-label="Principal">
@@ -44,7 +51,10 @@ const items = SITE.nav.filter((i) => i.activo);
     border-bottom: 1px solid var(--gris-borde);
   }
   .cabecera__fila { display: flex; align-items: center; gap: 16px; min-height: 72px; }
-  .marca { display: grid; text-decoration: none; line-height: 1.15; margin-right: auto; }
+  .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; margin-right: auto; min-width: 0; }
+  .marca :global(.marca__logo) { height: 40px; width: auto; flex: none; }
+  .marca__sep { width: 1px; height: 34px; background: var(--gris-borde); flex: none; }
+  .marca__texto { display: grid; line-height: 1.15; min-width: 0; }
   .marca__nombre { font: 600 1.55rem/1.05 var(--f-titulo); color: var(--verde-hondo); }
   .marca__cargo { font-size: 0.78rem; color: var(--texto-2); letter-spacing: 0.01em; }
   .nav__lista { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
@@ -74,8 +84,12 @@ const items = SITE.nav.filter((i) => i.activo);
     .nav__lista a { padding: 14px 8px; font-size: 1.1rem; border-bottom: 1px solid var(--gris-claro); border-radius: 0; }
   }
   @media (max-width: 480px) {
-    .marca__nombre { font-size: 1.35rem; }
-    .marca__cargo { font-size: 0.7rem; max-width: 22ch; }
+    .cabecera__fila { gap: 10px; }
+    .marca { gap: 8px; }
+    .marca :global(.marca__logo) { height: 26px; }
+    .marca__sep { display: none; }
+    .marca__nombre { font-size: 1.12rem; white-space: nowrap; }
+    .marca__cargo { font-size: 0.66rem; }
     .cabecera__llamar-texto { display: none; }
     .cabecera__llamar { width: 48px; padding: 0; }
   }
