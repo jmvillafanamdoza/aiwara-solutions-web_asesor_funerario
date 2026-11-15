@@ -7,8 +7,8 @@ import Contacto from '../components/Contacto.astro';
 import { SITE } from '../config/site';
 import { imagen } from '../lib/imagenes';
 
-// Fotos del hero que se alternan (espacios hero-inicio, hero-2 y hero-3 de imagenes.mapa.json)
-const slides = (['hero-inicio', 'hero-2', 'hero-3'] as const).map(imagen);
+// Fotos del hero que se alternan (espacios hero-inicio y hero-2 a hero-5 de imagenes.mapa.json)
+const slides = (['hero-inicio', 'hero-2', 'hero-3', 'hero-4', 'hero-5'] as const).map(imagen);
 const retrato = imagen('marco-retrato');
 const equipo = imagen('marco-equipo');
 const laMolina = imagen('cs-la-molina');
@@ -46,7 +46,7 @@ const motivos = [
         <div class="hero__fotos" data-slides aria-roledescription="carrusel" aria-label="Fotos de los camposantos">
           {slides.map((s, i) => (
             <Picture
-              src={s.src} alt={s.alt} formats={['webp']} widths={[640, 960, 1400]}
+              src={s.src} alt={s.alt} formats={['webp']} widths={[400, 640]}
               sizes="(min-width: 980px) 50vw, 100vw"
               loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'}
               pictureAttributes={{ class: `hero__slide${i === 0 ? ' activa' : ''}`, 'aria-hidden': i === 0 ? undefined : 'true' }}

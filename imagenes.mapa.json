@@ -2,26 +2,58 @@
   "_instrucciones": "Mapa de imágenes de la web. Cada clave es un ESPACIO de la página. Para cambiar una foto: edite 'origen' (ruta relativa a la carpeta web/) y, si hace falta, 'recorte' {x,y,w,h} en píxeles del original (null = imagen completa). Luego ejecute 'npm run imagenes' y 'npm run build'. 'alt' es el texto alternativo que se muestra a lectores de pantalla. Los originales nunca se modifican.",
   "imagenes": {
     "hero-inicio": {
-      "usado_en": "Inicio > hero, foto 1 de 3 (se alternan)",
-      "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg",
+      "usado_en": "Inicio > hero, foto 1 de 5 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg",
       "recorte": null,
-      "alt": "Pirámide del camposanto Jardines de la Paz en La Molina rodeada de jardines",
-      "reemplazar": false
+      "alt": "Vista del camposanto de La Molina con la pirámide, los nichos y los jardines",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "hero-2": {
-      "usado_en": "Inicio > hero, foto 2 de 3 (se alternan)",
-      "origen": "../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg",
+      "usado_en": "Inicio > hero, foto 2 de 5 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg",
       "recorte": null,
-      "alt": "Jardines del camposanto bajo cielo despejado con los cerros al fondo",
-      "reemplazar": false
+      "alt": "Capilla de techo de madera en forma de A",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "hero-3": {
-      "usado_en": "Inicio > hero, foto 3 de 3 (se alternan)",
-      "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg",
+      "usado_en": "Inicio > hero, foto 3 de 5 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg",
+      "recorte": null,
+      "alt": "Zona de lápidas de granito sobre el césped al pie de los cerros",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio, ~560 px). Nombres de lápidas difuminados.",
+      "difuminar": [
+        {
+          "x": 96,
+          "y": 370,
+          "w": 80,
+          "h": 52
+        },
+        {
+          "x": 212,
+          "y": 360,
+          "w": 66,
+          "h": 44
+        }
+      ]
+    },
+    "hero-4": {
+      "usado_en": "Inicio > hero, foto 4 de 5 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_nichos.jpg",
+      "recorte": null,
+      "alt": "Pabellones de nichos con balcones curvos",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
+    },
+    "hero-5": {
+      "usado_en": "Inicio > hero, foto 5 de 5 (se alternan)",
+      "origen": "../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg",
       "recorte": null,
       "alt": "Interior de la capilla con bancas de madera y techo de vigas",
-      "reemplazar": true,
-      "nota": "605x424; reemplazar por versión en mayor resolución si existe."
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "marco-retrato": {
       "usado_en": "Inicio > hero (retrato circular) y bloque de contacto",

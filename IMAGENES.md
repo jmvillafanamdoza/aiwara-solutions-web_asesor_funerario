@@ -6,9 +6,11 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 
 | Espacio | Dónde se usa | Medida final | ¿Reemplazar? | Origen | Nota |
 |---|---|---|---|---|---|
-| `hero-inicio` | Inicio > hero, foto 1 de 3 (se alternan) | 1640x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` |  |
-| `hero-2` | Inicio > hero, foto 2 de 3 (se alternan) | 1280x960 | No | `../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg` |  |
-| `hero-3` | Inicio > hero, foto 3 de 3 (se alternan) | 605x424 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg` | 605x424; reemplazar por versión en mayor resolución si existe. |
+| `hero-inicio` | Inicio > hero, foto 1 de 5 (se alternan) | 564x568 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-2` | Inicio > hero, foto 2 de 5 (se alternan) | 561x531 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-3` | Inicio > hero, foto 3 de 5 (se alternan) | 564x567 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg` (zonas difuminadas) | Elegida por el usuario (carpeta Inicio, ~560 px). Nombres de lápidas difuminados. |
+| `hero-4` | Inicio > hero, foto 4 de 5 (se alternan) | 564x564 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_nichos.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-5` | Inicio > hero, foto 5 de 5 (se alternan) | 605x424 | No | `../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
 | `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |

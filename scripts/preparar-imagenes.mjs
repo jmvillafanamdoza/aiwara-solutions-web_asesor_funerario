@@ -31,10 +31,16 @@ for (const [clave, d] of Object.entries(mapa.imagenes)) {
     const png = d.formato === 'png';
     const salida = path.join(destino, `${clave}.${png ? 'png' : 'jpg'}`);
     for (const ext of ['jpg', 'png']) { const vieja = path.join(destino, `${clave}.${ext}`); if (vieja !== salida && fs.existsSync(vieja)) fs.rmSync(vieja); }
-    const img = cargar(d.origen, d.recorte).resize({ width: 2000, withoutEnlargement: true });
+    // "difuminar": [{x,y,w,h}, ...] desenfoca zonas (por ejemplo nombres en lápidas), en píxeles ya recortados.
+    let buf = await cargar(d.origen, d.recorte).toBuffer();
+    for (const z of d.difuminar ?? []) {
+      const pieza = await sharp(buf).extract({ left: z.x, top: z.y, width: z.w, height: z.h }).blur(9).toBuffer();
+      buf = await sharp(buf).composite([{ input: pieza, left: z.x, top: z.y }]).toBuffer();
+    }
+    const img = sharp(buf).resize({ width: 2000, withoutEnlargement: true });
     await (png ? img.png({ compressionLevel: 9 }) : img.jpeg({ quality: 90, mozjpeg: true })).toFile(salida);
     const m = await sharp(salida).metadata();
-    filas.push(`| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''} | ${d.nota ?? ''} |`);
+    filas.push(`| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''}${d.difuminar ? ' (zonas difuminadas)' : ''} | ${d.nota ?? ''} |`);
     console.log(`ok  ${clave}  ${m.width}x${m.height}`);
   } catch (e) {
     errores++;
