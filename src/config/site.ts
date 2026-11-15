@@ -57,7 +57,7 @@ export const SITE = {
       direccion: '[DIRECCIÓN POR CONFIRMAR]',
       distrito: 'Lurín',
       mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Lurin',
-      recorrido3d: '',
+      recorrido3d: 'https://recorridolurin.jardines.pe/',
     },
   ],
 
