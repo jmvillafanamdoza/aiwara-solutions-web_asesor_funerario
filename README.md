@@ -99,8 +99,9 @@ Eventos que se envían al `dataLayer` (y directo a GA4/Pixel si no hay GTM):
 | `whatsapp_click` | Clic en cualquier enlace de WhatsApp | `pagina`, `ubicacion` (flotante, hero, contacto, barra-movil, servicio-premium…) |
 | `call_click` | Clic en cualquier enlace de llamada | `pagina`, `ubicacion` |
 | `form_submit` | Envío válido del formulario de cotización | `pagina`, `interes`, `distrito` |
+| `recorrido_3d_click` | Clic en "Recorrido virtual 3D" (La Molina) | `pagina`, `ubicacion` |
 
-En GTM: cree activadores de **Evento personalizado** con esos nombres y variables de capa de datos `pagina`, `ubicacion`, `interes`. Para Meta use `Contact` (clics) y `Lead` (formulario); en Google Ads, márquelos como conversiones.
+En GTM: cree activadores de **Evento personalizado** con esos nombres y variables de capa de datos `pagina`, `ubicacion`, `interes`. Para Meta use `Contact` (clics de contacto), `Lead` (formulario) y el evento personalizado `Recorrido3D`; en Google Ads, márquelos como conversiones.
 
 ---
 

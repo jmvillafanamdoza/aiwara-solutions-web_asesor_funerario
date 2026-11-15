@@ -1,7 +1,7 @@
 // Medición: Google Tag Manager, GA4 y Pixel de Meta.
 // - Los IDs vienen de src/config/site.ts (si son placeholders, no se carga nada).
 // - Nada se carga hasta que la persona acepta las cookies.
-// - Eventos: whatsapp_click, call_click, form_submit (siempre con el nombre de la página).
+// - Eventos: whatsapp_click, call_click, form_submit, recorrido_3d_click (siempre con el nombre de la página).
 
 type Cfg = { pagina: string; gtmId: string; ga4Id: string; metaPixelId: string };
 type Win = Window & { dataLayer: unknown[]; gtag: (...a: unknown[]) => void; fbq?: (...a: unknown[]) => void; _fbq?: unknown };
@@ -52,13 +52,14 @@ export function activarMedicion() {
 }
 
 /** Registra un evento. Siempre va al dataLayer (para GTM); en modo directo también a GA4 y al Pixel. */
-export function evento(nombre: 'whatsapp_click' | 'call_click' | 'form_submit', datos: Record<string, string> = {}) {
+export function evento(nombre: 'whatsapp_click' | 'call_click' | 'form_submit' | 'recorrido_3d_click', datos: Record<string, string> = {}) {
   const payload = { pagina: cfg.pagina, ...datos };
   w.dataLayer.push({ event: nombre, ...payload });
   if (!modoDirecto) return;
   if (cfg.ga4Id) w.gtag('event', nombre, payload);
   if (w.fbq) {
     if (nombre === 'form_submit') w.fbq('track', 'Lead', payload);
+    else if (nombre === 'recorrido_3d_click') w.fbq('trackCustom', 'Recorrido3D', payload);
     else w.fbq('track', 'Contact', { metodo: nombre === 'call_click' ? 'llamada' : 'whatsapp', ...payload });
   }
 }

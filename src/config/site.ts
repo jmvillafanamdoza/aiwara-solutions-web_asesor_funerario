@@ -48,6 +48,8 @@ export const SITE = {
       direccion: 'Calle Monte Real 110',
       distrito: 'La Molina',
       mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Calle+Monte+Real+110+La+Molina',
+      /** Recorrido virtual 3D oficial del camposanto (vacío = no se muestra el botón). */
+      recorrido3d: 'https://recorridomolina.jardines.pe/',
     },
     {
       id: 'lurin',
@@ -55,6 +57,7 @@ export const SITE = {
       direccion: '[DIRECCIÓN POR CONFIRMAR]',
       distrito: 'Lurín',
       mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Lurin',
+      recorrido3d: '',
     },
   ],
 

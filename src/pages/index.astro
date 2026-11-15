@@ -89,6 +89,13 @@ const motivos = [
             <h3>La Molina</h3>
             <p>Rodeado de cerros y áreas verdes, con su conocida pirámide y el sector Praderas de la Paz.</p>
             <p class="sede__dir"><Icono nombre="map-pin" tam={20} /> {SITE.sedes[0].direccion}, {SITE.sedes[0].distrito}</p>
+            {SITE.sedes[0].recorrido3d && (
+              <a class="btn btn--contorno sede__recorrido" href={SITE.sedes[0].recorrido3d} target="_blank" rel="noopener" data-ubicacion="camposantos-la-molina">
+                <Icono nombre="cube-focus" tam={22} /> Recorrido virtual 3D
+                <span class="sr-only">(abre en otra pestaña)</span>
+                <Icono nombre="arrow-square-out" tam={18} />
+              </a>
+            )}
           </div>
         </article>
         <article class="sede aparece">
@@ -202,6 +209,8 @@ const motivos = [
   .sede__info h3 { margin-bottom: 6px; }
   .sede__dir { display: flex; gap: 8px; align-items: center; margin: 0; color: var(--texto-2); font-size: 0.95rem; }
   .sede__dir :global(.icono) { color: var(--verde-medio); flex: none; }
+  .sede__recorrido { margin-top: 18px; min-height: 48px; padding-inline: 18px; }
+  @media (max-width: 520px) { .sede__recorrido { width: 100%; } }
 
   .galeria { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
   .galeria__item :global(picture) { display: block; height: 100%; }

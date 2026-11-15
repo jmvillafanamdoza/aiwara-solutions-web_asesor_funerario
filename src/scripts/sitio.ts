@@ -40,6 +40,7 @@ document.addEventListener('click', (e) => {
   const ubicacion = a.dataset.ubicacion || 'contenido';
   if (href.includes('wa.me/')) evento('whatsapp_click', { ubicacion });
   else if (href.startsWith('tel:')) evento('call_click', { ubicacion });
+  else if (href.includes('recorrido')) evento('recorrido_3d_click', { ubicacion });
 });
 
 // ---------- Consentimiento de cookies ----------
