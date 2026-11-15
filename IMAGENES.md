@@ -11,11 +11,11 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |
 | `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 607x416 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg` | Foto elegida por el usuario (607x416). Reemplazar por la misma toma en mayor resolución si existe. |
-| `galeria-1` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/arbol/jdlp_arbol_01_h.jpg` |  |
-| `galeria-2` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/memorial/jdlp_memorial_03_h.jpg` |  |
-| `galeria-3` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_11_h.jpg` |  |
-| `galeria-4` | Inicio > Galería | 960x1280 | No | `../02_Fotos_Camposanto/arbol/jdlp_arbol_03_v.jpg` |  |
-| `galeria-5` | Inicio > Galería | 1280x960 | No | `../02_Fotos_Camposanto/zona-lapidas/jdlp_zona-lapidas_04_h.jpg` |  |
+| `galeria-1` | Inicio > Galería | 640x426 | No | `../02_Fotos_Camposanto/Inicio/entrada_jardines_de_la_paz.jpg` | Elegida por el usuario (carpeta Inicio). |
+| `galeria-2` | Inicio > Galería | 700x466 | No | `../02_Fotos_Camposanto/Inicio/campo_jardines_2.webp` | Elegida por el usuario (carpeta Inicio). |
+| `galeria-3` | Inicio > Galería (vertical, columna central) | 640x962 | No | `../02_Fotos_Camposanto/Inicio/capilla_camposanto.jpg` | Elegida por el usuario (carpeta Inicio). |
+| `galeria-4` | Inicio > Galería | 640x426 | No | `../02_Fotos_Camposanto/Inicio/campo_arbol.jpg` | Elegida por el usuario (carpeta Inicio). |
+| `galeria-5` | Inicio > Galería | 640x426 | No | `../02_Fotos_Camposanto/Inicio/inicio_lapida_flores.jpg` | Elegida por el usuario (carpeta Inicio). |
 | `servicio-hero` | Servicio funerario > cabecera | 605x424 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg` | Foto elegida por el usuario (605x424). Reemplazar por la misma toma en mayor resolución (mín. 1280 px de ancho) si existe. |
 | `serv-capilla` | Servicio funerario > Qué incluye (capilla ardiente) | 780x610 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
 | `serv-carroza` | Servicio funerario > Qué incluye (carroza) | 960x490 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |

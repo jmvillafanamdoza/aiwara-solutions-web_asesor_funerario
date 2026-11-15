@@ -49,38 +49,43 @@
     },
     "galeria-1": {
       "usado_en": "Inicio > Galería",
-      "origen": "../02_Fotos_Camposanto/arbol/jdlp_arbol_01_h.jpg",
+      "origen": "../02_Fotos_Camposanto/Inicio/entrada_jardines_de_la_paz.jpg",
       "recorte": null,
-      "alt": "Árbol frondoso sobre el césped del camposanto con los cerros al fondo",
-      "reemplazar": false
+      "alt": "Ingreso a Jardines de la Paz entre jardines florecidos",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "galeria-2": {
       "usado_en": "Inicio > Galería",
-      "origen": "../02_Fotos_Camposanto/memorial/jdlp_memorial_03_h.jpg",
+      "origen": "../02_Fotos_Camposanto/Inicio/campo_jardines_2.webp",
       "recorte": null,
-      "alt": "Monumento de vidrio en Praderas de la Paz rodeado de jardines",
-      "reemplazar": false
+      "alt": "Árbol en flor sobre el césped del camposanto mientras se riegan los jardines",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "galeria-3": {
-      "usado_en": "Inicio > Galería",
-      "origen": "../02_Fotos_Camposanto/panoramica/jdlp_panoramica_11_h.jpg",
+      "usado_en": "Inicio > Galería (vertical, columna central)",
+      "origen": "../02_Fotos_Camposanto/Inicio/capilla_camposanto.jpg",
       "recorte": null,
-      "alt": "Vista panorámica del camposanto con árboles en flor",
-      "reemplazar": false
+      "alt": "Altar con vitral en el interior de la capilla",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "galeria-4": {
       "usado_en": "Inicio > Galería",
-      "origen": "../02_Fotos_Camposanto/arbol/jdlp_arbol_03_v.jpg",
+      "origen": "../02_Fotos_Camposanto/Inicio/campo_arbol.jpg",
       "recorte": null,
-      "alt": "Pinos y árboles en el camposanto al pie de los cerros",
-      "reemplazar": false
+      "alt": "Árbol frondoso en el camposanto con los cerros al fondo",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "galeria-5": {
       "usado_en": "Inicio > Galería",
-      "origen": "../02_Fotos_Camposanto/zona-lapidas/jdlp_zona-lapidas_04_h.jpg",
+      "origen": "../02_Fotos_Camposanto/Inicio/inicio_lapida_flores.jpg",
       "recorte": null,
-      "alt": "Zona de lápidas de granito sobre el césped",
-      "reemplazar": false
+      "alt": "Arreglos florales sobre una tumba en el jardín",
+      "reemplazar": false,
+      "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "servicio-hero": {
       "usado_en": "Servicio funerario > cabecera",
