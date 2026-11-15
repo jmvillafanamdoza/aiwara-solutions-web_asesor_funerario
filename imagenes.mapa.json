@@ -10,11 +10,15 @@
     },
     "marco-retrato": {
       "usado_en": "Inicio > hero (retrato circular) y bloque de contacto",
-      "origen": "../04_Facebook/Albumes-Jardines/06-Contacto-Marco/contacto-marco-25-anos.jpg",
-      "recorte": { "x": 250, "y": 384, "w": 500, "h": 500 },
+      "origen": "../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg",
+      "recorte": {
+        "x": 140,
+        "y": 20,
+        "w": 430,
+        "h": 430
+      },
       "alt": "Marco Antonio Villafana Fajardo, asesor funerario autorizado",
-      "reemplazar": true,
-      "nota": "Recorte de una pieza de Facebook. Reemplazar por un retrato limpio en alta resolución (cuadrado, mín. 800x800)."
+      "reemplazar": false
     },
     "marco-equipo": {
       "usado_en": "Inicio > Quién es Marco",
@@ -26,14 +30,24 @@
     "cs-la-molina": {
       "usado_en": "Inicio > Camposantos (tarjeta La Molina)",
       "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg",
-      "recorte": { "x": 0, "y": 0, "w": 1000, "h": 624 },
+      "recorte": {
+        "x": 0,
+        "y": 0,
+        "w": 1000,
+        "h": 624
+      },
       "alt": "Ingreso a la pirámide del camposanto de La Molina",
       "reemplazar": false
     },
     "cs-lurin": {
       "usado_en": "Inicio > Camposantos (tarjeta Lurín)",
       "origen": "../04_Facebook/Albumes-Jardines/03-Nuestros-camposantos/camposantos-la-molina-lurin.jpg",
-      "recorte": { "x": 556, "y": 300, "w": 492, "h": 494 },
+      "recorte": {
+        "x": 556,
+        "y": 300,
+        "w": 492,
+        "h": 494
+      },
       "alt": "Ingreso del camposanto de Lurín con su obelisco y pileta",
       "reemplazar": true,
       "nota": "Recorte pequeño de una pieza de Facebook. Reemplazar por foto propia de Lurín en alta resolución."
@@ -83,7 +97,12 @@
     "serv-capilla": {
       "usado_en": "Servicio funerario > Qué incluye (capilla ardiente)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg",
-      "recorte": { "x": 230, "y": 160, "w": 780, "h": 610 },
+      "recorte": {
+        "x": 230,
+        "y": 160,
+        "w": 780,
+        "h": 610
+      },
       "alt": "Capilla ardiente de madera con arreglos florales y candelabros",
       "reemplazar": true,
       "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
@@ -91,7 +110,12 @@
     "serv-carroza": {
       "usado_en": "Servicio funerario > Qué incluye (carroza)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg",
-      "recorte": { "x": 120, "y": 235, "w": 960, "h": 490 },
+      "recorte": {
+        "x": 120,
+        "y": 235,
+        "w": 960,
+        "h": 490
+      },
       "alt": "Carroza fúnebre y coche portaflores",
       "reemplazar": true,
       "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
@@ -99,7 +123,12 @@
     "serv-ataud": {
       "usado_en": "Servicio funerario > Qué incluye (ataúd)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/ATAUD PREMIUM CUADRADO.jpeg",
-      "recorte": { "x": 70, "y": 230, "w": 710, "h": 480 },
+      "recorte": {
+        "x": 70,
+        "y": 230,
+        "w": 710,
+        "h": 480
+      },
       "alt": "Ataúd de cedro modelo Premium",
       "reemplazar": true,
       "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
@@ -129,6 +158,11 @@
   "og": {
     "usado_en": "Imagen al compartir en Facebook y WhatsApp (public/og-default.jpg, 1200x630)",
     "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg",
-    "recorte": { "x": 230, "y": 0, "w": 1186, "h": 624 }
+    "recorte": {
+      "x": 230,
+      "y": 0,
+      "w": 1186,
+      "h": 624
+    }
   }
 }

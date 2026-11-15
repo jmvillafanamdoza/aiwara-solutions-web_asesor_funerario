@@ -7,7 +7,7 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | Espacio | Dónde se usa | Medida final | ¿Reemplazar? | Origen | Nota |
 |---|---|---|---|---|---|
 | `hero-inicio` | Inicio > hero (fondo) | 1640x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` |  |
-| `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 500x500 | **Sí** | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/contacto-marco-25-anos.jpg` (recortada) | Recorte de una pieza de Facebook. Reemplazar por un retrato limpio en alta resolución (cuadrado, mín. 800x800). |
+| `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |
 | `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 492x494 | **Sí** | `../04_Facebook/Albumes-Jardines/03-Nuestros-camposantos/camposantos-la-molina-lurin.jpg` (recortada) | Recorte pequeño de una pieza de Facebook. Reemplazar por foto propia de Lurín en alta resolución. |
