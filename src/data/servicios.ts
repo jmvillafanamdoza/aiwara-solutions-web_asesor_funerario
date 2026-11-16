@@ -147,6 +147,28 @@ export const servicios: Servicio[] = [
   },
 ];
 
+/** Servicio de cenizas al mar (catálogo 2026, páginas 16 y 17). Se muestra aparte: no lleva ataúd ni carroza. */
+export const cenizasAlMar = {
+  id: 'cenizas-al-mar',
+  nombre: 'Cenizas al mar',
+  lema: 'Una ceremonia a bordo de un yate para entregar las cenizas al mar, acompañada de pétalos de rosas.',
+  incluye: [
+    'Movilidad ida y vuelta para 10 personas desde su domicilio o el lugar de cremación hasta Marina Yacht Club (Chucuito, Callao)',
+    'Transporte en yate ida y vuelta para 10 personas (duración aproximada: 1 hora)',
+    'Asistencia familiar en el yate',
+    'Certificado con las coordenadas del lugar donde se entregaron las cenizas al mar',
+    'Maestro de ceremonias',
+    'Canastillas con pétalos de rosas',
+    'Estampas recordatorias',
+    'Servicio de cafetería en el yate para 10 personas',
+  ],
+  notas: [
+    'Se programa con un mínimo de 4 días de anticipación.',
+    'Sujeto a la autorización de la Capitanía de Puerto.',
+    'Las imágenes son referenciales.',
+  ],
+};
+
 export const notasServicios = [
   'Para entierro o cremación, hacia todos los camposantos de Lima.',
   'Madera y modelo de ataúd sujetos a disponibilidad de mercado.',

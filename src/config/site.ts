@@ -36,6 +36,12 @@ export const SITE = {
   sitioOficial: 'https://www.jardinesdelapaz.com',
 
   /**
+   * Catálogo PDF que se descarga en /servicio-funerario (generado con npm run catalogo, con los datos de
+   * Marco en la portada). Si cambia el catálogo, regenerarlo y actualizar aquí el peso que muestra el botón.
+   */
+  catalogoPdf: { ruta: '/catalogo-servicio-funerario-2026.pdf', peso: '3.8 MB' },
+
+  /**
    * Logo de Jardines de la Paz en la cabecera (espacio "logo-jdlp" de imagenes.mapa.json).
    * Activado a pedido del usuario el 2026-11-15. false = se oculta.
    */

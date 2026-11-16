@@ -41,6 +41,7 @@ document.addEventListener('click', (e) => {
   if (href.includes('wa.me/')) evento('whatsapp_click', { ubicacion });
   else if (href.startsWith('tel:')) evento('call_click', { ubicacion });
   else if (href.includes('recorrido')) evento('recorrido_3d_click', { ubicacion });
+  else if (a.hasAttribute('download') || new URL(a.href, location.href).pathname.endsWith('.pdf')) evento('catalogo_descarga', { ubicacion });
 });
 
 // ---------- Consentimiento de cookies ----------

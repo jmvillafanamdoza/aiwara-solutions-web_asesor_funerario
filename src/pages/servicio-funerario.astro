@@ -1,15 +1,13 @@
 ---
-import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Icono from '../components/Icono.astro';
 import Contacto from '../components/Contacto.astro';
 import BarraLlamada from '../components/BarraLlamada.astro';
 import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
-import { imagen } from '../lib/imagenes';
 import PlanesServicio from '../components/PlanesServicio.astro';
+import CarruselServicios from '../components/CarruselServicios.astro';
 
 const PAGINA = 'servicio-funerario';
-const hero = imagen('servicio-hero');
 
 const pasos = [
   { titulo: 'Comuníquese conmigo', texto: 'Llame o escriba a cualquier hora. Le indico qué hacer según el lugar donde ocurrió el fallecimiento: casa, clínica u hospital.' },
@@ -48,8 +46,12 @@ const pasos = [
             <Icono nombre="whatsapp-logo" /> Escribir por WhatsApp
           </a>
         </div>
+        <a class="s-hero__catalogo" href={SITE.catalogoPdf.ruta} download data-ubicacion="hero">
+          <Icono nombre="file-pdf" tam={22} /> Descargar el catálogo de servicios <span>(PDF, {SITE.catalogoPdf.peso})</span>
+        </a>
       </div>
-      <Picture src={hero.src} alt={hero.alt} formats={['webp']} widths={[640, 960, 1280]} sizes="(min-width: 980px) 48vw, 100vw" loading="eager" fetchpriority="high" class="s-hero__foto" />
+      <!-- Carrusel con los servicios (ver src/components/CarruselServicios.astro) -->
+      <CarruselServicios />
     </div>
   </section>
 
@@ -116,11 +118,13 @@ const pasos = [
 
   .s-hero { padding: 40px 0 56px; }
   .s-hero__grid { display: grid; gap: 32px; align-items: center; }
-  @media (min-width: 980px) { .s-hero__grid { grid-template-columns: 1fr 1fr; gap: 56px; } .s-hero { padding: 64px 0 80px; } }
+  @media (min-width: 980px) { .s-hero__grid { grid-template-columns: 1fr 1fr; gap: 56px; } .s-hero { padding: 48px 0 72px; } }
   .s-hero__sub { font-size: 1.2rem; color: var(--texto-2); max-width: 42ch; margin-bottom: 28px; }
   .s-hero__botones { display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 520px) { .s-hero__botones .btn { width: 100%; } }
-  .s-hero :global(.s-hero__foto) { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radio); box-shadow: var(--sombra); }
+  .s-hero__grid > * { min-width: 0; }
+  .s-hero__catalogo { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 44px; margin-top: 16px; font-weight: 600; }
+  .s-hero__catalogo span { font-weight: 400; color: var(--texto-2); }
 
   .pasos { list-style: none; counter-reset: paso; padding: 0; margin: 32px 0 0; display: grid; gap: 16px; }
   @media (min-width: 860px) { .pasos { grid-template-columns: repeat(6, 1fr); } .paso { grid-column: span 2; } .paso:nth-child(4) { grid-column: 2 / span 2; } }

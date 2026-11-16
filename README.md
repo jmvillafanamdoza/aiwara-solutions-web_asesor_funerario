@@ -6,7 +6,7 @@ Dominio previsto: `asesorfunerariolima.com` (se cambia en `src/config/site.ts`).
 | Página | URL | Para qué |
 |---|---|---|
 | Inicio | `/` | Presentación de Marco, camposantos, por qué un asesor, testimonios, contacto |
-| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, primeras horas, 5 servicios sin precios, traslados y trámites |
+| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, carrusel de servicios, primeras horas, 5 servicios sin precios (con ataúd y carroza), Cenizas al mar, descarga del catálogo PDF, traslados y trámites |
 | Plan funerario | `/plan-funerario` | Previsión: beneficios, opciones y formulario de cotización que abre WhatsApp |
 | Privacidad | `/privacidad` | Política de datos (Ley 29733) y cookies. **Texto base: requiere revisión legal** |
 
@@ -39,7 +39,8 @@ npm run preview      # http://localhost:4321
 |---|---|
 | Dominio, teléfono, WhatsApp, correo, redes, direcciones, mensajes de WhatsApp por página, IDs de medición, menú | `src/config/site.ts` (**único lugar**) |
 | Imágenes y logo (qué archivo va en cada espacio, recortes, textos alternativos; las 3 fotos del hero son hero-inicio, hero-2 y hero-3) | `imagenes.mapa.json` → ver sección 6 |
-| Lista de servicios funerarios y lo que incluyen (fuente: catálogo 2026) | `src/data/servicios.ts`; diseño en `src/components/PlanesServicio.astro`; imágenes extraídas del catálogo en `fuentes/catalogo-2026/` |
+| Lista de servicios funerarios y lo que incluyen, medidas de ataúdes y Cenizas al mar (fuente: catálogo 2026) | `src/data/servicios.ts`; diseño en `src/components/PlanesServicio.astro`, `CenizasAlMar.astro` y el carrusel del hero en `CarruselServicios.astro`; imágenes extraídas del catálogo en `fuentes/catalogo-2026/` |
+| Catálogo PDF que se descarga (portada con los datos de Marco) | `npm run catalogo` → `public/catalogo-servicio-funerario-2026.pdf`; ruta y peso del botón en `src/config/site.ts` → `catalogoPdf` (ver sección 6) |
 | Testimonios | `src/components/Testimonios.astro` |
 | Opciones del formulario ("¿Qué le interesa?") | `src/components/FormCotizacion.astro` |
 | Textos de cada página | `src/pages/*.astro` |
@@ -100,8 +101,9 @@ Eventos que se envían al `dataLayer` (y directo a GA4/Pixel si no hay GTM):
 | `call_click` | Clic en cualquier enlace de llamada | `pagina`, `ubicacion` |
 | `form_submit` | Envío válido del formulario de cotización | `pagina`, `interes`, `distrito` |
 | `recorrido_3d_click` | Clic en "Recorrido virtual 3D" (La Molina o Lurín; se distingue por `ubicacion`) | `pagina`, `ubicacion` |
+| `catalogo_descarga` | Clic en "Descargar el catálogo" (PDF) | `pagina`, `ubicacion` (hero, servicios-intro) |
 
-En GTM: cree activadores de **Evento personalizado** con esos nombres y variables de capa de datos `pagina`, `ubicacion`, `interes`. Para Meta use `Contact` (clics de contacto), `Lead` (formulario) y el evento personalizado `Recorrido3D`; en Google Ads, márquelos como conversiones.
+En GTM: cree activadores de **Evento personalizado** con esos nombres y variables de capa de datos `pagina`, `ubicacion`, `interes`. Para Meta use `Contact` (clics de contacto), `Lead` (formulario) y los eventos personalizados `Recorrido3D` y `DescargaCatalogo`; en Google Ads, márquelos como conversiones.
 
 ---
 
@@ -145,6 +147,16 @@ Ataúdes de cada servicio (franja debajo de la tarjeta en `/servicio-funerario`)
 Espacios marcados para reemplazar: retrato de Marco (es un recorte de una pieza de Facebook), foto de Lurín (recorte pequeño) y las 3 fotos de catálogo del servicio (capilla, carroza, ataúd).
 
 No se usaron: `zona-lapidas` 01-03 (nombres legibles), `99-Descartar`, ni el archivo de credenciales.
+
+### Catálogo PDF descargable
+
+El botón "Descargar el catálogo" de `/servicio-funerario` entrega `public/catalogo-servicio-funerario-2026.pdf`, generado a partir del catálogo oficial `fuentes/catalogo-2026/CatalogoSSFF2026_F.pdf` (que no se modifica):
+
+```bash
+npm run catalogo
+```
+
+El script completa en la portada los campos "Representante" y "Teléfono" con los datos de `src/config/site.ts`, quita las páginas finales de notas en blanco y recomprime las fotos (de 8.4 MB a unos 3.8 MB). Si llega un catálogo nuevo: reemplace el archivo en `fuentes/catalogo-2026/`, revise en el script las páginas a quitar y la posición de los campos de la portada, ejecute `npm run catalogo` y actualice el peso en `catalogoPdf`.
 
 ---
 

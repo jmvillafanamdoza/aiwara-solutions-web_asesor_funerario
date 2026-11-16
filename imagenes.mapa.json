@@ -143,11 +143,11 @@
       "nota": "Elegida por el usuario (carpeta Inicio)."
     },
     "servicio-hero": {
-      "usado_en": "Servicio funerario > cabecera",
+      "usado_en": "Sin uso (reemplazada por el carrusel de servicios del hero el 2026-11-16; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/iglesia_interior.jpg",
       "recorte": null,
       "alt": "Interior de la capilla con bancas de madera y techo de vigas",
-      "reemplazar": true,
+      "reemplazar": false,
       "nota": "Foto elegida por el usuario (605x424). Reemplazar por la misma toma en mayor resolución (mín. 1280 px de ancho) si existe."
     },
     "serv-capilla": {
@@ -438,6 +438,30 @@
       "alt": "Carroza y coche portaflores del servicio Tradicional",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026."
+    },
+    "cenizas-petalos": {
+      "usado_en": "Servicio funerario > hero (carrusel, diapositiva Cenizas al mar) y sección Cenizas al mar (foto principal)",
+      "origen": "fuentes/catalogo-2026/cenizas-petalos.png",
+      "recorte": null,
+      "alt": "Pétalos de rosas esparcidos sobre el mar desde un yate",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (página 16-17)."
+    },
+    "cenizas-familia": {
+      "usado_en": "Servicio funerario > Cenizas al mar (foto de la familia en el yate)",
+      "origen": "fuentes/catalogo-2026/cenizas-familia.png",
+      "recorte": null,
+      "alt": "Familia en la cubierta de un yate durante la ceremonia de cenizas al mar",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (página 16-17)."
+    },
+    "cenizas-canastilla": {
+      "usado_en": "Servicio funerario > Cenizas al mar (canastilla con pétalos)",
+      "origen": "fuentes/catalogo-2026/cenizas-canastilla.png",
+      "recorte": null,
+      "alt": "Canastilla de mimbre con pétalos de rosas a bordo del yate",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (página 16-17)."
     }
   },
   "og": {

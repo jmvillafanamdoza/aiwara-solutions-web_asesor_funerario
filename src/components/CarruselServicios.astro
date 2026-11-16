@@ -1,0 +1,178 @@
+---
+// Carrusel del hero de /servicio-funerario: una diapositiva por servicio (los 5 del catálogo y Cenizas al mar).
+// Cada una lleva a su sección en la misma página. Desliza con el dedo (scroll-snap), flechas y puntos.
+// Avanza solo cada 6 s, con pausa al pasar el mouse, al tocar o al enfocar con teclado, y botón de pausa.
+// Si la persona pidió reducir el movimiento, no avanza solo ni anima el desplazamiento.
+import { Picture } from 'astro:assets';
+import Icono from './Icono.astro';
+import { imagen, type Espacio } from '../lib/imagenes';
+import { servicios, cenizasAlMar } from '../data/servicios';
+
+const diapositivas = [
+  ...servicios.map((s) => ({
+    id: s.id, nombre: s.nombre, lema: s.lema, tono: s.tono, foto: false,
+    img: imagen(`serv-${s.id}-capilla` as Espacio),
+  })),
+  { id: cenizasAlMar.id, nombre: cenizasAlMar.nombre, lema: cenizasAlMar.lema, tono: 'oscuro', foto: true, img: imagen('cenizas-petalos') },
+];
+const total = diapositivas.length;
+---
+<div class="carrusel" data-carrusel role="region" aria-roledescription="carrusel" aria-label="Servicios funerarios">
+  <div class="carrusel__pista" data-pista>
+    {diapositivas.map((d, i) => (
+      <div class={`carrusel__diapo tono-${d.tono}`} role="group" aria-roledescription="diapositiva" aria-label={`${i + 1} de ${total}: ${d.nombre}`} data-diapo>
+        <div class={`carrusel__imagen${d.foto ? ' carrusel__imagen--foto' : ''}`}>
+          <Picture
+            src={d.img.src} alt={d.img.alt} formats={['webp']} widths={[480, 800, 1100]}
+            sizes="(min-width: 980px) 600px, 92vw"
+            loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'auto'}
+          />
+        </div>
+        <div class="carrusel__texto">
+          <p class="carrusel__etiqueta">Servicio</p>
+          <p class="carrusel__nombre">{d.nombre}</p>
+          <p class="carrusel__lema">{d.lema}</p>
+          <a class="carrusel__enlace" href={`#servicio-${d.id}`}>
+            Ver qué incluye <Icono nombre="arrow-down" tam={16} />
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Los controles se muestran solo con JS (sin JS, la pista se desliza igual y todos los enlaces son accesibles). -->
+  <div class="carrusel__controles" data-controles hidden>
+    <button type="button" class="carrusel__boton" data-anterior aria-label="Servicio anterior"><Icono nombre="caret-left" tam={22} /></button>
+    <div class="carrusel__puntos">
+      {diapositivas.map((d, i) => (
+        <button type="button" class="carrusel__punto" data-punto={i} aria-label={`Ver ${d.nombre}`} aria-current={i === 0 ? 'true' : undefined}></button>
+      ))}
+    </div>
+    <button type="button" class="carrusel__boton" data-siguiente aria-label="Servicio siguiente"><Icono nombre="caret-right" tam={22} /></button>
+    <button type="button" class="carrusel__boton carrusel__pausa" data-pausa aria-label="Pausar el carrusel" hidden>
+      <span data-icono-pausa><Icono nombre="pause" tam={20} /></span>
+      <span data-icono-play hidden><Icono nombre="play" tam={20} /></span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .carrusel { position: relative; min-width: 0; }
+  .carrusel [hidden] { display: none !important; }
+  .carrusel__pista {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 100%;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    border-radius: var(--radio); box-shadow: var(--sombra); scrollbar-width: none;
+  }
+  .carrusel__pista::-webkit-scrollbar { display: none; }
+  .carrusel__diapo { scroll-snap-align: start; display: grid; grid-template-rows: auto 1fr; background: var(--fondo); color: var(--en-fondo); }
+  .carrusel__imagen { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 20px 20px 0; overflow: hidden; }
+  .carrusel__imagen :global(img) { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 14px 22px rgb(0 0 0 / 0.22)); }
+  .carrusel__imagen--foto { padding: 0; }
+  .carrusel__imagen--foto :global(img) { object-fit: cover; filter: none; }
+  .carrusel__texto { padding: 16px 22px 22px; }
+  .carrusel__etiqueta { margin: 0; font-size: 0.8rem; font-weight: 600; color: var(--acento); text-transform: uppercase; letter-spacing: 0.08em; }
+  .carrusel__nombre { margin: 0; font: 600 clamp(1.8rem, 3vw, 2.3rem)/1.1 var(--f-titulo); color: var(--en-fondo); }
+  .carrusel__lema { margin: 6px 0 8px; color: var(--en-fondo-2); font-size: 0.98rem; line-height: 1.45; }
+  .carrusel__enlace { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600; color: var(--en-fondo); }
+  .carrusel__enlace:hover { color: var(--acento); }
+
+  .carrusel__controles { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
+  .carrusel__boton {
+    display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--gris-borde); background: #fff; color: var(--verde); cursor: pointer;
+  }
+  .carrusel__boton:hover { border-color: var(--verde); background: var(--verde-claro); }
+  .carrusel__puntos { display: flex; gap: 2px; }
+  .carrusel__punto { width: 28px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+  .carrusel__punto::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--gris-borde); transition: background-color 0.2s, transform 0.2s; }
+  .carrusel__punto[aria-current='true']::before { background: var(--verde); transform: scale(1.25); }
+  .carrusel__pausa { margin-left: 4px; }
+
+  /* Escritorio: más bajo, para que los controles se vean sin bajar en pantallas de 768 px de alto */
+  @media (min-width: 980px) {
+    .carrusel__imagen { aspect-ratio: 2 / 1; padding-top: 16px; }
+    .carrusel__imagen--foto { padding: 0; }
+    .carrusel__texto { padding: 12px 24px 16px; }
+    .carrusel__lema { margin: 4px 0 2px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .carrusel__pista { scroll-behavior: smooth; }
+  }
+</style>
+
+<script>
+  const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-carrusel]').forEach((raiz) => {
+    const pista = raiz.querySelector<HTMLElement>('[data-pista]')!;
+    const diapos = [...raiz.querySelectorAll<HTMLElement>('[data-diapo]')];
+    const puntos = [...raiz.querySelectorAll<HTMLButtonElement>('[data-punto]')];
+    const pausa = raiz.querySelector<HTMLButtonElement>('[data-pausa]')!;
+    let actual = 0;
+    let temporizador: number | undefined;
+    let pausadoPorUsuario = false;
+    let enPausaTemporal = false;
+    raiz.querySelector<HTMLElement>('[data-controles]')!.hidden = false;
+
+    const marcar = (i: number) => {
+      actual = i;
+      puntos.forEach((p, j) => (j === i ? p.setAttribute('aria-current', 'true') : p.removeAttribute('aria-current')));
+      // Solo la diapositiva visible tiene su enlace en el orden de tabulación.
+      diapos.forEach((d, j) => d.querySelector('a')?.setAttribute('tabindex', j === i ? '0' : '-1'));
+    };
+    const ir = (i: number) => {
+      const n = (i + diapos.length) % diapos.length;
+      pista.scrollTo({ left: n * pista.clientWidth, behavior: reducir ? 'auto' : 'smooth' });
+      marcar(n);
+    };
+
+    // Detecta qué diapositiva quedó visible al deslizar con el dedo.
+    const io = new IntersectionObserver((entradas) => {
+      for (const e of entradas) if (e.isIntersecting) marcar(diapos.indexOf(e.target as HTMLElement));
+    }, { root: pista, threshold: 0.6 });
+    diapos.forEach((d) => io.observe(d));
+    marcar(0);
+    pista.setAttribute('aria-live', 'polite');
+
+    // Al navegar a mano, el conteo del avance automático vuelve a empezar (se asigna más abajo).
+    let reiniciarConteo = () => {};
+    const navegar = (i: number) => { ir(i); reiniciarConteo(); };
+    raiz.querySelector('[data-anterior]')!.addEventListener('click', () => navegar(actual - 1));
+    raiz.querySelector('[data-siguiente]')!.addEventListener('click', () => navegar(actual + 1));
+    puntos.forEach((p, i) => p.addEventListener('click', () => navegar(i)));
+
+    // Avance automático (no se activa si se pidió reducir el movimiento).
+    if (reducir) return;
+    const detener = () => { window.clearInterval(temporizador); temporizador = undefined; };
+    const iniciar = () => {
+      detener();
+      if (!pausadoPorUsuario && !enPausaTemporal && !document.hidden) temporizador = window.setInterval(() => ir(actual + 1), 6000);
+      // Mientras avanza solo, el lector de pantalla no anuncia cada cambio; en pausa, sí.
+      pista.setAttribute('aria-live', temporizador ? 'off' : 'polite');
+    };
+    const temporal = (v: boolean) => () => { enPausaTemporal = v; iniciar(); };
+    reiniciarConteo = iniciar;
+
+    const fijarPausa = (v: boolean) => {
+      pausadoPorUsuario = v;
+      pausa.setAttribute('aria-label', v ? 'Reanudar el carrusel' : 'Pausar el carrusel');
+      pausa.querySelector<HTMLElement>('[data-icono-pausa]')!.hidden = v;
+      pausa.querySelector<HTMLElement>('[data-icono-play]')!.hidden = !v;
+      iniciar();
+    };
+
+    pausa.hidden = false;
+    pausa.addEventListener('click', () => fijarPausa(!pausadoPorUsuario));
+    // Pausa temporal: mouse encima (no en pantallas táctiles) o foco de teclado dentro del carrusel.
+    raiz.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') temporal(true)(); });
+    raiz.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') temporal(false)(); });
+    raiz.addEventListener('focusin', () => { if (raiz.querySelector(':focus-visible')) temporal(true)(); });
+    raiz.addEventListener('focusout', (e) => { if (!raiz.contains(e.relatedTarget as Node)) temporal(false)(); });
+    // Al tocar o deslizar con el dedo, se detiene: la persona ya está mirando.
+    pista.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') fijarPausa(true); });
+    document.addEventListener('visibilitychange', iniciar);
+    iniciar();
+  });
+</script>

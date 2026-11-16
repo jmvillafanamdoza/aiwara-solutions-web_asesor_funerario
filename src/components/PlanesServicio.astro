@@ -6,9 +6,10 @@
 // (cerrado y abierto, en cada forma, con sus medidas) y la carroza con el coche portaflores, como en el catálogo.
 import { Picture } from 'astro:assets';
 import Icono from './Icono.astro';
-import { enlaceWhatsApp } from '../config/site';
+import CenizasAlMar from './CenizasAlMar.astro';
+import { SITE, enlaceWhatsApp } from '../config/site';
 import { imagen, type Espacio } from '../lib/imagenes';
-import { servicios, notasServicios } from '../data/servicios';
+import { servicios, notasServicios, cenizasAlMar } from '../data/servicios';
 
 const traslado = (s: (typeof servicios)[number]) => {
   const items = s.grupos.find((g) => g.titulo === 'Traslado')?.items ?? [];
@@ -37,11 +38,15 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
     <p class="intro aparece">Cinco servicios para que cada familia elija según sus deseos. Baje para conocer qué incluye cada uno; le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
     <nav class="planes__indice aparece" aria-label="Ir a un servicio">
       {planes.map((p) => <a href={`#servicio-${p.id}`}>{p.nombre}</a>)}
+      <a href={`#servicio-${cenizasAlMar.id}`}>{cenizasAlMar.nombre}</a>
     </nav>
+    <a class="planes__catalogo aparece" href={SITE.catalogoPdf.ruta} download data-ubicacion="servicios-intro">
+      <Icono nombre="file-pdf" tam={22} /> Descargar el catálogo completo <span class="planes__peso">(PDF, {SITE.catalogoPdf.peso})</span>
+    </a>
   </div>
 
   {planes.map((p) => (
-    <article class={`plan plan--${p.tono}`} id={`servicio-${p.id}`} aria-labelledby={`plan-${p.id}-titulo`}>
+    <article class={`plan tono-${p.tono}`} id={`servicio-${p.id}`} aria-labelledby={`plan-${p.id}-titulo`}>
       <div class="plan__fijo">
         <div class="plan__escena">
           <span class="plan__marca" aria-hidden="true">{p.nombre}</span>
@@ -118,6 +123,8 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
     </article>
   ))}
 
+  <CenizasAlMar />
+
   <div class="contenedor">
     <ul class="notas">
       {notasServicios.map((n) => <li>{n}</li>)}
@@ -135,22 +142,11 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
     color: var(--verde-hondo); font-weight: 600; background: #fff;
   }
   .planes__indice a:hover { border-color: var(--verde); background: var(--verde-claro); }
+  .planes__catalogo { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 44px; margin-top: 16px; font-weight: 600; }
+  .planes__peso { font-weight: 400; color: var(--texto-2); }
 
-  /* Colores de cada escenario (el texto de la franja cambia según el fondo; el dorado solo sobre verde) */
-  .plan {
-    --fondo: #e8ede9; --marca: rgb(22 58 40 / 0.07);
-    --en-fondo: var(--verde-hondo); --en-fondo-2: var(--texto-2); --acento: var(--verde); --linea: rgb(22 58 40 / 0.14);
-    position: relative; background: var(--fondo);
-  }
-  .plan--oscuro, .plan--bosque {
-    --marca: rgb(255 255 255 / 0.07);
-    --en-fondo: #fff; --en-fondo-2: rgb(255 255 255 / 0.82); --acento: var(--dorado); --linea: rgb(255 255 255 / 0.18);
-  }
-  .plan--oscuro { --fondo: #1d3d2c; }
-  .plan--bosque { --fondo: #2b4a3a; }
-  .plan--salvia { --fondo: #dce7df; }
-  .plan--piedra { --fondo: #ebe7df; --marca: rgb(80 60 30 / 0.07); }
-  .plan--niebla { --fondo: #eceeeb; }
+  /* Colores de cada escenario: clases .tono-* en src/styles/global.css (el dorado solo sobre los verdes) */
+  .plan { position: relative; background: var(--fondo); }
 
   .plan__escena {
     position: relative; overflow: hidden; background: var(--fondo);
