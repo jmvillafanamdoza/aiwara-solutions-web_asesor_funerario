@@ -28,4 +28,5 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `plan-praderas` | Plan funerario > opción Praderas de la Paz | 960x1280 | No | `../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg` |  |
 | `plan-lotes` | Plan funerario > opción lotes | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_05_h.jpg` |  |
 | `logo-jdlp` | Cabecera, junto al nombre de Marco | 266x78 | **Sí** | `../02_Fotos_Camposanto/Inicio/logojardines.png` | PNG transparente de 266x78. Ideal: versión SVG o PNG de al menos 600 px de ancho para pantallas de alta densidad. |
+| `logo-jdlp-blanco` | Inicio > hero (logo blanco sobre el panel verde) | 266x78 | **Sí** | `../05_Web/logojardines-w.png.webp` | 266x78. Ideal: SVG o PNG de al menos 600 px de ancho. |
 | `og` | Imagen al compartir en Facebook y WhatsApp (public/og-default.jpg, 1200x630) | 1200x630 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_01_h.jpg` | |

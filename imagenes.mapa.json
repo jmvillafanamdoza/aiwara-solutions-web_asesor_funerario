@@ -210,6 +210,15 @@
       "formato": "png",
       "reemplazar": true,
       "nota": "PNG transparente de 266x78. Ideal: versión SVG o PNG de al menos 600 px de ancho para pantallas de alta densidad."
+    },
+    "logo-jdlp-blanco": {
+      "usado_en": "Inicio > hero (logo blanco sobre el panel verde)",
+      "origen": "../05_Web/logojardines-w.png.webp",
+      "recorte": null,
+      "alt": "Jardines de la Paz",
+      "formato": "png",
+      "reemplazar": true,
+      "nota": "266x78. Ideal: SVG o PNG de al menos 600 px de ancho."
     }
   },
   "og": {
