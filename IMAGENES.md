@@ -6,11 +6,12 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 
 | Espacio | Dónde se usa | Medida final | ¿Reemplazar? | Origen | Nota |
 |---|---|---|---|---|---|
-| `hero-inicio` | Inicio > hero, foto 1 de 5 (se alternan) | 564x568 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
-| `hero-2` | Inicio > hero, foto 2 de 5 (se alternan) | 561x531 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
-| `hero-3` | Inicio > hero, foto 3 de 5 (se alternan) | 564x567 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg` (zonas difuminadas) | Elegida por el usuario (carpeta Inicio, ~560 px). Nombres de lápidas difuminados. |
-| `hero-4` | Inicio > hero, foto 4 de 5 (se alternan) | 564x564 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_nichos.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
-| `hero-5` | Inicio > hero, foto 5 de 5 (se alternan) | 605x424 | No | `../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-fondo` | Inicio > hero (foto de fondo a todo el ancho) | 2000x677 | **Sí** | `../02_Fotos_Camposanto/Inicio/hero_jardines_verde.jpg` | CONFIRMAR LICENCIA ANTES DE PUBLICAR: es igual a la foto del hero de urgelbourgie.com. Usar solo si es de un banco con licencia o propia. |
+| `hero-inicio` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 564x568 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-2` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 561x531 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-3` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 564x567 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg` (zonas difuminadas) | Elegida por el usuario (carpeta Inicio, ~560 px). Nombres de lápidas difuminados. |
+| `hero-4` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 564x564 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_nichos.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
+| `hero-5` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 605x424 | No | `../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
 | `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
 | `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |

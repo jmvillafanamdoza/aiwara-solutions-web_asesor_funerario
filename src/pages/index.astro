@@ -7,8 +7,8 @@ import Contacto from '../components/Contacto.astro';
 import { SITE, enlaceTelefono } from '../config/site';
 import { imagen } from '../lib/imagenes';
 
-// Fotos del hero que se alternan (espacios hero-inicio y hero-2 a hero-5 de imagenes.mapa.json)
-const slides = (['hero-inicio', 'hero-2', 'hero-3', 'hero-4', 'hero-5'] as const).map(imagen);
+// Foto de fondo del hero (espacio hero-fondo de imagenes.mapa.json)
+const fondo = imagen('hero-fondo');
 const retrato = imagen('marco-retrato');
 const logoBlanco = imagen('logo-jdlp-blanco');
 const equipo = imagen('marco-equipo');
@@ -28,37 +28,15 @@ const motivos = [
   titulo="Asesor Funerario en Lima | Marco Villafana, Jardines de la Paz"
   descripcion="Marco Antonio Villafana, asesor funerario autorizado de Jardines de la Paz en Lima. Servicio funerario las 24 horas y planes en cuotas en La Molina y Lurín."
 >
-  <!-- HERO (inspirado en la composición de urgelbourgie.com: foto a la izquierda que se funde en un panel verde con el texto a la derecha) -->
+  <!-- HERO (composición inspirada en urgelbourgie.com: foto a todo el ancho que se funde en verde, texto a la derecha) -->
   <section class="hero sobre-verde">
-    <div class="hero__fotos" data-slides aria-roledescription="carrusel" aria-label="Fotos de los camposantos">
-      {slides.map((s, i) => (
-        <Picture
-          src={s.src} alt={s.alt} formats={['webp']} widths={[400, 640]}
-          sizes="(min-width: 980px) 62vw, 100vw"
-          loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : 'low'}
-          pictureAttributes={{ class: `hero__slide${i === 0 ? ' activa' : ''}`, 'aria-hidden': i === 0 ? undefined : 'true' }}
-        />
-      ))}
-      <div class="hero__controles">
-        {slides.map((_, i) => (
-          <button type="button" class="hero__punto" data-ir={i} aria-label={`Ver foto ${i + 1} de ${slides.length}`} aria-current={i === 0 ? 'true' : undefined}><span></span></button>
-        ))}
-        <button type="button" class="hero__pausa" data-pausa aria-label="Pausar fotos">
-          <span class="hero__pausa-ico" data-ico="pausa"><Icono nombre="pause" tam={16} /></span>
-          <span class="hero__pausa-ico" data-ico="play" hidden><Icono nombre="play" tam={16} /></span>
-        </button>
-      </div>
-    </div>
+    <Picture
+      src={fondo.src} alt={fondo.alt} formats={['webp']} widths={[800, 1400, 2000]}
+      sizes="100vw" loading="eager" fetchpriority="high"
+      pictureAttributes={{ class: 'hero__fondo' }}
+    />
 
     <div class="contenedor hero__grid">
-      <figure class="hero__marco">
-        <Picture src={retrato.src} alt={retrato.alt} formats={['webp']} widths={[120, 240]} sizes="120px" loading="eager" class="hero__retrato" />
-        <figcaption>
-          <strong>{SITE.nombre}</strong>
-          <span>{SITE.aniosExperiencia} años de experiencia</span>
-        </figcaption>
-      </figure>
-
       <div class="hero__texto">
         <Image src={logoBlanco.src} alt={logoBlanco.alt} height={64} densities={[1, 2]} loading="eager" class="hero__logo" />
         <h1>
@@ -79,6 +57,13 @@ const motivos = [
           <span class="hero__linea" aria-hidden="true"></span>
           <a href={enlaceTelefono} data-ubicacion="hero-24h">{SITE.telefonoVisible}</a>
         </p>
+        <figure class="hero__marco">
+          <Picture src={retrato.src} alt={retrato.alt} formats={['webp']} widths={[96, 192]} sizes="52px" loading="eager" class="hero__retrato" />
+          <figcaption>
+            <strong>{SITE.nombre}</strong>
+            <span>{SITE.aniosExperiencia} años de experiencia</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -192,54 +177,22 @@ const motivos = [
 </Base>
 
 <style>
-  /* Hero: panel verde con la foto a la izquierda fundiéndose en él */
-  .hero { position: relative; overflow: hidden; isolation: isolate; background: var(--verde-hondo); color: #fff; }
-  /* Luz dorada muy tenue que se desplaza lentamente en el panel verde */
-  .hero::before {
-    content: ''; position: absolute; z-index: 0; right: -10%; top: -25%; width: 60vw; height: 60vw; max-width: 820px; max-height: 820px;
-    background: radial-gradient(closest-side, rgb(230 195 90 / 0.14), rgb(45 106 76 / 0.12) 55%, transparent 75%);
-    pointer-events: none;
+  /* Hero: foto a todo el ancho que se funde en verde (#244233 = verde del borde de la foto) */
+  .hero { --hero-verde: #244233; position: relative; overflow: hidden; isolation: isolate; background: var(--hero-verde); color: #fff; }
+  .hero :global(.hero__fondo) { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+  .hero :global(.hero__fondo img) { width: 100%; height: 100%; object-fit: cover; object-position: 12% 50%; transform-origin: 20% 50%; }
+  /* Celular: la foto arriba se funde hacia abajo con el verde */
+  .hero :global(.hero__fondo)::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 55%, var(--hero-verde) 100%);
   }
 
-  /* Fotos */
-  .hero__fotos { position: relative; aspect-ratio: 4 / 3; overflow: hidden; z-index: 1; }
-  .hero__fotos :global(.hero__slide) { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
-  .hero__fotos :global(.hero__slide.activa) { opacity: 1; }
-  .hero__fotos :global(.hero__slide img) { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; transform-origin: 40% 50%; }
-  /* Fundido de la foto hacia el verde: abajo en celular, a la derecha en escritorio */
-  .hero__fotos::after {
-    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(180deg, rgb(22 58 40 / 0.25) 0%, transparent 25%, transparent 60%, var(--verde-hondo) 100%);
-  }
-  .hero__controles { position: absolute; top: 12px; left: 12px; z-index: 2; display: flex; align-items: center; gap: 2px; }
-  .hero__punto { width: 32px; height: 32px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
-  .hero__punto span { display: block; width: 18px; height: 4px; border-radius: 4px; background: rgb(255 255 255 / 0.55); transition: width 0.3s ease, background-color 0.3s ease; }
-  .hero__punto[aria-current='true'] span { width: 28px; background: #fff; }
-  .hero__pausa {
-    width: 32px; height: 32px; margin-left: 6px; border-radius: 50%; border: 0; cursor: pointer;
-    background: rgb(255 255 255 / 0.9); color: var(--verde-hondo); display: grid; place-items: center;
-  }
-  .hero__pausa-ico { display: grid; place-items: center; }
-  .hero__pausa-ico[hidden] { display: none; }
-
-  /* Contenido */
-  .hero__grid { position: relative; z-index: 2; display: grid; gap: 24px; padding-block: 0 48px; }
-  .hero__marco {
-    margin: -64px 0 0; justify-self: start;
-    display: flex; align-items: center; gap: 14px;
-    background: #fff; color: var(--tinta); padding: 10px 18px 10px 10px; border-radius: 999px;
-    box-shadow: 0 12px 30px -10px rgb(0 0 0 / 0.45); max-width: 100%;
-  }
-  .hero :global(.hero__retrato) { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex: none; border: 3px solid var(--dorado); }
-  .hero__marco figcaption { display: grid; line-height: 1.3; font-size: 0.92rem; }
-  .hero__marco strong { color: var(--verde-hondo); }
-  .hero__marco span { color: var(--texto-2); }
-
+  .hero__grid { position: relative; z-index: 2; display: grid; padding-block: 8px 48px; }
   .hero :global(.hero__logo) { height: 48px; width: auto; margin-bottom: 22px; opacity: 0.95; }
   .hero h1 { color: #fff; margin-bottom: 18px; }
   .hero__pre { display: block; font: 500 1.15rem/1.3 var(--f-texto); color: var(--dorado); letter-spacing: 0.01em; margin-bottom: 6px; }
   .hero__titulo { display: block; font-size: clamp(2.5rem, 7vw, 4.2rem); line-height: 1.02; }
-  .hero__sub { font-size: 1.15rem; color: rgb(255 255 255 / 0.86); max-width: 38ch; margin-bottom: 26px; }
+  .hero__sub { font-size: 1.15rem; color: rgb(255 255 255 / 0.88); max-width: 38ch; margin-bottom: 26px; }
   .hero__botones { display: flex; flex-wrap: wrap; gap: 12px; }
   @media (max-width: 520px) { .hero__botones .btn { width: 100%; } }
   .hero__24h { display: flex; align-items: center; gap: 14px; margin: 26px 0 0; font-weight: 600; letter-spacing: 0.02em; }
@@ -249,35 +202,45 @@ const motivos = [
   .hero__24h a { color: #fff; font-size: 1.2rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
   .hero__24h a:hover { color: var(--dorado); }
 
+  .hero__marco {
+    margin: 26px 0 0; display: flex; align-items: center; gap: 12px;
+    padding-top: 20px; border-top: 1px solid rgb(255 255 255 / 0.18);
+  }
+  .hero :global(.hero__retrato) { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--dorado); }
+  .hero__marco figcaption { display: grid; line-height: 1.3; font-size: 0.92rem; }
+  .hero__marco strong { color: #fff; font-weight: 600; }
+  .hero__marco span { color: rgb(255 255 255 / 0.75); }
+
   @media (min-width: 980px) {
-    .hero { min-height: clamp(580px, calc(100dvh - 72px), 760px); display: grid; }
-    .hero__fotos { position: absolute; inset: 0 auto 0 0; width: 62%; aspect-ratio: auto; }
-    .hero__fotos::after { background: linear-gradient(90deg, rgb(22 58 40 / 0.1) 0%, transparent 30%, rgb(22 58 40 / 0.55) 72%, var(--verde-hondo) 100%); }
-    .hero__controles { top: auto; bottom: 20px; left: max(16px, calc((100vw - var(--ancho)) / 2 + var(--gutter))); }
-    .hero__grid { grid-template-columns: 1fr 0.86fr; align-items: center; gap: 48px; padding-block: 72px; }
-    .hero__marco { margin: 0; align-self: end; margin-bottom: 36px; }
-    .hero__texto { grid-column: 2; grid-row: 1; }
-    .hero :global(.hero__logo) { height: 60px; margin-bottom: 28px; }
+    /* Altura acotada para que la familia de la foto quede en la mitad izquierda y no detrás del texto */
+    .hero { min-height: clamp(560px, 46vw, 660px); display: grid; align-items: center; }
+    .hero :global(.hero__fondo) { position: absolute; inset: 0; aspect-ratio: auto; }
+    .hero :global(.hero__fondo img) { object-position: 0% 50%; }
+    /* Escritorio: refuerzo del verde a la derecha para asegurar contraste del texto */
+    .hero :global(.hero__fondo)::after { background: linear-gradient(90deg, transparent 0%, transparent 42%, rgb(36 66 51 / 0.55) 60%, rgb(36 66 51 / 0.85) 100%); }
+    .hero__grid { grid-template-columns: 1fr 0.86fr; padding-block: 40px; }
+    .hero__titulo { font-size: clamp(2.6rem, 4.2vw, 3.6rem); }
+    .hero__sub { margin-bottom: 22px; }
+    .hero__24h { margin-top: 20px; }
+    .hero__marco { margin-top: 20px; padding-top: 16px; }
+    .hero__texto { grid-column: 2; }
+    .hero :global(.hero__logo) { height: 52px; margin-bottom: 20px; }
     .hero__botones .btn { min-height: 54px; padding-inline: 18px; font-size: 1rem; }
   }
 
   /* Movimiento: solo si la persona no pidió reducirlo */
   @media (prefers-reduced-motion: no-preference) {
-    .hero::before { animation: luz 18s ease-in-out infinite alternate; }
-    .hero__fotos :global(.hero__slide.activa img) { animation: acercar 9s ease-out both; }
+    .hero :global(.hero__fondo img) { animation: acercar 14s ease-out both; }
     .hero__texto > * { animation: subir 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
     .hero__texto > :nth-child(2) { animation-delay: 0.1s; }
     .hero__texto > :nth-child(3) { animation-delay: 0.2s; }
     .hero__texto > :nth-child(4) { animation-delay: 0.3s; }
     .hero__texto > :nth-child(5) { animation-delay: 0.4s; }
-    .hero__fotos { animation: aparecer 1.4s ease both; }
-    .hero__marco { animation: subir 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both; }
+    .hero__texto > :nth-child(6) { animation-delay: 0.55s; }
     .hero__linea { transform-origin: left; animation: trazo 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both; }
   }
   @keyframes subir { from { opacity: 0; transform: translateY(18px); } }
-  @keyframes aparecer { from { opacity: 0; } }
-  @keyframes acercar { from { transform: scale(1); } to { transform: scale(1.07); } }
-  @keyframes luz { from { transform: translate(0, 0); } to { transform: translate(-14%, 12%); } }
+  @keyframes acercar { from { transform: scale(1.06); } to { transform: scale(1); } }
   @keyframes trazo { from { transform: scaleX(0); } }
 
   /* Quién es Marco */
@@ -357,40 +320,3 @@ const motivos = [
   }
 </style>
 
-<script>
-  // Fotos del hero: se alternan cada 6,5 s con fundido. Quedan quietas si se pide reducir movimiento,
-  // si la pestaña no está visible o si la persona pulsa el botón de pausa.
-  const cont = document.querySelector<HTMLElement>('[data-slides]');
-  if (cont) {
-    const slides = [...cont.querySelectorAll<HTMLElement>('.hero__slide')];
-    const puntos = [...cont.querySelectorAll<HTMLButtonElement>('[data-ir]')];
-    const pausa = cont.querySelector<HTMLButtonElement>('[data-pausa]')!;
-    const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let actual = 0;
-    let timer: number | undefined;
-    let pausado = reducir;
-
-    const ir = (n: number) => {
-      slides[actual].classList.remove('activa');
-      slides[actual].setAttribute('aria-hidden', 'true');
-      puntos[actual].removeAttribute('aria-current');
-      actual = (n + slides.length) % slides.length;
-      slides[actual].classList.add('activa');
-      slides[actual].removeAttribute('aria-hidden');
-      puntos[actual].setAttribute('aria-current', 'true');
-    };
-    const detener = () => { clearInterval(timer); timer = undefined; };
-    const iniciar = () => { detener(); if (!pausado && !document.hidden) timer = window.setInterval(() => ir(actual + 1), 6500); };
-    const pintarPausa = () => {
-      pausa.setAttribute('aria-label', pausado ? 'Reanudar fotos' : 'Pausar fotos');
-      pausa.querySelector<HTMLElement>('[data-ico="pausa"]')!.hidden = pausado;
-      pausa.querySelector<HTMLElement>('[data-ico="play"]')!.hidden = !pausado;
-    };
-
-    puntos.forEach((b) => b.addEventListener('click', () => { ir(Number(b.dataset.ir)); iniciar(); }));
-    pausa.addEventListener('click', () => { pausado = !pausado; pintarPausa(); iniciar(); });
-    document.addEventListener('visibilitychange', iniciar);
-    pintarPausa();
-    iniciar();
-  }
-</script>

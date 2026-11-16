@@ -1,8 +1,16 @@
 {
   "_instrucciones": "Mapa de imágenes de la web. Cada clave es un ESPACIO de la página. Para cambiar una foto: edite 'origen' (ruta relativa a la carpeta web/) y, si hace falta, 'recorte' {x,y,w,h} en píxeles del original (null = imagen completa). Luego ejecute 'npm run imagenes' y 'npm run build'. 'alt' es el texto alternativo que se muestra a lectores de pantalla. Los originales nunca se modifican.",
   "imagenes": {
+    "hero-fondo": {
+      "usado_en": "Inicio > hero (foto de fondo a todo el ancho)",
+      "origen": "../02_Fotos_Camposanto/Inicio/hero_jardines_verde.jpg",
+      "recorte": null,
+      "alt": "Abuelo conversando con su hija y su nieto en una banca junto al lago",
+      "reemplazar": true,
+      "nota": "CONFIRMAR LICENCIA ANTES DE PUBLICAR: es igual a la foto del hero de urgelbourgie.com. Usar solo si es de un banco con licencia o propia."
+    },
     "hero-inicio": {
-      "usado_en": "Inicio > hero, foto 1 de 5 (se alternan)",
+      "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg",
       "recorte": null,
       "alt": "Vista del camposanto de La Molina con la pirámide, los nichos y los jardines",
@@ -10,7 +18,7 @@
       "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "hero-2": {
-      "usado_en": "Inicio > hero, foto 2 de 5 (se alternan)",
+      "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg",
       "recorte": null,
       "alt": "Capilla de techo de madera en forma de A",
@@ -18,7 +26,7 @@
       "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "hero-3": {
-      "usado_en": "Inicio > hero, foto 3 de 5 (se alternan)",
+      "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg",
       "recorte": null,
       "alt": "Zona de lápidas de granito sobre el césped al pie de los cerros",
@@ -40,7 +48,7 @@
       ]
     },
     "hero-4": {
-      "usado_en": "Inicio > hero, foto 4 de 5 (se alternan)",
+      "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Inicio/carrusel_hero_nichos.jpg",
       "recorte": null,
       "alt": "Pabellones de nichos con balcones curvos",
@@ -48,7 +56,7 @@
       "nota": "Elegida por el usuario (carpeta Inicio, ~560 px)."
     },
     "hero-5": {
-      "usado_en": "Inicio > hero, foto 5 de 5 (se alternan)",
+      "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
       "origen": "../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg",
       "recorte": null,
       "alt": "Interior de la capilla con bancas de madera y techo de vigas",
