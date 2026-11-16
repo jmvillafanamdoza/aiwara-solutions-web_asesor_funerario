@@ -38,7 +38,7 @@ for (const [clave, d] of Object.entries(mapa.imagenes)) {
       buf = await sharp(buf).composite([{ input: pieza, left: z.x, top: z.y }]).toBuffer();
     }
     const img = sharp(buf).resize({ width: 2000, withoutEnlargement: true });
-    await (png ? img.png({ compressionLevel: 9 }) : img.jpeg({ quality: 90, mozjpeg: true })).toFile(salida);
+    await (png ? img.png({ compressionLevel: 9 }) : img.flatten({ background: '#ffffff' }).jpeg({ quality: 90, mozjpeg: true })).toFile(salida);
     const m = await sharp(salida).metadata();
     filas.push(`| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''}${d.difuminar ? ' (zonas difuminadas)' : ''} | ${d.nota ?? ''} |`);
     console.log(`ok  ${clave}  ${m.width}x${m.height}`);

@@ -1,0 +1,170 @@
+---
+// Servicios funerarios al estilo "escenario fijo + tarjeta que sube" (inspirado en recompose.life):
+// cada servicio tiene un escenario de color que se queda fijo mientras su tarjeta de información
+// sube por encima al hacer scroll. En celular se apilan (foto y tarjeta debajo).
+import { Picture } from 'astro:assets';
+import Icono from './Icono.astro';
+import { enlaceWhatsApp } from '../config/site';
+import { imagen, type Espacio } from '../lib/imagenes';
+import { servicios, notasServicios } from '../data/servicios';
+
+const planes = servicios.map((s) => ({
+  ...s,
+  capilla: imagen(`serv-${s.id}-capilla` as Espacio),
+  ataudImg: imagen(`serv-${s.id}-ataud` as Espacio),
+  carroza: imagen(`serv-${s.id}-carroza` as Espacio),
+}));
+---
+<section class="planes" id="servicios" aria-labelledby="servicios-titulo">
+  <div class="contenedor planes__intro">
+    <h2 id="servicios-titulo" class="aparece">Servicios funerarios</h2>
+    <p class="intro aparece">Cinco servicios para que cada familia elija según sus deseos. Baje para conocer qué incluye cada uno; le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
+    <nav class="planes__indice aparece" aria-label="Ir a un servicio">
+      {planes.map((p) => <a href={`#servicio-${p.id}`}>{p.nombre}</a>)}
+    </nav>
+  </div>
+
+  {planes.map((p) => (
+    <article class={`plan plan--${p.tono}`} id={`servicio-${p.id}`} aria-labelledby={`plan-${p.id}-titulo`}>
+      <div class="plan__escena">
+        <span class="plan__marca" aria-hidden="true">{p.nombre}</span>
+        <Picture
+          src={p.capilla.src} alt={p.capilla.alt} formats={['webp']} widths={[480, 800, 1200]}
+          sizes="(min-width: 980px) 50vw, 92vw" class="plan__capilla"
+        />
+      </div>
+
+      <div class="contenedor plan__capa">
+        <div class="plan__card">
+          <p class="plan__etiqueta">Servicio</p>
+          <h3 id={`plan-${p.id}-titulo`}>{p.nombre}</h3>
+          <p class="plan__lema">{p.lema}</p>
+
+          <div class="plan__ataud">
+            <Picture src={p.ataudImg.src} alt={p.ataudImg.alt} formats={['webp']} widths={[240, 480]} sizes="160px" />
+            <p>{p.ataud}</p>
+          </div>
+
+          <div class="plan__grupos">
+            {p.grupos.map((g) => (
+              <div class="plan__grupo">
+                <h4>{g.titulo}</h4>
+                <ul class="lista-check">
+                  {g.items.map((it) => <li><Icono nombre="check" tam={18} />{it}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p class="plan__cortesia"><Icono nombre="gift" tam={20} /><span><strong>Cortesía:</strong> {p.cortesia}</span></p>
+
+          <figure class="plan__carroza">
+            <Picture src={p.carroza.src} alt={p.carroza.alt} formats={['webp']} widths={[400, 800]} sizes="(min-width: 980px) 460px, 90vw" />
+            <figcaption>Carroza y coche portaflores del servicio {p.nombre}</figcaption>
+          </figure>
+
+          <a class="btn btn--verde plan__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información del servicio funerario ${p.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`servicio-${p.id}`}>
+            <Icono nombre="whatsapp-logo" tam={20} /> Consultar el {p.nombre}
+          </a>
+        </div>
+      </div>
+    </article>
+  ))}
+
+  <div class="contenedor">
+    <ul class="notas">
+      {notasServicios.map((n) => <li>{n}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .planes { padding-top: clamp(56px, 9vw, 104px); }
+  .planes__intro { margin-bottom: 32px; }
+  .planes__indice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .planes__indice a {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px;
+    border: 1px solid var(--gris-borde); border-radius: 999px; text-decoration: none;
+    color: var(--verde-hondo); font-weight: 600; background: #fff;
+  }
+  .planes__indice a:hover { border-color: var(--verde); background: var(--verde-claro); }
+
+  /* Colores de cada escenario */
+  .plan { --fondo: #e8ede9; --marca: rgb(22 58 40 / 0.07); position: relative; }
+  .plan--oscuro { --fondo: #1d3d2c; --marca: rgb(255 255 255 / 0.07); }
+  .plan--salvia { --fondo: #dce7df; }
+  .plan--piedra { --fondo: #ebe7df; --marca: rgb(80 60 30 / 0.07); }
+  .plan--bosque { --fondo: #2b4a3a; --marca: rgb(255 255 255 / 0.07); }
+  .plan--niebla { --fondo: #eceeeb; }
+
+  .plan__escena {
+    position: relative; overflow: hidden; background: var(--fondo);
+    display: grid; place-items: center; padding: 40px 16px 72px;
+  }
+  .plan__marca {
+    position: absolute; left: 4vw; top: 2vh; white-space: nowrap; pointer-events: none;
+    font: 600 clamp(4rem, 17vw, 15rem)/1 var(--f-titulo); color: var(--marca); letter-spacing: -0.01em;
+  }
+  .plan__escena :global(.plan__capilla) { position: relative; width: min(92vw, 560px); height: auto; filter: drop-shadow(0 18px 28px rgb(0 0 0 / 0.22)); }
+
+  .plan__capa { position: relative; margin-top: -48px; padding-bottom: 48px; }
+  .plan__card {
+    position: relative; background: #fff; color: var(--tinta);
+    border-radius: var(--radio); padding: clamp(22px, 4vw, 36px);
+    box-shadow: 0 24px 60px -24px rgb(16 40 28 / 0.45);
+  }
+  .plan__etiqueta { margin: 0 0 2px; font-size: 0.85rem; font-weight: 600; color: var(--verde-medio); text-transform: uppercase; letter-spacing: 0.08em; }
+  .plan__card h3 { font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 6px; }
+  .plan__lema { color: var(--texto-2); margin-bottom: 18px; }
+  .plan__ataud { display: flex; align-items: center; gap: 16px; padding: 12px 16px; border-radius: var(--radio); background: var(--gris-claro); margin-bottom: 20px; }
+  .plan__ataud :global(img) { width: 120px; height: auto; flex: none; }
+  .plan__ataud p { margin: 0; font-weight: 600; color: var(--verde-hondo); line-height: 1.35; }
+  .plan__grupos { display: grid; gap: 18px; }
+  .plan__grupo h4 { margin: 0 0 8px; font: 600 0.95rem/1.3 var(--f-texto); color: var(--verde); text-transform: uppercase; letter-spacing: 0.06em; }
+  .plan__grupo .lista-check { gap: 6px; font-size: 0.98rem; }
+  .plan__cortesia { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--gris-borde); font-size: 0.98rem; }
+  .plan__cortesia :global(.icono) { color: var(--dorado); margin-top: 3px; }
+  .plan__carroza { margin: 20px 0 0; }
+  .plan__carroza :global(img) { width: 100%; height: auto; aspect-ratio: 16 / 8; object-fit: cover; border-radius: var(--radio); }
+  .plan__carroza figcaption { font-size: 0.88rem; color: var(--texto-2); margin-top: 6px; }
+  .plan__cta { margin-top: 20px; width: 100%; }
+  .notas { padding-left: 1.2em; margin: 8px 0 0; font-size: 0.9rem; color: var(--texto-2); display: grid; gap: 4px; }
+
+  /* Escritorio: escenario fijo (sticky) y tarjeta que sube por encima a la derecha */
+  @media (min-width: 980px) {
+    .plan__escena {
+      position: sticky; top: 72px; height: calc(100vh - 72px); min-height: 560px;
+      padding: 0; place-items: center start;
+    }
+    .plan__escena :global(.plan__capilla) {
+      position: absolute; left: max(32px, calc((100vw - var(--ancho)) / 2 + var(--gutter)));
+      bottom: 7vh; width: min(48vw, 720px); max-height: 78%; object-fit: contain; object-position: left bottom;
+    }
+    .plan__marca { top: 4vh; }
+    .plan__capa {
+      display: flex; justify-content: flex-end; pointer-events: none;
+      margin-top: calc(-1 * (100vh - 72px) + 22vh); padding-bottom: 18vh;
+    }
+    .plan__card { width: min(500px, 40vw); pointer-events: auto; }
+  }
+
+  /* Entrada suave de cada tarjeta (sin movimiento si se pidió reducirlo) */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .plan__card { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+    :global(.js) .plan__card.visible { opacity: 1; transform: none; }
+    :global(.js) .plan__escena :global(.plan__capilla) { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+  }
+</style>
+
+<script>
+  // Muestra cada tarjeta cuando entra en pantalla.
+  const tarjetas = document.querySelectorAll<HTMLElement>('.plan__card');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entradas) => {
+      for (const e of entradas) if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    tarjetas.forEach((t) => io.observe(t));
+  } else {
+    tarjetas.forEach((t) => t.classList.add('visible'));
+  }
+</script>

@@ -151,7 +151,7 @@
       "nota": "Foto elegida por el usuario (605x424). Reemplazar por la misma toma en mayor resolución (mín. 1280 px de ancho) si existe."
     },
     "serv-capilla": {
-      "usado_en": "Servicio funerario > Qué incluye (capilla ardiente)",
+      "usado_en": "Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg",
       "recorte": {
         "x": 230,
@@ -164,7 +164,7 @@
       "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
     },
     "serv-carroza": {
-      "usado_en": "Servicio funerario > Qué incluye (carroza)",
+      "usado_en": "Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg",
       "recorte": {
         "x": 120,
@@ -177,7 +177,7 @@
       "nota": "Recorte de catálogo. Reemplazar cuando haya foto oficial."
     },
     "serv-ataud": {
-      "usado_en": "Servicio funerario > Qué incluye (ataúd)",
+      "usado_en": "Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*)",
       "origen": "../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/ATAUD PREMIUM CUADRADO.jpeg",
       "recorte": {
         "x": 70,
@@ -227,6 +227,136 @@
       "formato": "png",
       "reemplazar": true,
       "nota": "266x78. Ideal: SVG o PNG de al menos 600 px de ancho."
+    },
+    "serv-platinum-capilla": {
+      "usado_en": "Servicio funerario > Platinum (escenario, capilla ardiente)",
+      "origen": "fuentes/catalogo-2026/platinum-capilla.png",
+      "recorte": null,
+      "alt": "Capilla ardiente del servicio Platinum",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-platinum-ataud": {
+      "usado_en": "Servicio funerario > Platinum (tarjeta, ataúd)",
+      "origen": "fuentes/catalogo-2026/platinum-ataud.png",
+      "recorte": null,
+      "alt": "Ataúd del servicio Platinum",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-platinum-carroza": {
+      "usado_en": "Servicio funerario > Platinum (tarjeta, carroza)",
+      "origen": "fuentes/catalogo-2026/platinum-carroza.png",
+      "recorte": null,
+      "alt": "Carroza y coche portaflores del servicio Platinum",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026."
+    },
+    "serv-premium-capilla": {
+      "usado_en": "Servicio funerario > Premium (escenario, capilla ardiente)",
+      "origen": "fuentes/catalogo-2026/premium-capilla.png",
+      "recorte": null,
+      "alt": "Capilla ardiente del servicio Premium",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-premium-ataud": {
+      "usado_en": "Servicio funerario > Premium (tarjeta, ataúd)",
+      "origen": "fuentes/catalogo-2026/premium-ataud.png",
+      "recorte": null,
+      "alt": "Ataúd del servicio Premium",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-premium-carroza": {
+      "usado_en": "Servicio funerario > Premium (tarjeta, carroza)",
+      "origen": "fuentes/catalogo-2026/premium-carroza.png",
+      "recorte": null,
+      "alt": "Carroza y coche portaflores del servicio Premium",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026."
+    },
+    "serv-especial-capilla": {
+      "usado_en": "Servicio funerario > Especial (escenario, capilla ardiente)",
+      "origen": "fuentes/catalogo-2026/especial-capilla.png",
+      "recorte": null,
+      "alt": "Capilla ardiente del servicio Especial",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-especial-ataud": {
+      "usado_en": "Servicio funerario > Especial (tarjeta, ataúd)",
+      "origen": "fuentes/catalogo-2026/especial-ataud.png",
+      "recorte": null,
+      "alt": "Ataúd del servicio Especial",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-especial-carroza": {
+      "usado_en": "Servicio funerario > Especial (tarjeta, carroza)",
+      "origen": "fuentes/catalogo-2026/especial-carroza.png",
+      "recorte": null,
+      "alt": "Carroza y coche portaflores del servicio Especial",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026."
+    },
+    "serv-clasico-capilla": {
+      "usado_en": "Servicio funerario > Clásico (escenario, capilla ardiente)",
+      "origen": "fuentes/catalogo-2026/clasico-capilla.png",
+      "recorte": null,
+      "alt": "Capilla ardiente del servicio Clásico",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-clasico-ataud": {
+      "usado_en": "Servicio funerario > Clásico (tarjeta, ataúd)",
+      "origen": "fuentes/catalogo-2026/clasico-ataud.png",
+      "recorte": null,
+      "alt": "Ataúd del servicio Clásico",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-clasico-carroza": {
+      "usado_en": "Servicio funerario > Clásico (tarjeta, carroza)",
+      "origen": "fuentes/catalogo-2026/clasico-carroza.png",
+      "recorte": null,
+      "alt": "Carroza y coche portaflores del servicio Clásico",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026."
+    },
+    "serv-tradicional-capilla": {
+      "usado_en": "Servicio funerario > Tradicional (escenario, capilla ardiente)",
+      "origen": "fuentes/catalogo-2026/tradicional-capilla.png",
+      "recorte": null,
+      "alt": "Capilla ardiente del servicio Tradicional",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-tradicional-ataud": {
+      "usado_en": "Servicio funerario > Tradicional (tarjeta, ataúd)",
+      "origen": "fuentes/catalogo-2026/tradicional-ataud.png",
+      "recorte": null,
+      "alt": "Ataúd del servicio Tradicional",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-tradicional-carroza": {
+      "usado_en": "Servicio funerario > Tradicional (tarjeta, carroza)",
+      "origen": "fuentes/catalogo-2026/tradicional-carroza.png",
+      "recorte": null,
+      "alt": "Carroza y coche portaflores del servicio Tradicional",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026."
     }
   },
   "og": {

@@ -39,7 +39,7 @@ npm run preview      # http://localhost:4321
 |---|---|
 | Dominio, teléfono, WhatsApp, correo, redes, direcciones, mensajes de WhatsApp por página, IDs de medición, menú | `src/config/site.ts` (**único lugar**) |
 | Imágenes y logo (qué archivo va en cada espacio, recortes, textos alternativos; las 3 fotos del hero son hero-inicio, hero-2 y hero-3) | `imagenes.mapa.json` → ver sección 6 |
-| Lista de servicios funerarios y lo que incluyen | `src/data/servicios.ts` |
+| Lista de servicios funerarios y lo que incluyen (fuente: catálogo 2026) | `src/data/servicios.ts`; diseño en `src/components/PlanesServicio.astro`; imágenes extraídas del catálogo en `fuentes/catalogo-2026/` |
 | Testimonios | `src/components/Testimonios.astro` |
 | Opciones del formulario ("¿Qué le interesa?") | `src/components/FormCotizacion.astro` |
 | Textos de cada página | `src/pages/*.astro` |

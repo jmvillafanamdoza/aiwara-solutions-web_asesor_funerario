@@ -1,77 +1,137 @@
-// Servicios funerarios. Fuente: brochures de Marco (BROCHURE/FUNERARIA/NECESIDAD INMEDIATA).
-// Sin precios a propósito (el brief lo pide en la página de servicio funerario).
+// Servicios funerarios. Fuente: Catálogo de Servicio Funerario Jardines de la Paz,
+// vigencia agosto 2026 (01_Catalogos/CatalogoSSFF2026_F.pdf), páginas 4 a 13.
+// Sin precios a propósito (la página de servicio funerario no los muestra).
+// Las imágenes de cada servicio están en imagenes.mapa.json (espacios serv-<id>-capilla/-ataud/-carroza).
 
-/** Lo que incluyen TODOS los servicios. */
-export const incluyenTodos = [
-  'Ataúd según el servicio elegido',
-  'Carroza y coche portaflores',
-  'Capilla ardiente',
-  'Preparación tanatológica',
-  'Trámites y traslados',
-  'Atención personalizada',
-];
+export type Servicio = {
+  id: 'platinum' | 'premium' | 'especial' | 'clasico' | 'tradicional';
+  nombre: string;
+  lema: string;
+  ataud: string;
+  /** Color del escenario: oscuro (verde) o claro. */
+  tono: 'oscuro' | 'salvia' | 'piedra' | 'bosque' | 'niebla';
+  grupos: { titulo: string; items: string[] }[];
+  cortesia: string;
+};
 
-export const servicios = [
+const MOVILIDAD_A_ELEGIR =
+  'Cintas de Honor Jardines y una movilidad a elegir: auto especial de lujo (4 pasajeros), miniván (10 pasajeros) o movilidad para 24 pasajeros.';
+
+export const servicios: Servicio[] = [
   {
     id: 'platinum',
     nombre: 'Platinum',
-    resumen: 'Nuestro servicio más completo, con ataúd de caoba y carroza extra lujo.',
-    ataud: 'Ataúd de caoba, cuadrado o redondo',
-    ademas: [
-      'Carroza extra lujo',
-      'Capilla ardiente de madera con pedestales para flores',
-      'Arreglos florales para pedestales, manto y corona o cruz',
-      'Cargadores y velatorio (una noche)',
-      'Obituario en línea y Mural de Memorias',
-      'Cortesía a elegir: movilidad especial de lujo, movilidad o misa de cuerpo presente',
+    lema: 'Nuestro servicio más completo, con ataúd Platinum y carroza extra lujo.',
+    ataud: 'Ataúd de madera modelo Platinum, cuadrado o redondo',
+    tono: 'oscuro',
+    grupos: [
+      { titulo: 'Ceremonia', items: [
+        'Capilla ardiente de madera con pedestales para flores (una noche)',
+        'Velatorio (una noche)',
+        'Misa de cuerpo presente en Jardines de la Paz',
+        'Arreglos florales para pedestales, manto y corona o cruz',
+        'Cuatro cargadores',
+      ] },
+      { titulo: 'Traslado', items: ['Carroza extra lujo', 'Un coche portaflores'] },
+      { titulo: 'Atención', items: [
+        'Preparación tanatológica',
+        'Trámites y traslados',
+        'Atención personalizada',
+        'Obituario en línea y Mural de Memorias',
+      ] },
     ],
+    cortesia: MOVILIDAD_A_ELEGIR,
   },
   {
     id: 'premium',
     nombre: 'Premium',
-    resumen: 'Ataúd de cedro, carroza de lujo y capilla de madera.',
-    ataud: 'Ataúd de cedro cuadrado',
-    ademas: [
-      'Carroza de lujo',
-      'Capilla ardiente de madera',
-      'Arreglos florales: manto y corona o cruz',
-      'Cargadores y velatorio (una noche)',
-      'Obituario en línea y Mural de Memorias',
-      'Cortesía a elegir: movilidad especial de lujo, movilidad o misa de cuerpo presente',
+    lema: 'Ataúd Premium, carroza de lujo y capilla ardiente de madera.',
+    ataud: 'Ataúd de madera modelo Premium, cuadrado o redondo',
+    tono: 'salvia',
+    grupos: [
+      { titulo: 'Ceremonia', items: [
+        'Capilla ardiente de madera (una noche)',
+        'Velatorio (una noche)',
+        'Misa de cuerpo presente en Jardines de la Paz',
+        'Arreglos florales: manto y corona o cruz',
+        'Cuatro cargadores',
+      ] },
+      { titulo: 'Traslado', items: ['Carroza de lujo', 'Un coche portaflores'] },
+      { titulo: 'Atención', items: [
+        'Preparación tanatológica',
+        'Trámites y traslados',
+        'Atención personalizada',
+        'Obituario en línea y Mural de Memorias',
+      ] },
     ],
+    cortesia: MOVILIDAD_A_ELEGIR,
   },
   {
     id: 'especial',
     nombre: 'Especial',
-    resumen: 'Un servicio completo con carroza de lujo y arreglo floral.',
-    ataud: 'Ataúd modelo Verona',
-    ademas: [
-      'Carroza de lujo',
-      'Arreglo floral: manto',
-      'Cargadores y velatorio (una noche)',
-      'Obituario en línea y Mural de Memorias',
-      'Cortesía a elegir: movilidad o misa de cuerpo presente',
+    lema: 'Un servicio completo con carroza de lujo, misa y arreglo floral.',
+    ataud: 'Ataúd de madera modelo Especial, cuadrado',
+    tono: 'piedra',
+    grupos: [
+      { titulo: 'Ceremonia', items: [
+        'Capilla ardiente (una noche)',
+        'Velatorio (una noche)',
+        'Misa de cuerpo presente en Jardines de la Paz',
+        'Arreglo floral: manto',
+        'Cuatro cargadores',
+      ] },
+      { titulo: 'Traslado', items: ['Carroza de lujo', 'Un coche portaflores'] },
+      { titulo: 'Atención', items: [
+        'Preparación tanatológica',
+        'Trámites y traslados',
+        'Atención personalizada',
+        'Obituario en línea y Mural de Memorias',
+      ] },
     ],
+    cortesia: 'Cintas de Honor Jardines y movilidad en miniván para 10 pasajeros.',
   },
   {
     id: 'clasico',
     nombre: 'Clásico',
-    resumen: 'Lo esencial para una despedida digna, con velatorio en La Molina.',
-    ataud: 'Ataúd modelo Florencia (madera cumala o similar)',
-    ademas: ['Cargadores', 'Velatorio en Jardines de la Paz, La Molina'],
+    lema: 'Lo esencial para una despedida digna, con velatorio y cargadores.',
+    ataud: 'Ataúd de madera modelo Florencia, cuadrado',
+    tono: 'bosque',
+    grupos: [
+      { titulo: 'Ceremonia', items: ['Capilla ardiente (una noche)', 'Velatorio (una noche)', 'Cuatro cargadores'] },
+      { titulo: 'Traslado', items: ['Carroza', 'Un coche portaflores'] },
+      { titulo: 'Atención', items: [
+        'Preparación tanatológica',
+        'Trámites y traslados',
+        'Atención personalizada',
+        'Obituario en línea y Mural de Memorias',
+      ] },
+    ],
+    cortesia: 'Cintas de Honor Jardines.',
   },
   {
     id: 'tradicional',
     nombre: 'Tradicional',
-    resumen: 'El servicio básico, con lo necesario para la despedida.',
-    ataud: 'Ataúd modelo Nápoles (madera cumala o similar)',
-    ademas: [],
+    lema: 'El servicio básico, con lo necesario para la despedida.',
+    ataud: 'Ataúd de madera modelo Nápoles, cuadrado',
+    tono: 'niebla',
+    grupos: [
+      { titulo: 'Ceremonia', items: ['Capilla ardiente (una noche)'] },
+      { titulo: 'Traslado', items: ['Carroza', 'Un coche portaflores'] },
+      { titulo: 'Atención', items: [
+        'Preparación tanatológica',
+        'Trámites y traslados',
+        'Atención personalizada',
+        'Obituario en línea y Mural de Memorias',
+      ] },
+    ],
+    cortesia: 'Cintas de Honor Jardines.',
   },
-] as const;
+];
 
 export const notasServicios = [
   'Para entierro o cremación, hacia todos los camposantos de Lima.',
-  'Velatorio sujeto a disponibilidad del local elegido; incluye una noche.',
-  'En cremaciones se incluye alquiler de ataúd, urna para cenizas, trámites ante el área de salud y necropsia de ley.',
-  'Modelos de ataúd sujetos a disponibilidad. Imágenes referenciales.',
+  'Madera y modelo de ataúd sujetos a disponibilidad de mercado.',
+  'En cremaciones se incluye alquiler de ataúd, urna para cenizas, trámites ante la Autoridad de Salud y necropsia de ley.',
+  'Velatorio sujeto a disponibilidad del local elegido; incluye una noche. Misa de cuerpo presente en las capillas de Jardines de la Paz, sujeta a disponibilidad.',
+  'Las imágenes son referenciales. Fuente: catálogo de servicio funerario Jardines de la Paz, vigencia agosto 2026.',
 ];

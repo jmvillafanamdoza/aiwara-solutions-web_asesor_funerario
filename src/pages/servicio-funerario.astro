@@ -6,12 +6,10 @@ import Contacto from '../components/Contacto.astro';
 import BarraLlamada from '../components/BarraLlamada.astro';
 import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
 import { imagen } from '../lib/imagenes';
-import { incluyenTodos, servicios, notasServicios } from '../data/servicios';
+import PlanesServicio from '../components/PlanesServicio.astro';
 
 const PAGINA = 'servicio-funerario';
 const hero = imagen('servicio-hero');
-const fotos = (['serv-capilla', 'serv-carroza', 'serv-ataud'] as const).map(imagen);
-const pies = ['Capilla ardiente', 'Carroza y coche portaflores', 'Ataúd'];
 
 const pasos = [
   { titulo: 'Comuníquese conmigo', texto: 'Llame o escriba a cualquier hora. Le indico qué hacer según el lugar donde ocurrió el fallecimiento: casa, clínica u hospital.' },
@@ -71,64 +69,8 @@ const pasos = [
     </div>
   </section>
 
-  <!-- SERVICIOS -->
-  <section class="seccion" id="servicios" aria-labelledby="servicios-titulo">
-    <div class="contenedor">
-      <h2 id="servicios-titulo" class="aparece">Servicios funerarios</h2>
-      <p class="intro aparece">Cinco opciones para que cada familia elija según sus deseos. Le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
-
-      <div class="servicios">
-        <aside class="incluyen aparece" aria-labelledby="incluyen-titulo">
-          <h3 id="incluyen-titulo">Todos los servicios incluyen</h3>
-          <ul class="lista-check">
-            {incluyenTodos.map((i) => <li><Icono nombre="check" tam={20} />{i}</li>)}
-          </ul>
-        </aside>
-
-        <div class="niveles">
-          {servicios.map((s, i) => (
-            <details class="nivel aparece" open={i === 1}>
-              <summary>
-                <span class="nivel__nombre">Servicio {s.nombre}</span>
-                <span class="nivel__resumen">{s.resumen}</span>
-                <Icono nombre="caret-down" class="nivel__flecha" />
-              </summary>
-              <div class="nivel__cuerpo">
-                <p><strong>{s.ataud}</strong></p>
-                {s.ademas.length > 0 ? (
-                  <>
-                    <p class="nivel__ademas">Además:</p>
-                    <ul class="lista-check">
-                      {s.ademas.map((a) => <li><Icono nombre="check" tam={20} />{a}</li>)}
-                    </ul>
-                  </>
-                ) : (
-                  <p>Incluye lo esencial descrito en "Todos los servicios incluyen".</p>
-                )}
-                <a class="btn btn--verde nivel__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información del servicio funerario ${s.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`servicio-${s.id}`}>
-                  <Icono nombre="whatsapp-logo" tam={20} /> Consultar el {s.nombre}
-                </a>
-              </div>
-            </details>
-          ))}
-        </div>
-      </div>
-
-      <ul class="fotos-serv" aria-label="Imágenes referenciales del servicio">
-        {fotos.map((f, i) => (
-          <li class="aparece">
-            <figure>
-              <Picture src={f.src} alt={f.alt} formats={['webp']} widths={[360, 720]} sizes="(min-width: 860px) 33vw, 100vw" />
-              <figcaption>{pies[i]}</figcaption>
-            </figure>
-          </li>
-        ))}
-      </ul>
-      <ul class="notas">
-        {notasServicios.map((n) => <li>{n}</li>)}
-      </ul>
-    </div>
-  </section>
+  <!-- SERVICIOS (escenarios fijos con tarjetas que suben; ver src/components/PlanesServicio.astro) -->
+  <PlanesServicio />
 
   <!-- TRASLADOS Y TRÁMITES -->
   <section class="seccion seccion--gris" aria-labelledby="tramites-titulo">
@@ -195,34 +137,6 @@ const pasos = [
   .paso h3 { font-size: 1.4rem; margin-bottom: 6px; }
   .paso p { margin: 0; color: var(--texto-2); }
 
-  .servicios { display: grid; gap: 24px; margin-top: 32px; }
-  @media (min-width: 980px) { .servicios { grid-template-columns: 340px 1fr; gap: 40px; align-items: start; } .incluyen { position: sticky; top: 104px; } }
-  .incluyen { background: var(--verde-claro); border-radius: var(--radio); padding: 28px; }
-  .incluyen h3 { margin-bottom: 16px; }
-  .niveles { display: grid; gap: 12px; }
-  .nivel { border: 1px solid var(--gris-borde); border-radius: var(--radio); background: #fff; }
-  .nivel[open] { border-color: var(--verde-medio); box-shadow: var(--sombra); }
-  .nivel summary {
-    list-style: none; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 2px 16px;
-    padding: 20px 22px; min-height: 64px;
-  }
-  .nivel summary::-webkit-details-marker { display: none; }
-  .nivel__nombre { font: 600 1.55rem/1.2 var(--f-titulo); color: var(--verde-hondo); }
-  .nivel__resumen { grid-row: 2; color: var(--texto-2); font-size: 0.98rem; }
-  .nivel summary :global(.nivel__flecha) { grid-row: 1 / span 2; grid-column: 2; align-self: center; color: var(--verde); transition: transform 0.2s ease; }
-  .nivel[open] summary :global(.nivel__flecha) { transform: rotate(180deg); }
-  .nivel__cuerpo { padding: 0 22px 22px; }
-  .nivel__ademas { margin: 0 0 8px; font-weight: 600; color: var(--verde); }
-  .nivel__cta { margin-top: 18px; }
-
-  .fotos-serv { list-style: none; padding: 0; margin: 40px 0 16px; display: grid; gap: 16px; }
-  @media (min-width: 860px) { .fotos-serv { grid-template-columns: 1fr 1.25fr 1fr; } }
-  @media (max-width: 859px) { .fotos-serv :global(img) { height: 220px; } }
-  .fotos-serv figure { margin: 0; }
-  .fotos-serv :global(img) { width: 100%; height: 240px; object-fit: contain; padding: 8px; border-radius: var(--radio); background: #fff; border: 1px solid var(--gris-borde); }
-  .fotos-serv li:nth-child(2) :global(img) { object-fit: cover; padding: 0; }
-  .fotos-serv figcaption { font-size: 0.95rem; color: var(--texto-2); margin-top: 8px; }
-  .notas { padding-left: 1.2em; margin: 0; font-size: 0.9rem; color: var(--texto-2); display: grid; gap: 4px; }
 
   .tramites { display: grid; gap: 16px; margin-top: 28px; }
   @media (min-width: 860px) { .tramites { grid-template-columns: 1fr 1fr 0.9fr; } }
