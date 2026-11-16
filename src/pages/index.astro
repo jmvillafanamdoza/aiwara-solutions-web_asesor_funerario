@@ -218,9 +218,10 @@ const motivos = [
     .hero :global(.hero__fondo img) { object-position: 0% 50%; }
     /* Escritorio: refuerzo del verde a la derecha para asegurar contraste del texto */
     .hero :global(.hero__fondo)::after { background: linear-gradient(90deg, transparent 0%, transparent 42%, rgb(36 66 51 / 0.55) 60%, rgb(36 66 51 / 0.85) 100%); }
-    .hero__grid { grid-template-columns: 1fr 0.86fr; padding-block: 40px; }
-    .hero__titulo { font-size: clamp(2.6rem, 4.2vw, 3.6rem); }
-    .hero__sub { margin-bottom: 22px; }
+    /* El hero usa casi todo el ancho de la pantalla: la foto a la izquierda y el texto en el 48 % derecho */
+    .hero__grid { max-width: 1680px; padding-inline: clamp(32px, 4vw, 80px); grid-template-columns: 52fr 48fr; padding-block: 40px; }
+    .hero__titulo { font-size: clamp(2.8rem, 4.4vw, 4.4rem); }
+    .hero__sub { max-width: 46ch; font-size: 1.2rem; margin-bottom: 22px; }
     .hero__24h { margin-top: 20px; }
     .hero__marco { margin-top: 20px; padding-top: 16px; }
     .hero__texto { grid-column: 2; }

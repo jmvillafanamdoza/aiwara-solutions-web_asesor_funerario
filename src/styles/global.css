@@ -20,7 +20,7 @@
 
   --radio: 12px;
   --sombra: 0 10px 30px -12px rgb(31 77 54 / 0.28);
-  --ancho: 1180px;
+  --ancho: 1320px;
   --gutter: clamp(16px, 4vw, 32px);
 
   --f-titulo: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
