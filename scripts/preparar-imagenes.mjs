@@ -24,13 +24,26 @@ function cargar(origen, recorte) {
 }
 
 let errores = 0;
+let conservadas = 0;
 const filas = [];
 for (const [clave, d] of Object.entries(mapa.imagenes)) {
   try {
     // formato "png" conserva la transparencia (logos); el resto se guarda como JPG.
     const png = d.formato === 'png';
     const salida = path.join(destino, `${clave}.${png ? 'png' : 'jpg'}`);
-    for (const ext of ['jpg', 'png']) { const vieja = path.join(destino, `${clave}.${ext}`); if (vieja !== salida && fs.existsSync(vieja)) fs.rmSync(vieja); }
+    const fila = (m) => `| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''}${d.difuminar ? ' (zonas difuminadas)' : ''} | ${d.nota ?? ''} |`;
+    // Si el original no está en esta PC (p. ej. carpetas de fuera del repo) pero la imagen ya fue
+    // generada antes, se conserva tal cual y se mantiene su fila en IMAGENES.md.
+    // (Se busca en ambos formatos y no se borra nada: si se cambió "formato" sin tener el original, queda la copia vieja.)
+    if (!fs.existsSync(path.resolve(raiz, d.origen))) {
+      const existente = [salida, path.join(destino, `${clave}.${png ? 'jpg' : 'png'}`)].find((f) => fs.existsSync(f));
+      if (existente) {
+        conservadas++;
+        filas.push(fila(await sharp(existente).metadata()));
+        console.log(`--  ${clave}  original no disponible en esta PC; se conserva ${path.basename(existente)}`);
+        continue;
+      }
+    }
     // "difuminar": [{x,y,w,h}, ...] desenfoca zonas (por ejemplo nombres en lápidas), en píxeles ya recortados.
     let buf = await cargar(d.origen, d.recorte).toBuffer();
     for (const z of d.difuminar ?? []) {
@@ -39,8 +52,10 @@ for (const [clave, d] of Object.entries(mapa.imagenes)) {
     }
     const img = sharp(buf).resize({ width: 2000, withoutEnlargement: true });
     await (png ? img.png({ compressionLevel: 9 }) : img.flatten({ background: '#ffffff' }).jpeg({ quality: 90, mozjpeg: true })).toFile(salida);
+    // Recién con la salida escrita se borra la copia del otro formato (si cambió "formato").
+    for (const ext of ['jpg', 'png']) { const vieja = path.join(destino, `${clave}.${ext}`); if (vieja !== salida && fs.existsSync(vieja)) fs.rmSync(vieja); }
     const m = await sharp(salida).metadata();
-    filas.push(`| \`${clave}\` | ${d.usado_en} | ${m.width}x${m.height} | ${d.reemplazar ? '**Sí**' : 'No'} | \`${d.origen}\`${d.recorte ? ' (recortada)' : ''}${d.difuminar ? ' (zonas difuminadas)' : ''} | ${d.nota ?? ''} |`);
+    filas.push(fila(m));
     console.log(`ok  ${clave}  ${m.width}x${m.height}`);
   } catch (e) {
     errores++;
@@ -48,11 +63,14 @@ for (const [clave, d] of Object.entries(mapa.imagenes)) {
   }
 }
 
-try {
+const ogSalida = path.join(raiz, 'public', 'og-default.jpg');
+if (!fs.existsSync(path.resolve(raiz, mapa.og.origen)) && fs.existsSync(ogSalida)) {
+  console.log('--  og-default  original no disponible en esta PC; se conserva la imagen ya generada');
+} else try {
   await cargar(mapa.og.origen, mapa.og.recorte)
     .resize(1200, 630, { fit: 'cover' })
     .jpeg({ quality: 85, mozjpeg: true })
-    .toFile(path.join(raiz, 'public', 'og-default.jpg'));
+    .toFile(ogSalida);
   console.log('ok  og-default 1200x630');
 } catch (e) {
   errores++;
@@ -71,4 +89,5 @@ ${filas.join('\n')}
 | \`og\` | ${mapa.og.usado_en} | 1200x630 | No | \`${mapa.og.origen}\` | |
 `;
 fs.writeFileSync(path.join(raiz, 'IMAGENES.md'), md);
+if (conservadas) console.log(`\nAviso: ${conservadas} espacio(s) conservados sin regenerar (original no disponible en esta PC). Si cambió su recorte o difuminado en el mapa, regenérelos en la PC que tiene los originales.`);
 if (errores) process.exit(1);

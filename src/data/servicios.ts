@@ -8,6 +8,8 @@ export type Servicio = {
   nombre: string;
   lema: string;
   ataud: string;
+  /** Formas de ataúd con sus medidas (catálogo 2026). Fotos: espacios serv-<id>-ataud[-redondo][-abierto]. */
+  formas: { forma: 'cuadrado' | 'redondo'; externas: string; internas: string }[];
   /** Color del escenario: oscuro (verde) o claro. */
   tono: 'oscuro' | 'salvia' | 'piedra' | 'bosque' | 'niebla';
   grupos: { titulo: string; items: string[] }[];
@@ -23,6 +25,10 @@ export const servicios: Servicio[] = [
     nombre: 'Platinum',
     lema: 'Nuestro servicio más completo, con ataúd Platinum y carroza extra lujo.',
     ataud: 'Ataúd de madera modelo Platinum, cuadrado o redondo',
+    formas: [
+      { forma: 'cuadrado', externas: 'L 1.91 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.81 m · Anch. 49 cm · Alt. 30 cm' },
+      { forma: 'redondo', externas: 'L 1.93 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.81 m · Anch. 49 cm · Alt. 30 cm' },
+    ],
     tono: 'oscuro',
     grupos: [
       { titulo: 'Ceremonia', items: [
@@ -47,6 +53,10 @@ export const servicios: Servicio[] = [
     nombre: 'Premium',
     lema: 'Ataúd Premium, carroza de lujo y capilla ardiente de madera.',
     ataud: 'Ataúd de madera modelo Premium, cuadrado o redondo',
+    formas: [
+      { forma: 'cuadrado', externas: 'L 1.94 m · Anch. 62 cm · Alt. 47 cm', internas: 'L 1.84 m · Anch. 52 cm · Alt. 29 cm' },
+      { forma: 'redondo', externas: 'L 1.94 m · Anch. 62 cm · Alt. 47 cm', internas: 'L [DATO POR CONFIRMAR] · Anch. 52 cm · Alt. 29 cm' },
+    ],
     tono: 'salvia',
     grupos: [
       { titulo: 'Ceremonia', items: [
@@ -71,6 +81,9 @@ export const servicios: Servicio[] = [
     nombre: 'Especial',
     lema: 'Un servicio completo con carroza de lujo, misa y arreglo floral.',
     ataud: 'Ataúd de madera modelo Especial, cuadrado',
+    formas: [
+      { forma: 'cuadrado', externas: 'L 1.92 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.80 m · Anch. 45.5 cm · Alt. 30 cm' },
+    ],
     tono: 'piedra',
     grupos: [
       { titulo: 'Ceremonia', items: [
@@ -95,6 +108,9 @@ export const servicios: Servicio[] = [
     nombre: 'Clásico',
     lema: 'Lo esencial para una despedida digna, con velatorio y cargadores.',
     ataud: 'Ataúd de madera modelo Florencia, cuadrado',
+    formas: [
+      { forma: 'cuadrado', externas: 'L 1.93 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.80 m · Anch. 47 cm · Alt. 30 cm' },
+    ],
     tono: 'bosque',
     grupos: [
       { titulo: 'Ceremonia', items: ['Capilla ardiente (una noche)', 'Velatorio (una noche)', 'Cuatro cargadores'] },
@@ -113,6 +129,9 @@ export const servicios: Servicio[] = [
     nombre: 'Tradicional',
     lema: 'El servicio básico, con lo necesario para la despedida.',
     ataud: 'Ataúd de madera modelo Nápoles, cuadrado',
+    formas: [
+      { forma: 'cuadrado', externas: 'L 1.93 m · Anch. 59 cm · Alt. 43 cm', internas: 'L 1.80 m · Anch. 46.5 cm · Alt. 30 cm' },
+    ],
     tono: 'niebla',
     grupos: [
       { titulo: 'Ceremonia', items: ['Capilla ardiente (una noche)'] },

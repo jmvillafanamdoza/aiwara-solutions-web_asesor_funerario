@@ -111,6 +111,7 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 |---|---|---|
 | `[TESTIMONIO REAL 1-3]`, `[NOMBRE]`, `[DISTRITO]` | Inicio > Lo que dicen las familias | 3 testimonios reales con permiso escrito (máx. 3 líneas cada uno) |
 | `[DETALLE POR CONFIRMAR]` | Plan funerario > Cinerarios | Qué incluyen los cinerarios y en qué sede están |
+| `[DATO POR CONFIRMAR]` | Servicio funerario > Premium > Ataúd redondo > Medidas internas | Largo interno del ataúd redondo Premium (el catálogo 2026 dice "1.84.5mt", probable errata) |
 | `[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]` | Privacidad | Revisión legal de la política |
 | `[FECHA DE PUBLICACIÓN]` | Privacidad | Fecha en que se publica la política |
 | `[PLAZO POR CONFIRMAR]` | Privacidad | Plazo de conservación de los datos |
@@ -123,6 +124,7 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 - Que "**cuotas sin intereses**" y "**ahorro por compra anticipada**" aplican a todos los planes (sale de sus brochures: "saldo sin interés", "dscto. por compra anticipada").
 - Usuario de LinkedIn: se usó `linkedin.com/in/marco-villafana`.
 - Lo que incluye cada servicio (`src/data/servicios.ts`) se tomó de los brochures de necesidad inmediata.
+- Las medidas de los ataúdes (`formas` en `src/data/servicios.ts`) se tomaron del catálogo 2026 (`CatalogoSSFF2026_F.pdf`, notas al pie de cada servicio).
 
 ---
 
@@ -135,6 +137,10 @@ Para cambiar una foto:
 2. En `imagenes.mapa.json`, cambie `origen` del espacio (ruta relativa a `web/`). Si la foto nueva no necesita recorte, ponga `"recorte": null`; actualice `alt` si cambia lo que muestra.
 3. `npm run imagenes` (copia, recorta y regenera `src/assets/img/` e `IMAGENES.md`; los originales no se tocan).
 4. `npm run build` y publicar. Astro genera solas las versiones WebP en varios tamaños.
+
+Si el original de un espacio no está en la PC (por ejemplo en la oficina, donde no existen las carpetas de fuera del repo), `npm run imagenes` conserva la imagen ya generada y su fila en `IMAGENES.md`. Para cambiar una foto en esa PC, cópiela a `fuentes/` y apunte ahí el `origen`.
+
+Ataúdes de cada servicio (franja debajo de la tarjeta en `/servicio-funerario`): espacios `serv-<servicio>-ataud` (cuadrado cerrado), `-ataud-abierto`, y en Platinum y Premium también `-ataud-redondo` y `-ataud-redondo-abierto`. Fotos extraídas del catálogo 2026 en `fuentes/catalogo-2026/`.
 
 Espacios marcados para reemplazar: retrato de Marco (es un recorte de una pieza de Facebook), foto de Lurín (recorte pequeño) y las 3 fotos de catálogo del servicio (capilla, carroza, ataúd).
 

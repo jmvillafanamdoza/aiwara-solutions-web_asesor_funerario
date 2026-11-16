@@ -238,16 +238,43 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-platinum-ataud": {
-      "usado_en": "Servicio funerario > Platinum (tarjeta, ataúd)",
+      "usado_en": "Servicio funerario > Platinum (franja de ataúd y carroza, ataúd cuadrado cerrado)",
       "origen": "fuentes/catalogo-2026/platinum-ataud.png",
       "recorte": null,
-      "alt": "Ataúd del servicio Platinum",
+      "alt": "Ataúd cuadrado del servicio Platinum, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-platinum-ataud-abierto": {
+      "usado_en": "Servicio funerario > Platinum (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "origen": "fuentes/catalogo-2026/platinum-ataud-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd cuadrado del servicio Platinum, abierto",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-platinum-ataud-redondo": {
+      "usado_en": "Servicio funerario > Platinum (franja de ataúd y carroza, ataúd redondo cerrado)",
+      "origen": "fuentes/catalogo-2026/platinum-ataud-redondo.png",
+      "recorte": null,
+      "alt": "Ataúd redondo del servicio Platinum, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-platinum-ataud-redondo-abierto": {
+      "usado_en": "Servicio funerario > Platinum (franja de ataúd y carroza, ataúd redondo abierto)",
+      "origen": "fuentes/catalogo-2026/platinum-ataud-redondo-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd redondo del servicio Platinum, abierto",
       "formato": "png",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-platinum-carroza": {
-      "usado_en": "Servicio funerario > Platinum (tarjeta, carroza)",
+      "usado_en": "Servicio funerario > Platinum (franja de ataúd y carroza, carroza)",
       "origen": "fuentes/catalogo-2026/platinum-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Platinum",
@@ -264,16 +291,43 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-premium-ataud": {
-      "usado_en": "Servicio funerario > Premium (tarjeta, ataúd)",
+      "usado_en": "Servicio funerario > Premium (franja de ataúd y carroza, ataúd cuadrado cerrado)",
       "origen": "fuentes/catalogo-2026/premium-ataud.png",
       "recorte": null,
-      "alt": "Ataúd del servicio Premium",
+      "alt": "Ataúd cuadrado del servicio Premium, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-premium-ataud-abierto": {
+      "usado_en": "Servicio funerario > Premium (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "origen": "fuentes/catalogo-2026/premium-ataud-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd cuadrado del servicio Premium, abierto",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-premium-ataud-redondo": {
+      "usado_en": "Servicio funerario > Premium (franja de ataúd y carroza, ataúd redondo cerrado)",
+      "origen": "fuentes/catalogo-2026/premium-ataud-redondo.png",
+      "recorte": null,
+      "alt": "Ataúd redondo del servicio Premium, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-premium-ataud-redondo-abierto": {
+      "usado_en": "Servicio funerario > Premium (franja de ataúd y carroza, ataúd redondo abierto)",
+      "origen": "fuentes/catalogo-2026/premium-ataud-redondo-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd redondo del servicio Premium, abierto",
       "formato": "png",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-premium-carroza": {
-      "usado_en": "Servicio funerario > Premium (tarjeta, carroza)",
+      "usado_en": "Servicio funerario > Premium (franja de ataúd y carroza, carroza)",
       "origen": "fuentes/catalogo-2026/premium-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Premium",
@@ -290,16 +344,25 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-especial-ataud": {
-      "usado_en": "Servicio funerario > Especial (tarjeta, ataúd)",
+      "usado_en": "Servicio funerario > Especial (franja de ataúd y carroza, ataúd cuadrado cerrado)",
       "origen": "fuentes/catalogo-2026/especial-ataud.png",
       "recorte": null,
-      "alt": "Ataúd del servicio Especial",
+      "alt": "Ataúd cuadrado del servicio Especial, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-especial-ataud-abierto": {
+      "usado_en": "Servicio funerario > Especial (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "origen": "fuentes/catalogo-2026/especial-ataud-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd cuadrado del servicio Especial, abierto",
       "formato": "png",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-especial-carroza": {
-      "usado_en": "Servicio funerario > Especial (tarjeta, carroza)",
+      "usado_en": "Servicio funerario > Especial (franja de ataúd y carroza, carroza)",
       "origen": "fuentes/catalogo-2026/especial-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Especial",
@@ -316,16 +379,25 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-clasico-ataud": {
-      "usado_en": "Servicio funerario > Clásico (tarjeta, ataúd)",
+      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, ataúd cuadrado cerrado)",
       "origen": "fuentes/catalogo-2026/clasico-ataud.png",
       "recorte": null,
-      "alt": "Ataúd del servicio Clásico",
+      "alt": "Ataúd cuadrado del servicio Clásico, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-clasico-ataud-abierto": {
+      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "origen": "fuentes/catalogo-2026/clasico-ataud-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd cuadrado del servicio Clásico, abierto",
       "formato": "png",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-clasico-carroza": {
-      "usado_en": "Servicio funerario > Clásico (tarjeta, carroza)",
+      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, carroza)",
       "origen": "fuentes/catalogo-2026/clasico-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Clásico",
@@ -342,16 +414,25 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-tradicional-ataud": {
-      "usado_en": "Servicio funerario > Tradicional (tarjeta, ataúd)",
+      "usado_en": "Servicio funerario > Tradicional (franja de ataúd y carroza, ataúd cuadrado cerrado)",
       "origen": "fuentes/catalogo-2026/tradicional-ataud.png",
       "recorte": null,
-      "alt": "Ataúd del servicio Tradicional",
+      "alt": "Ataúd cuadrado del servicio Tradicional, cerrado",
+      "formato": "png",
+      "reemplazar": false,
+      "nota": "Extraída del catálogo 2026 (fondo transparente)."
+    },
+    "serv-tradicional-ataud-abierto": {
+      "usado_en": "Servicio funerario > Tradicional (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "origen": "fuentes/catalogo-2026/tradicional-ataud-abierto.png",
+      "recorte": null,
+      "alt": "Ataúd cuadrado del servicio Tradicional, abierto",
       "formato": "png",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-tradicional-carroza": {
-      "usado_en": "Servicio funerario > Tradicional (tarjeta, carroza)",
+      "usado_en": "Servicio funerario > Tradicional (franja de ataúd y carroza, carroza)",
       "origen": "fuentes/catalogo-2026/tradicional-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Tradicional",
