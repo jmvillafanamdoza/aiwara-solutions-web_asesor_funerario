@@ -43,7 +43,7 @@ const pendiente = (s: string) => /^\[.*\]$/.test(s);
           <blockquote><p>“{t.texto}”</p></blockquote>
           <p class="testimonio__autor">
             {pendiente(t.autor) ? <span class="marcador">{t.autor}</span> : <strong>{t.autor}</strong>}
-            {pendiente(t.detalle) ? <span class="marcador">{t.detalle}</span> : <span>{t.detalle}</span>}
+            {t.detalle && (pendiente(t.detalle) ? <span class="marcador">{t.detalle}</span> : <span>{t.detalle}</span>)}
           </p>
         </li>
       ))}

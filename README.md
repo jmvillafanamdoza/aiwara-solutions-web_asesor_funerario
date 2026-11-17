@@ -111,7 +111,6 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 
 | Marcador | Dónde | Qué falta |
 |---|---|---|
-| `[NOMBRE]`, `[DISTRITO / SERVICIO]` | Inicio > Lo que dicen las familias (`src/data/testimonios.ts`) | Nombre (o inicial) de los 3 testimonios de texto, distrito y servicio de los 5, y **consentimiento escrito de cada persona** (Ley 29733). Las capturas de Sheyla B. y Doris C. se publican recortadas y con datos difuminados |
 | `[DETALLE POR CONFIRMAR]` | Plan funerario > Cinerarios | Qué incluyen los cinerarios y en qué sede están |
 | `[DATO POR CONFIRMAR]` | Servicio funerario > Premium > Ataúd redondo > Medidas internas | Largo interno del ataúd redondo Premium (el catálogo 2026 dice "1.84.5mt", probable errata) |
 | `[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]` | Privacidad | Revisión legal de la política |
@@ -120,6 +119,7 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 | IDs `GTM-XXXXXXX`, `G-XXXXXXXXXX`, Pixel | `src/config/site.ts` | IDs reales de medición |
 
 **Datos y textos que Marco debe validar** (no son marcadores, pero conviene confirmarlos):
+- **Consentimiento** de las 5 personas de los testimonios para publicarlos (Ley 29733); los 3 sin nombre se firman "Familia atendida por Marco" (no se inventan nombres ni distritos).
 - Que el número **998 160 591 atiende 24 horas** (se muestra en toda la web y en los datos estructurados).
 - Los pasos de "Qué hacer en las primeras horas" (`/servicio-funerario`).
 - Que **Praderas de la Paz** está en La Molina y que los nichos existen en ambas sedes (tomado de sus piezas de Facebook y brochures).
