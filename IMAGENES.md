@@ -6,7 +6,7 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 
 | Espacio | Dónde se usa | Medida final | ¿Reemplazar? | Origen | Nota |
 |---|---|---|---|---|---|
-| `hero-fondo` | Inicio > hero (foto de fondo a todo el ancho) | 2000x677 | **Sí** | `../02_Fotos_Camposanto/Inicio/hero_jardines_verde.jpg` | CONFIRMAR LICENCIA ANTES DE PUBLICAR: es igual a la foto del hero de urgelbourgie.com. Usar solo si es de un banco con licencia o propia. |
+| `hero-fondo` | Inicio > hero (foto de fondo a todo el ancho) | 2000x677 | No | `../02_Fotos_Camposanto/Inicio/hero_jardines_verde.jpg` | Imagen generada con IA por el usuario a partir de un prompt propio (sin foto de referencia); confirmado el 2026-11-17. Se puede publicar. |
 | `hero-inicio` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 564x568 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
 | `hero-2` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 561x531 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_4.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
 | `hero-3` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 564x567 | No | `../02_Fotos_Camposanto/Inicio/carrusel_hero_mausoleos.jpg` (zonas difuminadas) | Elegida por el usuario (carpeta Inicio, ~560 px). Nombres de lápidas difuminados. |

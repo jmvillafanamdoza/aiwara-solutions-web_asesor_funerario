@@ -6,8 +6,8 @@
       "origen": "../02_Fotos_Camposanto/Inicio/hero_jardines_verde.jpg",
       "recorte": null,
       "alt": "Abuelo conversando con su hija y su nieto en una banca junto al lago",
-      "reemplazar": true,
-      "nota": "CONFIRMAR LICENCIA ANTES DE PUBLICAR: es igual a la foto del hero de urgelbourgie.com. Usar solo si es de un banco con licencia o propia."
+      "reemplazar": false,
+      "nota": "Imagen generada con IA por el usuario a partir de un prompt propio (sin foto de referencia); confirmado el 2026-11-17. Se puede publicar."
     },
     "hero-inicio": {
       "usado_en": "Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar)",
