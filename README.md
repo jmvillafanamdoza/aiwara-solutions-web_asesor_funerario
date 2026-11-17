@@ -111,7 +111,7 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 
 | Marcador | Dónde | Qué falta |
 |---|---|---|
-| `[TESTIMONIO REAL 1-3]`, `[NOMBRE]`, `[DISTRITO]` | Inicio > Lo que dicen las familias | 3 testimonios reales con permiso escrito (máx. 3 líneas cada uno) |
+| `[NOMBRE]`, `[DISTRITO / SERVICIO]` | Inicio > Lo que dicen las familias (`src/data/testimonios.ts`) | Nombre (o inicial) de los 3 testimonios de texto, distrito y servicio de los 5, y **consentimiento escrito de cada persona** (Ley 29733). Las capturas de Sheyla B. y Doris C. se publican recortadas y con datos difuminados |
 | `[DETALLE POR CONFIRMAR]` | Plan funerario > Cinerarios | Qué incluyen los cinerarios y en qué sede están |
 | `[DATO POR CONFIRMAR]` | Servicio funerario > Premium > Ataúd redondo > Medidas internas | Largo interno del ataúd redondo Premium (el catálogo 2026 dice "1.84.5mt", probable errata) |
 | `[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]` | Privacidad | Revisión legal de la política |

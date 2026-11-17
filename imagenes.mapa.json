@@ -462,6 +462,48 @@
       "alt": "Canastilla de mimbre con pétalos de rosas a bordo del yate",
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (página 16-17)."
+    },
+    "testimonio-sheyla": {
+      "usado_en": "Inicio > Testimonios (captura al pulsar 'Ver conversación')",
+      "origen": "../02_Fotos_Camposanto/Testimonios/3307b8b2-075d-498b-82f4-4f93f3ca806f.jpg",
+      "recorte": {
+        "x": 0,
+        "y": 385,
+        "w": 588,
+        "h": 700
+      },
+      "difuminar": [
+        {
+          "x": 330,
+          "y": 390,
+          "w": 240,
+          "h": 46
+        }
+      ],
+      "alt": "Conversación de WhatsApp en la que una familia agradece a Marco su apoyo amable y diligente",
+      "reemplazar": false,
+      "nota": "Recortada sin cabecera (nombre y foto) ni correo; apellido difuminado. El original NO va al repositorio."
+    },
+    "testimonio-doris": {
+      "usado_en": "Inicio > Testimonios (captura al pulsar 'Ver conversación')",
+      "origen": "../02_Fotos_Camposanto/Testimonios/a91a453b-2fac-4c50-a277-f28e1d648330.jpg",
+      "recorte": {
+        "x": 0,
+        "y": 255,
+        "w": 588,
+        "h": 660
+      },
+      "difuminar": [
+        {
+          "x": 24,
+          "y": 288,
+          "w": 440,
+          "h": 66
+        }
+      ],
+      "alt": "Conversación de WhatsApp en la que una familia agradece a Marco un servicio respetuoso y organizado",
+      "reemplazar": false,
+      "nota": "Recortada sin cabecera (nombre, foto y usuario); línea personal difuminada. El original NO va al repositorio."
     }
   },
   "og": {

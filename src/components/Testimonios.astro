@@ -1,26 +1,49 @@
 ---
-// Testimonios: PLACEHOLDERS. Reemplazar por testimonios reales con permiso escrito de cada familia.
-// Editar el arreglo de abajo: texto (máx. 3 líneas), nombre y distrito.
-const testimonios = [
-  { texto: '[TESTIMONIO REAL 1]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
-  { texto: '[TESTIMONIO REAL 2]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
-  { texto: '[TESTIMONIO REAL 3]', autor: '[NOMBRE]', lugar: '[DISTRITO]' },
-];
-const pendiente = (s: string) => s.startsWith('[');
+// Testimonios en formato híbrido: la cita en texto es la protagonista y, cuando existe,
+// la captura de WhatsApp (recortada y con datos personales difuminados) se abre con "Ver conversación".
+// Datos en src/data/testimonios.ts. Los [ ] se muestran como marcadores hasta confirmarlos.
+import { Picture } from 'astro:assets';
+import Icono from './Icono.astro';
+import { imagen } from '../lib/imagenes';
+import { testimonios } from '../data/testimonios';
+
+const conCaptura = testimonios.filter((t) => t.captura).map((t) => ({ ...t, img: imagen(t.captura!) }));
+const soloTexto = testimonios.filter((t) => !t.captura);
+const pendiente = (s: string) => /^\[.*\]$/.test(s);
 ---
-<section class="seccion" aria-labelledby="testimonios-titulo">
+<section class="seccion testimonios" aria-labelledby="testimonios-titulo">
   <div class="contenedor">
     <h2 id="testimonios-titulo" class="aparece">Lo que dicen las familias</h2>
-    <ul class="testimonios">
-      {testimonios.map((t, i) => (
-        <li class={`testimonio aparece ${i === 0 ? 'testimonio--destacado' : ''}`}>
-          <blockquote>
-            <p>{pendiente(t.texto) ? <span class="marcador">{t.texto}</span> : `“${t.texto}”`}</p>
-          </blockquote>
+    <p class="intro aparece">Mensajes que las familias le escribieron a Marco después de ser atendidas.</p>
+
+    <div class="testimonios__destacados">
+      {conCaptura.map((t, i) => (
+        <figure class="testimonio testimonio--captura aparece">
+          <blockquote><p>“{t.texto}”</p></blockquote>
+          <figcaption class="testimonio__autor">
+            <strong>{t.autor}</strong>
+            {pendiente(t.detalle) ? <span class="marcador">{t.detalle}</span> : <span>{t.detalle}</span>}
+          </figcaption>
+          <button type="button" class="testimonio__ver" data-abrir-chat={`chat-${i}`} aria-haspopup="dialog">
+            <Picture src={t.img.src} alt="" formats={['webp']} widths={[160, 320]} sizes="96px" class="testimonio__mini" />
+            <span><Icono nombre="whatsapp-logo" tam={18} /> Ver conversación</span>
+          </button>
+          <dialog class="chat" id={`chat-${i}`} aria-label={`Conversación de WhatsApp de ${t.autor}`}>
+            <button type="button" class="chat__cerrar" data-cerrar-chat aria-label="Cerrar"><Icono nombre="x" tam={22} /></button>
+            <Picture src={t.img.src} alt={t.img.alt} formats={['webp']} widths={[400, 600]} sizes="(min-width: 640px) 420px, 90vw" class="chat__img" />
+            <p class="chat__nota">Captura real de WhatsApp. Ocultamos los datos personales para proteger la privacidad de la familia.</p>
+          </dialog>
+        </figure>
+      ))}
+    </div>
+
+    <ul class="testimonios__lista">
+      {soloTexto.map((t) => (
+        <li class="testimonio aparece">
+          <blockquote><p>“{t.texto}”</p></blockquote>
           <p class="testimonio__autor">
-            {pendiente(t.autor) ? <span class="marcador">{t.autor}</span> : t.autor}
-            {', '}
-            {pendiente(t.lugar) ? <span class="marcador">{t.lugar}</span> : t.lugar}
+            {pendiente(t.autor) ? <span class="marcador">{t.autor}</span> : <strong>{t.autor}</strong>}
+            {pendiente(t.detalle) ? <span class="marcador">{t.detalle}</span> : <span>{t.detalle}</span>}
           </p>
         </li>
       ))}
@@ -29,17 +52,52 @@ const pendiente = (s: string) => s.startsWith('[');
 </section>
 
 <style>
-  .testimonios { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 20px; }
+  .testimonios__destacados { display: grid; gap: 20px; margin-top: 32px; }
+  .testimonios__lista { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 20px; }
   @media (min-width: 860px) {
-    .testimonios { grid-template-columns: 1.3fr 1fr; grid-template-rows: auto auto; }
-    .testimonio--destacado { grid-row: span 2; }
+    .testimonios__destacados { grid-template-columns: 1fr 1fr; }
+    .testimonios__lista { grid-template-columns: repeat(3, 1fr); }
   }
   .testimonio {
-    background: var(--gris-claro); border-radius: var(--radio); padding: 28px;
-    border-left: 4px solid var(--dorado);
+    margin: 0; background: var(--gris-claro); border-radius: var(--radio); padding: 26px 28px;
+    border-left: 4px solid var(--dorado); display: flex; flex-direction: column; gap: 14px;
   }
-  .testimonio--destacado { background: var(--verde-claro); }
-  .testimonio--destacado blockquote p { font: italic 600 1.5rem/1.35 var(--f-titulo); color: var(--verde-hondo); }
-  blockquote { margin: 0 0 12px; }
-  .testimonio__autor { margin: 0; font-weight: 600; color: var(--texto-2); }
+  .testimonio blockquote { margin: 0; }
+  .testimonio blockquote p { margin: 0; }
+  .testimonio--captura { background: var(--verde-claro); }
+  .testimonio--captura blockquote p { font: italic 600 clamp(1.35rem, 2vw, 1.6rem)/1.35 var(--f-titulo); color: var(--verde-hondo); }
+  .testimonios__lista blockquote p { font-size: 1rem; line-height: 1.55; color: var(--tinta); }
+  .testimonio__autor { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; color: var(--texto-2); font-size: 0.95rem; }
+  .testimonio__autor strong { color: var(--verde-hondo); }
+  .testimonio__ver {
+    margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 12px;
+    padding: 6px 14px 6px 6px; border: 1px solid var(--gris-borde); border-radius: var(--radio);
+    background: #fff; color: var(--verde-hondo); font: 600 0.95rem/1.2 var(--f-texto); cursor: pointer;
+  }
+  .testimonio__ver:hover { border-color: var(--verde); }
+  .testimonio__ver span { display: inline-flex; align-items: center; gap: 6px; }
+  .testimonio__ver :global(.icono) { color: #128c4a; }
+  .testimonio__ver :global(.testimonio__mini) { width: 56px; height: 56px; object-fit: cover; object-position: top; border-radius: 8px; }
+
+  .chat { border: 0; padding: 0; border-radius: var(--radio); max-width: min(92vw, 440px); max-height: 90vh; overflow: auto; background: #fff; box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.5); }
+  .chat::backdrop { background: rgb(14 30 22 / 0.7); }
+  .chat :global(.chat__img) { display: block; width: 100%; height: auto; }
+  .chat__nota { margin: 0; padding: 12px 16px 16px; font-size: 0.88rem; color: var(--texto-2); }
+  .chat__cerrar {
+    position: sticky; top: 8px; float: right; margin: 8px 8px -48px 0; z-index: 1;
+    width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+    background: rgb(255 255 255 / 0.92); color: var(--verde-hondo); display: grid; place-items: center;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
+  }
 </style>
+
+<script>
+  // Abre y cierra la captura de WhatsApp (dialog nativo: Esc también cierra).
+  document.querySelectorAll<HTMLButtonElement>('[data-abrir-chat]').forEach((b) => {
+    const d = document.getElementById(b.dataset.abrirChat!) as HTMLDialogElement | null;
+    if (!d) return;
+    b.addEventListener('click', () => d.showModal());
+    d.querySelector('[data-cerrar-chat]')?.addEventListener('click', () => d.close());
+    d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  });
+</script>
