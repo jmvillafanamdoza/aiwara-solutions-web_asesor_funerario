@@ -84,23 +84,19 @@
     },
     "cs-la-molina": {
       "usado_en": "Inicio > Camposantos (tarjeta La Molina)",
-      "origen": "../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg",
-      "recorte": {
-        "x": 0,
-        "y": 0,
-        "w": 1000,
-        "h": 624
-      },
-      "alt": "Ingreso a la pirámide del camposanto de La Molina",
-      "reemplazar": false
+      "origen": "fuentes/catalogo-nuevo/la-molina-panoramica.jpg",
+      "recorte": null,
+      "alt": "Vista del camposanto La Molina, con su pirámide y los jardines",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 6). Antes: ../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg."
     },
     "cs-lurin": {
       "usado_en": "Inicio > Camposantos (tarjeta Lurín)",
-      "origen": "../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg",
+      "origen": "fuentes/catalogo-nuevo/lurin-praderas.jpg",
       "recorte": null,
-      "alt": "Capilla del camposanto de Lurín rodeada de jardines",
-      "reemplazar": true,
-      "nota": "Foto elegida por el usuario (607x416). Reemplazar por la misma toma en mayor resolución si existe."
+      "alt": "Praderas de la Paz en el camposanto de Lurín",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 58). Antes: ../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg."
     },
     "galeria-1": {
       "usado_en": "Inicio > Galería",
@@ -191,17 +187,19 @@
     },
     "plan-hero": {
       "usado_en": "Plan funerario > cabecera",
-      "origen": "../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg",
+      "origen": "fuentes/catalogo-nuevo/la-molina-espacios.jpg",
       "recorte": null,
-      "alt": "Hileras de lotes en el césped del camposanto bajo cielo despejado",
-      "reemplazar": false
+      "alt": "Lotes en jardín, nichos y mausoleos del camposanto La Molina",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 12). Antes: ../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg."
     },
     "plan-praderas": {
       "usado_en": "Plan funerario > opción Praderas de la Paz",
-      "origen": "../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg",
+      "origen": "fuentes/catalogo-nuevo/lurin-praderas.jpg",
       "recorte": null,
-      "alt": "Monumento central de Praderas de la Paz",
-      "reemplazar": false
+      "alt": "Praderas de la Paz en el camposanto de Lurín",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 58). Antes: ../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg."
     },
     "plan-lotes": {
       "usado_en": "Plan funerario > opción lotes",
@@ -209,6 +207,45 @@
       "recorte": null,
       "alt": "Lotes en jardín con lápidas a ras del césped",
       "reemplazar": false
+    },
+    "plan-nichos": {
+      "usado_en": "Plan funerario > opción Nichos",
+      "origen": "fuentes/catalogo-nuevo/la-molina-nichos.jpg",
+      "recorte": null,
+      "alt": "Pabellones de nichos en el camposanto La Molina",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 22)."
+    },
+    "plan-cinerarios": {
+      "usado_en": "Plan funerario > opción Cinerarios",
+      "origen": "fuentes/catalogo-nuevo/la-molina-cinerarios.jpg",
+      "recorte": null,
+      "alt": "Muros de cinerarios al pie del cerro en el camposanto La Molina",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 26)."
+    },
+    "plan-mausoleos": {
+      "usado_en": "Plan funerario > opción Mausoleos",
+      "origen": "fuentes/catalogo-nuevo/la-molina-mausoleos.jpg",
+      "recorte": null,
+      "difuminar": [
+        {
+          "x": 190,
+          "y": 1180,
+          "w": 400,
+          "h": 300
+        },
+        {
+          "x": 1200,
+          "y": 1130,
+          "w": 240,
+          "h": 160
+        }
+      ],
+      "alt": "Mausoleos de granito en el jardín del camposanto La Molina",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 32). Nombres de las lápidas difuminados.",
+      "bordeSuave": 12
     },
     "logo-jdlp": {
       "usado_en": "Cabecera, junto al nombre de Marco",

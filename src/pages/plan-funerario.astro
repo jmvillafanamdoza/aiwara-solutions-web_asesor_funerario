@@ -12,31 +12,36 @@ const hero = imagen('plan-hero');
 const lotes = imagen('plan-lotes');
 const praderas = imagen('plan-praderas');
 
+// Opciones con foto. Datos del catálogo de camposantos (CATALOGO NUEVO FINAL.pdf); fotos en imagenes.mapa.json.
+const conFoto = [
+  { img: imagen('plan-nichos'), titulo: 'Nichos', texto: 'Pabellones verticales de hasta 6 niveles, con lápida de mármol. También hay nichos Jumbo, más anchos, con un costo adicional. En La Molina y Lurín.' },
+  { img: imagen('plan-cinerarios'), titulo: 'Cinerarios', texto: 'Para conservar las cenizas: lotes cinerarios simple, doble o triple en jardín y nichos cinerarios, con lápida de mármol. En Lurín, además, cinerarios Élite con capacidad para 2 urnas.' },
+  { img: imagen('plan-mausoleos'), titulo: 'Mausoleos', texto: 'Bipersonal (2 espacios), bipersonal doble (4) o bipersonal triple (6), con lápida y monumento de granito. En La Molina y Lurín.' },
+];
+
 const beneficios = [
   { icono: 'piggy-bank', titulo: 'Ahorro', texto: 'Al contratar con anticipación accede a un precio menor que en una necesidad inmediata.' },
-  { icono: 'calendar-check', titulo: 'Pago en cuotas', texto: 'Divida el pago en cuotas mensuales sin intereses, según el plan elegido.' },
+  { icono: 'calendar-check', titulo: 'Al contado o en cuotas', texto: 'Pague al contado o en cuotas mensuales sin intereses, según el plan elegido.' },
   { icono: 'heart', titulo: 'Tranquilidad para su familia', texto: 'Sus seres queridos no tendrán que decidir ni pagar en un momento difícil.' },
   { icono: 'map-pin', titulo: 'Usted elige el lugar', texto: 'Escoja con calma el camposanto, la ubicación y el tipo de espacio.' },
 ];
 
 const otras = [
-  { icono: 'squares-four', titulo: 'Nichos', texto: 'Espacios en pared en La Molina y Lurín, con lápida de mármol y florero.' },
-  { icono: 'flower-lotus', titulo: 'Cinerarios', texto: 'Espacios para conservar las cenizas de sus seres queridos.', pendiente: '[DETALLE POR CONFIRMAR]' },
-  { icono: 'flower-tulip', titulo: 'Cremación', texto: 'Servicio de cremación en la sede de La Molina, con maestro de ceremonia, responso y acta de cremación.' },
-  { icono: 'church', titulo: 'Servicio funerario a futuro', texto: 'Deje contratado el servicio Especial, Premium o Platinum y páguelo en cuotas.' },
+  { icono: 'flower-tulip', titulo: 'Cremación', texto: 'Servicio de cremación en los crematorios de La Molina y Lurín, con maestro de ceremonia, responso y acta de cremación.' },
+  { icono: 'church', titulo: 'Servicio funerario a futuro', texto: 'Deje contratado su servicio funerario, para sepelio o cremación, y páguelo al contado o en cuotas sin intereses.' },
 ];
 ---
 <Base
   pagina={PAGINA}
-  titulo="Plan Funerario en Cuotas en Lima | La Molina y Lurín"
-  descripcion="Plan funerario en cuotas sin intereses en Lima. Lotes, nichos, cinerarios y cremación en los camposantos de Jardines de la Paz en La Molina y Lurín. Pida su cotización."
+  titulo="Plan Funerario en Cuotas sin Intereses o al Contado | La Molina y Lurín"
+  descripcion="Plan funerario al contado o en cuotas sin intereses en Lima. Lotes, nichos, cinerarios, mausoleos y cremación en los camposantos de Jardines de la Paz en La Molina y Lurín. Pida su cotización."
 >
   <!-- HERO -->
   <section class="p-hero">
     <div class="contenedor p-hero__grid">
       <div>
-        <h1>Plan funerario en cuotas</h1>
-        <p class="p-hero__sub">Elija hoy con calma el servicio y el lugar, y pague en cuotas sin intereses. En La Molina y Lurín.</p>
+        <h1>Plan funerario al contado o en cuotas</h1>
+        <p class="p-hero__sub">Elija hoy con calma el servicio y el lugar, y pague al contado o en cuotas sin intereses. En La Molina y Lurín.</p>
         <div class="p-hero__botones">
           <a class="btn btn--verde btn--grande" href="#cotizar"><Icono nombre="clipboard-text" /> Cotizar mi plan</a>
           <a class="btn btn--contorno btn--grande" href={enlaceWhatsApp(SITE.mensajesWhatsApp[PAGINA])} target="_blank" rel="noopener" data-ubicacion="hero">
@@ -75,16 +80,28 @@ const otras = [
           <Picture src={lotes.src} alt={lotes.alt} formats={['webp']} widths={[480, 800, 1200]} sizes="(min-width: 980px) 58vw, 100vw" />
           <div class="opcion-foto__info">
             <h3>Lotes en jardín: simple, doble y triple</h3>
-            <p>Espacios perpetuos en jardín para una, dos o tres personas, con lápida de mármol. En La Molina y Lurín.</p>
+            <p>Sepultura en jardín para una, dos o tres personas (lote simple, doble o triple), con lápida de mármol. En La Molina y Lurín.</p>
           </div>
         </article>
         <article class="opcion-foto opcion-foto--vertical aparece">
           <Picture src={praderas.src} alt={praderas.alt} formats={['webp']} widths={[400, 720]} sizes="(min-width: 980px) 34vw, 100vw" />
           <div class="opcion-foto__info">
             <h3>Praderas de la Paz</h3>
-            <p>Sector de jardines en La Molina, alrededor de su monumento central.</p>
+            <p>Lotes y nichos por 10 años, con lápida de mármol. En La Molina y Lurín.</p>
           </div>
         </article>
+      </div>
+
+      <div class="con-foto">
+        {conFoto.map((o) => (
+          <article class="tarjeta-foto aparece">
+            <div class="tarjeta-foto__img"><Picture src={o.img.src} alt={o.img.alt} formats={['webp']} widths={[400, 720]} sizes="(min-width: 980px) 400px, (min-width: 640px) 46vw, 92vw" /></div>
+            <div class="tarjeta-foto__texto">
+              <h3>{o.titulo}</h3>
+              <p>{o.texto}</p>
+            </div>
+          </article>
+        ))}
       </div>
 
       <ul class="otras">
@@ -93,7 +110,7 @@ const otras = [
             <span class="otra__icono"><Icono nombre={o.icono} tam={28} /></span>
             <div>
               <h3>{o.titulo}</h3>
-              <p>{o.texto} {o.pendiente && <span class="marcador">{o.pendiente}</span>}</p>
+              <p>{o.texto}</p>
             </div>
           </li>
         ))}
@@ -106,11 +123,11 @@ const otras = [
     <div class="contenedor cotizar">
       <div class="aparece">
         <h2 id="cotizar-titulo">Reciba su cotización por WhatsApp</h2>
-        <p class="intro">Complete sus datos y le envío las opciones y cuotas que mejor se ajustan a su familia.</p>
+        <p class="intro">Complete sus datos y le envío las opciones y formas de pago que mejor se ajustan a su familia.</p>
         <ul class="lista-check cotizar__puntos">
           <li><Icono nombre="check" tam={20} />Sin compromiso</li>
           <li><Icono nombre="check" tam={20} />Le responde Marco personalmente</li>
-          <li><Icono nombre="check" tam={20} />Cuotas sin intereses según el plan</li>
+          <li><Icono nombre="check" tam={20} />Al contado o en cuotas sin intereses</li>
         </ul>
       </div>
       <div class="aparece">
@@ -150,6 +167,16 @@ const otras = [
   .opcion-foto__info h3 { color: #fff; margin-bottom: 6px; }
   .opcion-foto__info p { margin: 0; color: rgb(255 255 255 / 0.92); }
   @media (min-width: 980px) { .opcion-foto { min-height: 440px; } }
+
+  .con-foto { display: grid; gap: 20px; margin-bottom: 20px; }
+  @media (min-width: 640px) { .con-foto { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .con-foto { grid-template-columns: repeat(3, 1fr); } }
+  .tarjeta-foto { border: 1px solid var(--gris-borde); border-radius: var(--radio); overflow: hidden; background: #fff; display: flex; flex-direction: column; }
+  .tarjeta-foto__img { aspect-ratio: 4 / 3; overflow: hidden; }
+  .tarjeta-foto__img :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .tarjeta-foto__texto { padding: 20px 22px 24px; }
+  .tarjeta-foto h3 { font-size: 1.5rem; margin-bottom: 6px; }
+  .tarjeta-foto p { margin: 0; color: var(--texto-2); }
 
   .otras { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
   @media (min-width: 760px) { .otras { grid-template-columns: 1fr 1fr; } }

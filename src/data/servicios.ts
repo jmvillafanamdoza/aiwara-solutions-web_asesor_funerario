@@ -55,7 +55,7 @@ export const servicios: Servicio[] = [
     ataud: 'Ataúd de madera modelo Premium, cuadrado o redondo',
     formas: [
       { forma: 'cuadrado', externas: 'L 1.94 m · Anch. 62 cm · Alt. 47 cm', internas: 'L 1.84 m · Anch. 52 cm · Alt. 29 cm' },
-      { forma: 'redondo', externas: 'L 1.94 m · Anch. 62 cm · Alt. 47 cm', internas: 'L [DATO POR CONFIRMAR] · Anch. 52 cm · Alt. 29 cm' },
+      { forma: 'redondo', externas: 'L 1.94 m · Anch. 62 cm · Alt. 47 cm', internas: 'Anch. 52 cm · Alt. 29 cm' },
     ],
     tono: 'salvia',
     grupos: [

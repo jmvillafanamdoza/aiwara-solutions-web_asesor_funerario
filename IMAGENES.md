@@ -14,8 +14,8 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `hero-5` | Sin uso por ahora (carrusel del hero retirado el 2026-11-15; se conserva por si se vuelve a usar) | 605x424 | No | `../02_Fotos_Camposanto/Inicio/carrusel_iglesia_interior.jpg` | Elegida por el usuario (carpeta Inicio, ~560 px). |
 | `marco-retrato` | Inicio > hero (retrato circular) y bloque de contacto | 430x430 | No | `../04_Facebook/Albumes-Jardines/06-Contacto-Marco/foto_perfil.jpg` (recortada) |  |
 | `marco-equipo` | Inicio > Quién es Marco | 1280x960 | No | `../02_Fotos_Camposanto/equipo/jdlp_equipo_01_h.jpg` |  |
-| `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1000x624 | No | `../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg` (recortada) |  |
-| `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 607x416 | **Sí** | `../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg` | Foto elegida por el usuario (607x416). Reemplazar por la misma toma en mayor resolución si existe. |
+| `cs-la-molina` | Inicio > Camposantos (tarjeta La Molina) | 1813x1171 | No | `fuentes/catalogo-nuevo/la-molina-panoramica.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 6). Antes: ../06_Publicaciones_Redes/Portada_Facebook/jdlp_portada-facebook_02_h.jpg. |
+| `cs-lurin` | Inicio > Camposantos (tarjeta Lurín) | 1848x1752 | No | `fuentes/catalogo-nuevo/lurin-praderas.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 58). Antes: ../02_Fotos_Camposanto/Servicios_Funerarios/Iglesia.jpg. |
 | `galeria-1` | Inicio > Galería | 640x426 | No | `../02_Fotos_Camposanto/Inicio/entrada_jardines_de_la_paz.jpg` | Elegida por el usuario (carpeta Inicio). |
 | `galeria-2` | Inicio > Galería | 700x466 | No | `../02_Fotos_Camposanto/Inicio/campo_jardines_2.webp` | Elegida por el usuario (carpeta Inicio). |
 | `galeria-3` | Inicio > Galería (vertical, columna central) | 640x962 | No | `../02_Fotos_Camposanto/Inicio/capilla_camposanto.jpg` | Elegida por el usuario (carpeta Inicio). |
@@ -25,9 +25,12 @@ Para cambiar una imagen: edite `origen` (y `recorte` si hace falta) en `imagenes
 | `serv-capilla` | Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*) | 780x610 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/CAPILLA PREMIUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
 | `serv-carroza` | Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*) | 960x490 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PLATINUM/CARROZA DEL PLATINUM.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
 | `serv-ataud` | Sin uso (reemplazado por las imágenes del catálogo 2026, espacios serv-<servicio>-*) | 710x480 | **Sí** | `../../BackUp_Marco_Villafana/BackUp_Marco_Villafana/SERVICIOS FUNERARIOS/PREMIUM/ATAUD PREMIUM CUADRADO.jpeg` (recortada) | Recorte de catálogo. Reemplazar cuando haya foto oficial. |
-| `plan-hero` | Plan funerario > cabecera | 1280x960 | No | `../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg` |  |
-| `plan-praderas` | Plan funerario > opción Praderas de la Paz | 960x1280 | No | `../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg` |  |
+| `plan-hero` | Plan funerario > cabecera | 1848x1864 | No | `fuentes/catalogo-nuevo/la-molina-espacios.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 12). Antes: ../02_Fotos_Camposanto/hileras/jdlp_hileras_07_h.jpg. |
+| `plan-praderas` | Plan funerario > opción Praderas de la Paz | 1848x1752 | No | `fuentes/catalogo-nuevo/lurin-praderas.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 58). Antes: ../02_Fotos_Camposanto/memorial/jdlp_memorial_02_v.jpg. |
 | `plan-lotes` | Plan funerario > opción lotes | 1280x960 | No | `../02_Fotos_Camposanto/panoramica/jdlp_panoramica_05_h.jpg` |  |
+| `plan-nichos` | Plan funerario > opción Nichos | 1848x1864 | No | `fuentes/catalogo-nuevo/la-molina-nichos.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 22). |
+| `plan-cinerarios` | Plan funerario > opción Cinerarios | 1848x1864 | No | `fuentes/catalogo-nuevo/la-molina-cinerarios.jpg` | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 26). |
+| `plan-mausoleos` | Plan funerario > opción Mausoleos | 1848x1864 | No | `fuentes/catalogo-nuevo/la-molina-mausoleos.jpg` (zonas difuminadas) | Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 32). Nombres de las lápidas difuminados. |
 | `logo-jdlp` | Cabecera, junto al nombre de Marco | 266x78 | **Sí** | `../02_Fotos_Camposanto/Inicio/logojardines.png` | PNG transparente de 266x78. Ideal: versión SVG o PNG de al menos 600 px de ancho para pantallas de alta densidad. |
 | `logo-jdlp-blanco` | Inicio > hero (logo blanco sobre el panel verde) | 266x78 | **Sí** | `../05_Web/logojardines-w.png.webp` | 266x78. Ideal: SVG o PNG de al menos 600 px de ancho. |
 | `serv-platinum-capilla` | Servicio funerario > Platinum (escenario, capilla ardiente) | 1122x718 | No | `fuentes/catalogo-2026/platinum-capilla.png` | Extraída del catálogo 2026 (fondo transparente). |

@@ -34,6 +34,7 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
   <div class="contenedor planes__intro">
     <h2 id="servicios-titulo" class="aparece">Servicios funerarios</h2>
     <p class="intro aparece">Cinco servicios para que cada familia elija según sus deseos. Baje para conocer qué incluye cada uno; le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
+    <p class="planes__pago aparece"><Icono nombre="info" tam={20} /><span>En necesidad inmediata, el servicio funerario se paga al contado. Si prefiere dejarlo previsto, puede hacerlo con un <a href="/plan-funerario">plan de previsión</a>, al contado o en cuotas sin intereses.</span></p>
     <nav class="planes__indice aparece" aria-label="Ir a un servicio">
       {planes.map((p) => <a href={`#servicio-${p.id}`}>{p.nombre}</a>)}
       <a href={`#servicio-${cenizasAlMar.id}`}>{cenizasAlMar.nombre}</a>
@@ -112,6 +113,8 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 <style>
   .planes { padding-top: clamp(56px, 9vw, 104px); }
   .planes__intro { margin-bottom: 32px; }
+  .planes__pago { display: grid; grid-template-columns: 22px 1fr; gap: 10px; max-width: 62ch; margin: 4px 0 0; padding: 12px 16px; border-radius: var(--radio); background: var(--verde-claro); color: var(--verde-hondo); font-size: 0.98rem; }
+  .planes__pago :global(.icono) { color: var(--verde); margin-top: 3px; }
   .planes__indice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .planes__indice a {
     display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px;

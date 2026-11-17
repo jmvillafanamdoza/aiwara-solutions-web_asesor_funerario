@@ -2,3 +2,6 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# Catálogo de camposantos (167 MB, supera el límite de GitHub). Las fotos que usa la web se extraen a fuentes/catalogo-nuevo/.
+fuentes/catalogo-2026/CATALOGO NUEVO FINAL.pdf

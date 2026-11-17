@@ -46,9 +46,27 @@ for (const [clave, d] of Object.entries(mapa.imagenes)) {
     }
     // "difuminar": [{x,y,w,h}, ...] desenfoca zonas (por ejemplo nombres en lápidas), en píxeles ya recortados.
     let buf = await cargar(d.origen, d.recorte).toBuffer();
-    for (const z of d.difuminar ?? []) {
-      const pieza = await sharp(buf).extract({ left: z.x, top: z.y, width: z.w, height: z.h }).blur(9).toBuffer();
-      buf = await sharp(buf).composite([{ input: pieza, left: z.x, top: z.y }]).toBuffer();
+    // "bordeSuave": n (opcional) es el radio de suavizado del borde del difuminado, para que no se vean
+    // rectángulos (la transición mide unas 3 veces n). La máscara se agranda 2n por lado para que cada zona
+    // quede difuminada al 100% hasta su borde.
+    if (d.difuminar?.length && d.bordeSuave !== undefined) {
+      const s = Number(d.bordeSuave);
+      if (typeof d.bordeSuave !== 'number' || !(s >= 0.3)) throw new Error('bordeSuave debe ser un número mayor o igual a 0.3');
+      if (png) throw new Error('bordeSuave no se puede usar en imágenes PNG con transparencia');
+      const { width: W, height: H } = await sharp(buf).metadata();
+      const m = 2 * s;
+      const rects = d.difuminar.map((z) => `<rect x="${z.x - m}" y="${z.y - m}" width="${z.w + 2 * m}" height="${z.h + 2 * m}" fill="#fff"/>`).join('');
+      const mascara = await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><rect width="100%" height="100%" fill="#000"/>${rects}</svg>`))
+        .blur(s).extractChannel(0).toBuffer();
+      // En dos pasos: sharp aplica removeAlpha después de joinChannel y borraría la máscara.
+      const borrosa = await sharp(buf).removeAlpha().blur(9).toBuffer();
+      const capa = await sharp(borrosa).joinChannel(mascara).png().toBuffer();
+      buf = await sharp(buf).composite([{ input: capa }]).toBuffer();
+    } else {
+      for (const z of d.difuminar ?? []) {
+        const pieza = await sharp(buf).extract({ left: z.x, top: z.y, width: z.w, height: z.h }).blur(9).toBuffer();
+        buf = await sharp(buf).composite([{ input: pieza, left: z.x, top: z.y }]).toBuffer();
+      }
     }
     const img = sharp(buf).resize({ width: 2000, withoutEnlargement: true });
     await (png ? img.png({ compressionLevel: 9 }) : img.flatten({ background: '#ffffff' }).jpeg({ quality: 90, mozjpeg: true })).toFile(salida);

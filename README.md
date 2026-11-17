@@ -107,23 +107,26 @@ En GTM: cree activadores de **Evento personalizado** con esos nombres y variable
 
 ---
 
-## 5. Marcadores pendientes (se ven resaltados en amarillo en la web)
+## 5. Pendientes y reglas de contenido
 
-| Marcador | Dónde | Qué falta |
+La web ya no muestra marcadores amarillos: lo que no está en la información entregada (catálogos, brochures) no se publica.
+
+| Pendiente | Dónde | Qué falta |
 |---|---|---|
-| `[DETALLE POR CONFIRMAR]` | Plan funerario > Cinerarios | Qué incluyen los cinerarios y en qué sede están |
-| `[DATO POR CONFIRMAR]` | Servicio funerario > Premium > Ataúd redondo > Medidas internas | Largo interno del ataúd redondo Premium (el catálogo 2026 dice "1.84.5mt", probable errata) |
-| `[TEXTO BASE: REVISIÓN LEGAL PENDIENTE]` | Privacidad | Revisión legal de la política |
-| `[FECHA DE PUBLICACIÓN]` | Privacidad | Fecha en que se publica la política |
-| `[PLAZO POR CONFIRMAR]` | Privacidad | Plazo de conservación de los datos |
 | IDs `GTM-XXXXXXX`, `G-XXXXXXXXXX`, Pixel | `src/config/site.ts` | IDs reales de medición |
+| Revisión legal | `/privacidad` | La política es un texto base: conviene que la revise un abogado antes de publicar (fecha puesta: 17 de noviembre de 2026) |
+| Largo interno del ataúd redondo Premium | `src/data/servicios.ts` | El catálogo 2026 dice "1.84.5mt" (errata); se muestran solo ancho y alto hasta tener el dato |
+
+**Formas de pago (regla del negocio, no cambiar sin consultar a Marco):**
+- **Necesidad inmediata** (servicio funerario para sepelio o cremación): **solo al contado**, no se financia. Lo dice la nota de `/servicio-funerario`.
+- **Previsión** (planes a futuro: servicio funerario, lotes, nichos, cinerarios, mausoleos): **al contado o en cuotas sin intereses**.
 
 **Datos y textos que Marco debe validar** (no son marcadores, pero conviene confirmarlos):
 - **Consentimiento** de las 5 personas de los testimonios para publicarlos (Ley 29733); los 3 sin nombre se firman "Familia atendida por Marco" (no se inventan nombres ni distritos).
 - Que el número **998 160 591 atiende 24 horas** (se muestra en toda la web y en los datos estructurados).
 - Los pasos de "Qué hacer en las primeras horas" (`/servicio-funerario`).
-- Que **Praderas de la Paz** está en La Molina y que los nichos existen en ambas sedes (tomado de sus piezas de Facebook y brochures).
-- Que "**cuotas sin intereses**" y "**ahorro por compra anticipada**" aplican a todos los planes (sale de sus brochures: "saldo sin interés", "dscto. por compra anticipada").
+- "**Cuotas sin intereses**" y "**ahorro por compra anticipada**" en previsión: confirmados por el usuario el 2026-11-17.
+- Lotes, Praderas de la Paz (lotes y nichos **por 10 años**, en La Molina y Lurín), nichos, cinerarios y mausoleos de `/plan-funerario`: tomados del catálogo de camposantos (`CATALOGO NUEVO FINAL.pdf`). No se usa la palabra "perpetuo" porque el catálogo no la menciona.
 - Usuario de LinkedIn: se usó `linkedin.com/in/marco-villafana`.
 - Lo que incluye cada servicio (`src/data/servicios.ts`) se tomó de los brochures de necesidad inmediata.
 - Las medidas de los ataúdes (`formas` en `src/data/servicios.ts`) se tomaron del catálogo 2026 (`CatalogoSSFF2026_F.pdf`, notas al pie de cada servicio).
@@ -144,7 +147,9 @@ Si el original de un espacio no está en la PC (por ejemplo en la oficina, donde
 
 Ataúdes de cada servicio (franja debajo de la tarjeta en `/servicio-funerario`): espacios `serv-<servicio>-ataud` (cuadrado cerrado), `-ataud-abierto`, y en Platinum y Premium también `-ataud-redondo` y `-ataud-redondo-abierto`. Fotos extraídas del catálogo 2026 en `fuentes/catalogo-2026/`.
 
-Espacios marcados para reemplazar: retrato de Marco (es un recorte de una pieza de Facebook), foto de Lurín (recorte pequeño) y las 3 fotos de catálogo del servicio (capilla, carroza, ataúd).
+Espacios marcados para reemplazar: retrato de Marco (es un recorte de una pieza de Facebook) y las 3 fotos de catálogo del servicio sin uso (capilla, carroza, ataúd).
+
+Fotos del catálogo de camposantos (`fuentes/catalogo-2026/CATALOGO NUEVO FINAL.pdf`, 167 MB): **no se sube a GitHub** (supera el límite de 100 MB; está en `.gitignore`). Las fotos usadas se recortaron de sus páginas y están en `fuentes/catalogo-nuevo/`: pág. 6 (`cs-la-molina`), 12 (`plan-hero`), 22 (`plan-nichos`), 26 (`plan-cinerarios`), 32 (`plan-mausoleos`, lápidas difuminadas) y 58 (`plan-praderas` y `cs-lurin`). No se usaron la 25 ni la 54 (nombres legibles en casi todos los nichos) ni la 27 (fotos de apoyo). Para difuminar con bordes suaves, agregue `"bordeSuave": 12` al espacio (radio de suavizado; la transición mide unas 3 veces ese valor) en `imagenes.mapa.json`.
 
 No se usaron: `zona-lapidas` 01-03 (nombres legibles), `99-Descartar`, ni el archivo de credenciales.
 
