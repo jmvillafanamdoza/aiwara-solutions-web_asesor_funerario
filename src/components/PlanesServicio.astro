@@ -1,9 +1,7 @@
 ---
-// Servicios funerarios al estilo "escenario fijo + tarjeta que sube" (inspirado en recompose.life):
-// cada servicio tiene un escenario de color que se queda fijo mientras su tarjeta de información
-// sube por encima al hacer scroll. En celular se apilan (foto y tarjeta debajo).
-// Debajo de la tarjeta, fuera de ella y sobre el mismo color, va la franja del servicio con el ataúd
-// (cerrado y abierto, en cada forma, con sus medidas) y la carroza con el coche portaflores, como en el catálogo.
+// Servicios funerarios: cada servicio es UN cuadro del alto de la pantalla, sobre su color, con
+// la vitrina a la izquierda (capilla ardiente, carroza y ataúdes cerrado/abierto con medidas) y la tarjeta
+// de información a la derecha. Usa casi todo el ancho de la pantalla (hasta 1640 px). En celular se apila.
 import { Picture } from 'astro:assets';
 import Icono from './Icono.astro';
 import CenizasAlMar from './CenizasAlMar.astro';
@@ -47,77 +45,56 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
   {planes.map((p) => (
     <article class={`plan tono-${p.tono}`} id={`servicio-${p.id}`} aria-labelledby={`plan-${p.id}-titulo`}>
-      <div class="plan__fijo">
-        <div class="plan__escena">
-          <span class="plan__marca" aria-hidden="true">{p.nombre}</span>
-          <Picture
-            src={p.capilla.src} alt={p.capilla.alt} formats={['webp']} widths={[480, 800, 1200]}
-            sizes="(min-width: 980px) 50vw, 92vw" class="plan__capilla"
-          />
-        </div>
-
-        <div class="contenedor plan__capa">
-          <div class="plan__card">
-            <p class="plan__etiqueta">Servicio</p>
-            <h3 id={`plan-${p.id}-titulo`}>{p.nombre}</h3>
-            <p class="plan__lema">{p.lema}</p>
-
-            <p class="plan__ataud">
-              <span>{p.ataud}</span>
-              <a href={`#servicio-${p.id}-ataud`}>Ver ataúd y carroza <Icono nombre="arrow-down" tam={16} /></a>
-            </p>
-
-            <div class="plan__grupos">
-              {p.grupos.map((g) => (
-                <div class="plan__grupo">
-                  <h4>{g.titulo}</h4>
-                  <ul class="lista-check">
-                    {g.items.map((it) => <li><Icono nombre="check" tam={18} />{it}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <p class="plan__cortesia"><Icono nombre="gift" tam={20} /><span><strong>Cortesía:</strong> {p.cortesia}</span></p>
-
-            <a class="btn btn--verde plan__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información del servicio funerario ${p.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`servicio-${p.id}`}>
-              <Icono nombre="whatsapp-logo" tam={20} /> Consultar el {p.nombre}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="plan__vitrina" id={`servicio-${p.id}-ataud`}>
-        <div class="contenedor plan__vitrina-grid">
-          <div class="plan__bloque aparece">
-            <h4 class="plan__bloque-titulo">Ataúd · {p.nombre}</h4>
-            <p class="plan__bloque-texto">{p.ataud}</p>
-            {p.formas.map((f) => (
-              <div class="plan__forma">
-                {p.formas.length > 1 && <h5 class="plan__forma-titulo">{mayuscula(f.forma)}</h5>}
+      <span class="plan__marca" aria-hidden="true">{p.nombre}</span>
+      <div class="plan__cuadro">
+        <!-- Vitrina: capilla, carroza y ataúdes del servicio en un solo bloque -->
+        <div class={`plan__vitrina aparece${p.formas.length > 1 ? ' plan__vitrina--dos' : ''}`}>
+          <figure class="plan__pieza plan__pieza--capilla">
+            <Picture src={p.capilla.src} alt={p.capilla.alt} formats={['webp']} widths={[480, 800, 1200]} sizes="(min-width: 1100px) 32vw, 92vw" />
+            <figcaption>Capilla ardiente</figcaption>
+          </figure>
+          <figure class="plan__pieza plan__pieza--carroza">
+            <Picture src={p.carroza.src} alt={p.carroza.alt} formats={['webp']} widths={[480, 960]} sizes="(min-width: 1100px) 26vw, 92vw" />
+            <figcaption>{p.traslado.map((t, i) => (i ? t.charAt(0).toLowerCase() + t.slice(1) : t)).join(' y ')}</figcaption>
+          </figure>
+          {p.formas.map((f, i) => (
+              <div class={`plan__pieza plan__forma plan__forma--${i + 1}`}>
                 <div class="plan__pares">
-                  <figure>
-                    <Picture src={f.cerrado.src} alt={f.cerrado.alt} formats={['webp']} widths={[320, 640]} sizes="(min-width: 980px) 340px, 45vw" />
-                    <figcaption>Cerrado</figcaption>
-                  </figure>
-                  <figure>
-                    <Picture src={f.abierto.src} alt={f.abierto.alt} formats={['webp']} widths={[320, 640]} sizes="(min-width: 980px) 340px, 45vw" />
-                    <figcaption>Abierto</figcaption>
-                  </figure>
+                  <Picture src={f.cerrado.src} alt={f.cerrado.alt} formats={['webp']} widths={[240, 480]} sizes="(min-width: 1100px) 12vw, 44vw" />
+                  <Picture src={f.abierto.src} alt={f.abierto.alt} formats={['webp']} widths={[240, 480]} sizes="(min-width: 1100px) 12vw, 44vw" />
                 </div>
-                <dl class="plan__medidas">
-                  <div><dt><Icono nombre="ruler" tam={16} /> Medidas externas</dt><dd>{partes(f.externas).map((x) => x.marcador ? <span class="marcador">{x.t}</span> : x.t)}</dd></div>
-                  <div><dt><Icono nombre="ruler" tam={16} /> Medidas internas</dt><dd>{partes(f.internas).map((x) => x.marcador ? <span class="marcador">{x.t}</span> : x.t)}</dd></div>
-                </dl>
+                <p class="plan__medidas">
+                  <strong>Ataúd {f.forma}</strong>
+                  <span>Ext.: {partes(f.externas).map((x) => x.marcador ? <span class="marcador">{x.t}</span> : x.t)}</span>
+                  <span>Int.: {partes(f.internas).map((x) => x.marcador ? <span class="marcador">{x.t}</span> : x.t)}</span>
+                </p>
+              </div>
+            ))}
+        </div>
+
+        <!-- Tarjeta con la información del servicio -->
+        <div class="plan__card">
+          <p class="plan__etiqueta">Servicio</p>
+          <h3 id={`plan-${p.id}-titulo`}>{p.nombre}</h3>
+          <p class="plan__lema">{p.lema}</p>
+          <p class="plan__ataud">{p.ataud}</p>
+
+          <div class="plan__grupos">
+            {p.grupos.map((g) => (
+              <div class={`plan__grupo plan__grupo--${g.titulo.toLowerCase()}`}>
+                <h4>{g.titulo}</h4>
+                <ul class="lista-check">
+                  {g.items.map((it) => <li><Icono nombre="check" tam={16} />{it}</li>)}
+                </ul>
               </div>
             ))}
           </div>
 
-          <div class="plan__bloque plan__bloque--carroza aparece">
-            <h4 class="plan__bloque-titulo">Carroza y coche portaflores</h4>
-            <p class="plan__bloque-texto">{p.traslado.map((t, i) => (i ? t.charAt(0).toLowerCase() + t.slice(1) : t)).join(' y ')}</p>
-            <Picture src={p.carroza.src} alt={p.carroza.alt} formats={['webp']} widths={[480, 960]} sizes="(min-width: 980px) 520px, 92vw" class="plan__carroza" />
-          </div>
+          <p class="plan__cortesia"><Icono nombre="gift" tam={20} /><span><strong>Cortesía:</strong> {p.cortesia}</span></p>
+
+          <a class="btn btn--verde plan__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información del servicio funerario ${p.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`servicio-${p.id}`}>
+            <Icono nombre="whatsapp-logo" tam={20} /> Consultar el {p.nombre}
+          </a>
         </div>
       </div>
     </article>
@@ -145,99 +122,94 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
   .planes__catalogo { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 44px; margin-top: 16px; font-weight: 600; }
   .planes__peso { font-weight: 400; color: var(--texto-2); }
 
-  /* Colores de cada escenario: clases .tono-* en src/styles/global.css (el dorado solo sobre los verdes) */
-  .plan { position: relative; background: var(--fondo); }
-
-  .plan__escena {
-    position: relative; overflow: hidden; background: var(--fondo);
-    display: grid; place-items: center; padding: 40px 16px 72px;
-  }
+  /* Colores de cada servicio: clases .tono-* en src/styles/global.css (el dorado solo sobre los verdes) */
+  /* Cada servicio es un solo cuadro: vitrina (capilla, carroza, ataúdes) + tarjeta, usando casi todo el ancho */
+  .plan { position: relative; overflow: hidden; background: var(--fondo); color: var(--en-fondo); padding-block: 40px 48px; scroll-margin-top: 72px; }
   .plan__marca {
-    position: absolute; left: 4vw; top: 2vh; white-space: nowrap; pointer-events: none;
-    font: 600 clamp(4rem, 17vw, 15rem)/1 var(--f-titulo); color: var(--marca); letter-spacing: -0.01em;
+    position: absolute; left: 3vw; top: 0; white-space: nowrap; pointer-events: none;
+    font: 600 clamp(4rem, 15vw, 13rem)/1 var(--f-titulo); color: var(--marca); letter-spacing: -0.01em;
   }
-  .plan__escena :global(.plan__capilla) { position: relative; width: min(92vw, 560px); height: auto; filter: drop-shadow(0 18px 28px rgb(0 0 0 / 0.22)); }
+  .plan__cuadro { position: relative; display: grid; gap: 24px; width: 100%; max-width: 1640px; margin-inline: auto; padding-inline: var(--gutter); }
 
-  .plan__capa { position: relative; margin-top: -48px; padding-bottom: 8px; }
+  /* Vitrina */
+  .plan__vitrina { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  .plan__pieza { margin: 0; min-width: 0; }
+  .plan__pieza figcaption { margin-top: 6px; font-size: 0.86rem; color: var(--en-fondo-2); }
+  .plan__pieza--capilla { grid-column: 1 / -1; text-align: center; }
+  .plan__pieza--capilla :global(img) { width: min(100%, 520px); height: auto; margin-inline: auto; filter: drop-shadow(0 18px 26px rgb(0 0 0 / 0.25)); }
+  .plan__pieza--carroza { grid-column: 1 / -1; }
+  .plan__pieza--carroza :global(img) { width: 100%; height: auto; aspect-ratio: 16 / 8; object-fit: cover; border-radius: var(--radio); box-shadow: 0 16px 36px -18px rgb(0 0 0 / 0.45); }
+  .plan__forma { grid-column: 1 / -1; }
+  .plan__pares { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .plan__pares :global(img) { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; filter: drop-shadow(0 10px 14px rgb(0 0 0 / 0.22)); }
+  .plan__medidas { display: grid; gap: 1px; margin: 4px 0 0; font-size: 0.8rem; line-height: 1.35; color: var(--en-fondo-2); }
+  .plan__medidas strong { color: var(--acento); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Tarjeta */
   .plan__card {
-    position: relative; background: #fff; color: var(--tinta);
-    border-radius: var(--radio); padding: clamp(22px, 4vw, 36px);
+    position: relative; align-self: center; background: #fff; color: var(--tinta);
+    border-radius: var(--radio); padding: clamp(20px, 2.4vw, 32px);
     box-shadow: 0 24px 60px -24px rgb(16 40 28 / 0.45);
   }
-  .plan__etiqueta { margin: 0 0 2px; font-size: 0.85rem; font-weight: 600; color: var(--verde-medio); text-transform: uppercase; letter-spacing: 0.08em; }
-  .plan__card h3 { font-size: clamp(2.2rem, 4vw, 3rem); margin-bottom: 6px; }
-  .plan__lema { color: var(--texto-2); margin-bottom: 18px; }
-  .plan__ataud {
-    display: grid; gap: 4px; margin: 0 0 20px; padding: 12px 16px; border-radius: var(--radio);
-    background: var(--gris-claro); font-weight: 600; color: var(--verde-hondo); line-height: 1.35;
-  }
-  .plan__ataud a { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; font-weight: 500; font-size: 0.95rem; }
-  .plan__grupos { display: grid; gap: 18px; }
-  .plan__grupo h4 { margin: 0 0 8px; font: 600 0.95rem/1.3 var(--f-texto); color: var(--verde); text-transform: uppercase; letter-spacing: 0.06em; }
-  .plan__grupo .lista-check { gap: 6px; font-size: 0.98rem; }
-  .plan__cortesia { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--gris-borde); font-size: 0.98rem; }
-  .plan__cortesia :global(.icono) { color: var(--dorado); margin-top: 3px; }
-  .plan__cta { margin-top: 20px; width: 100%; }
-
-  /* Franja del servicio: ataúd y carroza, fuera de la tarjeta y sobre el color del escenario */
-  .plan__vitrina { color: var(--en-fondo); padding-block: 40px 56px; scroll-margin-top: 72px; }
-  .plan__vitrina-grid { display: grid; gap: 40px; }
-  .plan__bloque-titulo { margin: 0 0 4px; font: 600 0.95rem/1.3 var(--f-texto); color: var(--acento); text-transform: uppercase; letter-spacing: 0.08em; }
-  .plan__bloque-texto { margin: 0 0 16px; font: 600 clamp(1.4rem, 2.6vw, 1.9rem)/1.2 var(--f-titulo); color: var(--en-fondo); }
-  .plan__forma + .plan__forma { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--linea); }
-  .plan__forma-titulo { margin: 0 0 4px; font: 600 1rem/1.4 var(--f-texto); color: var(--en-fondo); }
-  .plan__pares { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .plan__pares figure { margin: 0; }
-  .plan__pares :global(img) {
-    display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain;
-    filter: drop-shadow(0 14px 18px rgb(0 0 0 / 0.22));
-  }
-  .plan__pares figcaption { text-align: center; font-size: 0.88rem; color: var(--en-fondo-2); margin-top: 2px; }
-  .plan__medidas { display: grid; gap: 6px; margin: 14px 0 0; font-size: 0.9rem; }
-  .plan__medidas div { display: grid; gap: 0 10px; }
-  .plan__medidas dt { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--en-fondo); }
-  .plan__medidas dt :global(.icono) { color: var(--acento); }
-  .plan__medidas dd { margin: 0; color: var(--en-fondo-2); }
-  .plan__bloque--carroza :global(.plan__carroza) {
-    display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radio);
-    box-shadow: 0 18px 40px -20px rgb(0 0 0 / 0.45);
-  }
+  .plan__etiqueta { margin: 0; font-size: 0.8rem; font-weight: 600; color: var(--verde-medio); text-transform: uppercase; letter-spacing: 0.08em; }
+  .plan__card h3 { font-size: clamp(2.1rem, 3.2vw, 2.8rem); margin-bottom: 4px; }
+  .plan__lema { color: var(--texto-2); margin-bottom: 12px; font-size: 0.98rem; }
+  .plan__ataud { margin: 0 0 16px; padding: 10px 14px; border-radius: var(--radio); background: var(--gris-claro); font-weight: 600; color: var(--verde-hondo); line-height: 1.35; font-size: 0.98rem; }
+  .plan__grupos { display: grid; gap: 14px; }
+  .plan__grupo h4 { margin: 0 0 6px; font: 600 0.85rem/1.3 var(--f-texto); color: var(--verde); text-transform: uppercase; letter-spacing: 0.06em; }
+  .plan__grupo .lista-check { gap: 4px; font-size: 0.92rem; line-height: 1.45; }
+  .plan__grupo .lista-check li { grid-template-columns: 18px 1fr; gap: 8px; }
+  .plan__cortesia { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--gris-borde); font-size: 0.92rem; line-height: 1.45; }
+  .plan__cortesia :global(.icono) { color: var(--dorado); margin-top: 2px; }
+  .plan__cta { margin-top: 16px; width: 100%; min-height: 50px; }
   .notas { padding-left: 1.2em; margin: 32px 0 0; font-size: 0.9rem; color: var(--texto-2); display: grid; gap: 4px; }
 
-  @media (min-width: 600px) {
-    .plan__medidas div { grid-template-columns: 190px 1fr; }
+  @media (min-width: 640px) {
+    .plan__pieza--carroza { grid-column: 1; }
+    .plan__forma--1 { grid-column: 2; align-self: start; }
+    .plan__vitrina--dos .plan__forma--1 { grid-column: 1; }
+    .plan__vitrina--dos .plan__forma--2 { grid-column: 2; }
+    .plan__grupos { grid-template-columns: 1fr 1fr; column-gap: 24px; }
+    .plan__grupo--ceremonia { grid-row: span 2; }
   }
 
-  /* Escritorio: escenario fijo (sticky) y tarjeta que sube por encima a la derecha */
-  @media (min-width: 980px) {
-    .plan__escena {
-      position: sticky; top: 72px; height: calc(100vh - 72px); min-height: 560px;
-      padding: 0; place-items: center start;
-    }
-    .plan__escena :global(.plan__capilla) {
-      position: absolute; left: max(32px, calc((100vw - var(--ancho)) / 2 + var(--gutter)));
-      bottom: 7vh; width: min(48vw, 720px); max-height: 78%; object-fit: contain; object-position: left bottom;
-    }
-    .plan__marca { top: 4vh; }
-    .plan__capa {
-      display: flex; justify-content: flex-end; pointer-events: none;
-      margin-top: calc(-1 * (100vh - 72px) + 22vh); padding-bottom: 12vh;
-    }
-    .plan__card { width: min(500px, 40vw); pointer-events: auto; }
-    /* Evita que, con tarjetas cortas y pantallas altas, el escenario fijo se salga y tape la franja */
-    .plan__fijo { min-height: max(calc(100vh - 72px), 560px); }
+  /* Escritorio: un cuadro del alto de la pantalla; vitrina a la izquierda y tarjeta a la derecha */
+  @media (min-width: 1100px) {
+    .plan { min-height: calc(100vh - 72px); display: grid; align-items: center; padding-block: 32px; }
+    .plan__cuadro { grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 3vw, 56px); align-items: center; padding-inline: clamp(24px, 3.5vw, 64px); }
+    .plan__vitrina { grid-template-columns: 1.15fr 1fr; grid-template-rows: auto 1fr; gap: 18px 24px; align-items: center; }
+    .plan__pieza--capilla { grid-column: 1; grid-row: 1 / span 2; }
+    .plan__pieza--capilla :global(img) { width: 100%; max-width: none; max-height: calc(100vh - 220px); object-fit: contain; }
+    .plan__pieza--carroza { grid-column: 2; grid-row: 1; }
+    .plan__forma--1 { grid-column: 2; grid-row: 2; align-self: start; }
+    /* Con ataúd cuadrado y redondo: capilla y carroza arriba; los dos ataúdes debajo, uno bajo cada una */
+    .plan__vitrina--dos { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; align-items: end; }
+    .plan__vitrina--dos .plan__pieza--capilla { grid-row: 1; }
+    .plan__vitrina--dos .plan__pieza--capilla :global(img) { max-height: calc(50vh - 90px); }
+    .plan__vitrina--dos .plan__forma--1 { grid-column: 1; grid-row: 2; }
+    .plan__vitrina--dos .plan__forma--2 { grid-column: 2; grid-row: 2; align-self: start; }
+    .plan__marca { top: 1vh; }
+  }
 
-    .plan__vitrina { position: relative; padding-block: 24px 88px; }
-    .plan__vitrina-grid { grid-template-columns: 1.35fr 1fr; gap: clamp(40px, 5vw, 80px); align-items: start; }
-    .plan__pares { gap: 24px; }
-    .plan__bloque--carroza { position: sticky; top: 104px; }
+  /* Laptops de poca altura (768-860 px): todo el servicio sigue cabiendo en una pantalla */
+  @media (min-width: 1100px) and (max-height: 860px) {
+    .plan { padding-block: 16px; }
+    .plan__card { padding: 18px 24px; }
+    .plan__card h3 { font-size: 2rem; }
+    .plan__lema { margin-bottom: 8px; font-size: 0.92rem; }
+    .plan__ataud { margin-bottom: 10px; padding: 8px 12px; font-size: 0.92rem; }
+    .plan__grupos { gap: 8px; }
+    .plan__grupo h4 { margin-bottom: 4px; }
+    .plan__grupo .lista-check { gap: 2px; font-size: 0.86rem; line-height: 1.4; }
+    .plan__cortesia { margin-top: 10px; padding-top: 8px; font-size: 0.86rem; line-height: 1.4; }
+    .plan__cta { margin-top: 10px; min-height: 46px; }
+    .plan__medidas { font-size: 0.76rem; }
   }
 
   /* Entrada suave de cada tarjeta (sin movimiento si se pidió reducirlo) */
   @media (prefers-reduced-motion: no-preference) {
     :global(.js) .plan__card { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
     :global(.js) .plan__card.visible { opacity: 1; transform: none; }
-    :global(.js) .plan__escena :global(.plan__capilla) { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
   }
 </style>
 
