@@ -127,6 +127,23 @@ export const servicios: Servicio[] = [
   },
 ];
 
+/** Centro Funerario: tercera sede, solo cremación (catálogo de camposantos, págs. 80 a 97). Dirección y horario en src/config/site.ts. */
+export const centroFunerario = {
+  id: 'centro-funerario',
+  nombre: 'Centro Funerario',
+  descripcion: 'Un moderno local de Jardines de la Paz dedicado a la cremación. Cuenta con ambientes privados para acompañar a su ser querido antes y durante la cremación, y con una capilla ecuménica donde puede rendir el homenaje que desee, sea cual sea su religión.',
+  servicios: [
+    'Maestro de ceremonia',
+    'Responso religioso',
+    'Acta y certificado de cremación',
+    'Misas',
+    'Entrega de cenizas a domicilio',
+    'Constancia de verificación de cremación',
+    'Custodia de cenizas de 6 a 12 meses',
+    'Servicio de cafetería',
+  ],
+};
+
 /** Servicio de cenizas al mar (catálogo 2026, páginas 16 y 17). Se muestra aparte: no lleva ataúd ni carroza. */
 export const cenizasAlMar = {
   id: 'cenizas-al-mar',

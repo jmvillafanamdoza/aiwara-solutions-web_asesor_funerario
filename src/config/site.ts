@@ -65,6 +65,17 @@ export const SITE = {
       mapa: 'https://www.google.com/maps/search/?api=1&query=Jardines+de+la+Paz+Panamericana+Sur+Km+32.5+Lurin',
       recorrido3d: 'https://recorridolurin.jardines.pe/',
     },
+    {
+      // Tercera sede: no es camposanto, solo brinda cremación (catálogo de camposantos, págs. 80 a 97).
+      id: 'centro-funerario',
+      nombre: 'Centro Funerario (cremación)',
+      direccion: 'Antigua Panamericana Sur Km 19.3',
+      distrito: 'Villa El Salvador',
+      mapa: 'https://www.google.com/maps/search/?api=1&query=Centro+Funerario+Jardines+de+la+Paz+Antigua+Panamericana+Sur+Km+19.3+Villa+El+Salvador',
+      recorrido3d: '',
+      /** Horario de atención del local (el asesor atiende 24 h por teléfono y WhatsApp). */
+      horario: ['Lunes a viernes: 9:00 a. m. a 5:00 p. m.', 'Sábados, domingos y feriados: 9:00 a. m. a 4:30 p. m.'],
+    },
   ],
 
   /** Mensaje prellenado del botón de WhatsApp según la página (clave = id de página). */

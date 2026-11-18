@@ -6,7 +6,7 @@ Dominio previsto: `asesorfunerariolima.com` (se cambia en `src/config/site.ts`).
 | Página | URL | Para qué |
 |---|---|---|
 | Inicio | `/` | Presentación de Marco, camposantos, por qué un asesor, testimonios, contacto |
-| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, carrusel de servicios, primeras horas, 4 servicios sin precios (Platinum, Premium, Especial y Tradicional, con ataúd y carroza; el Clásico se retiró de la venta), Cenizas al mar, descarga del catálogo PDF, traslados y trámites |
+| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, carrusel de servicios, primeras horas, 4 servicios sin precios (Platinum, Premium, Especial y Tradicional, con ataúd y carroza; el Clásico se retiró de la venta), Cenizas al mar, Centro Funerario (cremación), descarga del catálogo PDF, traslados y trámites |
 | Plan funerario | `/plan-funerario` | Previsión: beneficios, opciones y formulario de cotización que abre WhatsApp |
 | Privacidad | `/privacidad` | Política de datos (Ley 29733) y cookies. **Texto base: requiere revisión legal** |
 
@@ -40,6 +40,7 @@ npm run preview      # http://localhost:4321
 | Dominio, teléfono, WhatsApp, correo, redes, direcciones, mensajes de WhatsApp por página, IDs de medición, menú | `src/config/site.ts` (**único lugar**) |
 | Imágenes y logo (qué archivo va en cada espacio, recortes, textos alternativos; las 3 fotos del hero son hero-inicio, hero-2 y hero-3) | `imagenes.mapa.json` → ver sección 6 |
 | Lista de servicios funerarios y lo que incluyen, medidas de ataúdes y Cenizas al mar (fuente: catálogo 2026) | `src/data/servicios.ts`; diseño en `src/components/PlanesServicio.astro`, `CenizasAlMar.astro` y el carrusel del hero en `CarruselServicios.astro`; imágenes extraídas del catálogo en `fuentes/catalogo-2026/` |
+| Centro Funerario (tercera sede, solo cremación, Villa El Salvador) | Textos y servicios en `src/data/servicios.ts` (`centroFunerario`); dirección, mapa y horario en `src/config/site.ts` (`sedes`); diseño en `src/components/CentroFunerario.astro`; fotos `cf-*` (catálogo de camposantos, págs. 86, 87, 88, 91 y 97) |
 | Catálogo PDF que se descarga (portada con los datos de Marco) | `npm run catalogo` → `public/catalogo-servicio-funerario-2026.pdf`; ruta y peso del botón en `src/config/site.ts` → `catalogoPdf` (ver sección 6) |
 | Testimonios | `src/components/Testimonios.astro` |
 | Opciones del formulario ("¿Qué le interesa?") | `src/components/FormCotizacion.astro` |
@@ -149,7 +150,7 @@ Ataúdes de cada servicio (franja debajo de la tarjeta en `/servicio-funerario`)
 
 Espacios marcados para reemplazar: retrato de Marco (es un recorte de una pieza de Facebook) y las 3 fotos de catálogo del servicio sin uso (capilla, carroza, ataúd).
 
-Fotos del catálogo de camposantos (`fuentes/catalogo-2026/CATALOGO NUEVO FINAL.pdf`, 167 MB): **no se sube a GitHub** (supera el límite de 100 MB; está en `.gitignore`). Las fotos usadas se recortaron de sus páginas y están en `fuentes/catalogo-nuevo/`: pág. 6 (`cs-la-molina`), 12 (`plan-hero`), 22 (`plan-nichos`), 26 (`plan-cinerarios`), 32 (`plan-mausoleos`, lápidas difuminadas) y 58 (`plan-praderas` y `cs-lurin`). No se usaron la 25 ni la 54 (nombres legibles en casi todos los nichos) ni la 27 (fotos de apoyo). Para difuminar con bordes suaves, agregue `"bordeSuave": 12` al espacio (radio de suavizado; la transición mide unas 3 veces ese valor) en `imagenes.mapa.json`.
+Fotos del catálogo de camposantos (`fuentes/catalogo-2026/CATALOGO NUEVO FINAL.pdf`, 167 MB): **no se sube a GitHub** (supera el límite de 100 MB; está en `.gitignore`). Las fotos usadas se recortaron de sus páginas y están en `fuentes/catalogo-nuevo/`: pág. 6 (`cs-la-molina`), 12 (`plan-hero`), 22 (`plan-nichos`), 26 (`plan-cinerarios`), 32 (`plan-mausoleos`, lápidas difuminadas) y 58 (`plan-praderas` y `cs-lurin`); del Centro Funerario, 88 (`cf-capilla`), 86 (`cf-instalaciones`), 87 (`cf-jardin`), 91 (`cf-sala-espera`) y 97 (`cf-cafeteria`). La central (710-5000) y el correo de informes del catálogo no se publican: el contacto de la web es solo el de Marco. No se usaron la 25 ni la 54 (nombres legibles en casi todos los nichos) ni la 27 (fotos de apoyo). Para difuminar con bordes suaves, agregue `"bordeSuave": 12` al espacio (radio de suavizado; la transición mide unas 3 veces ese valor) en `imagenes.mapa.json`.
 
 No se usaron: `zona-lapidas` 01-03 (nombres legibles), `99-Descartar`, ni el archivo de credenciales.
 

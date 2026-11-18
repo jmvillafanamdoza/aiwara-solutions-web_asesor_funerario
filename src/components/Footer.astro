@@ -24,13 +24,13 @@ const anio = new Date().getFullYear();
     </div>
 
     <div>
-      <h2 class="pie__titulo">Camposantos</h2>
+      <h2 class="pie__titulo">Sedes</h2>
       <ul class="pie__lista">
         {SITE.sedes.map((s) => (
           <li>
             <Icono nombre="map-pin" tam={20} />
             <span>
-              <a href={s.mapa} rel="noopener" target="_blank">{s.nombre}</a><br />
+              <a href={s.mapa} rel="noopener" target="_blank">{s.nombre}<span class="sr-only"> (mapa, abre en otra pestaña)</span></a><br />
               {s.direccion.startsWith('[') ? <span class="marcador">{s.direccion}</span> : s.direccion}, {s.distrito}
             </span>
           </li>

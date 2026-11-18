@@ -500,6 +500,51 @@
       "reemplazar": false,
       "nota": "Extraída del catálogo 2026 (página 16-17)."
     },
+    "cf-capilla": {
+      "usado_en": "Servicio funerario > Centro Funerario (foto principal) e Inicio > Nuestras sedes (tarjeta Centro Funerario)",
+      "origen": "fuentes/catalogo-nuevo/centro-funerario-capilla.jpg",
+      "recorte": null,
+      "alt": "Capilla ecuménica del Centro Funerario, edificio moderno de líneas inclinadas",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 88)."
+    },
+    "cf-instalaciones": {
+      "usado_en": "Servicio funerario > Centro Funerario (galería)",
+      "origen": "fuentes/catalogo-nuevo/centro-funerario-instalaciones.jpg",
+      "recorte": null,
+      "alt": "Pérgola de madera entre palmeras en las instalaciones del Centro Funerario",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 86)."
+    },
+    "cf-jardin": {
+      "usado_en": "Servicio funerario > Centro Funerario (galería)",
+      "origen": "fuentes/catalogo-nuevo/centro-funerario-jardin.jpg",
+      "recorte": {
+        "x": 0,
+        "y": 1050,
+        "w": 992,
+        "h": 1300
+      },
+      "alt": "Jardín con palmeras y pérgola del Centro Funerario",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 87)."
+    },
+    "cf-sala-espera": {
+      "usado_en": "Servicio funerario > Centro Funerario (galería)",
+      "origen": "fuentes/catalogo-nuevo/centro-funerario-sala-espera.jpg",
+      "recorte": null,
+      "alt": "Sala de espera del Centro Funerario con sofás de cuero",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 91). Foto superior de la página."
+    },
+    "cf-cafeteria": {
+      "usado_en": "Servicio funerario > Centro Funerario (galería)",
+      "origen": "fuentes/catalogo-nuevo/centro-funerario-cafeteria.jpg",
+      "recorte": null,
+      "alt": "Cafetería del Centro Funerario con mesas de madera y plantas colgantes",
+      "reemplazar": false,
+      "nota": "Del catálogo nuevo (CATALOGO NUEVO FINAL.pdf, página 97). Foto superior de la página."
+    },
     "testimonio-sheyla": {
       "usado_en": "Inicio > Testimonios (captura al pulsar 'Ver conversación')",
       "origen": "../02_Fotos_Camposanto/Testimonios/3307b8b2-075d-498b-82f4-4f93f3ca806f.jpg",

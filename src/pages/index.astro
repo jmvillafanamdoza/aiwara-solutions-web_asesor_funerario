@@ -14,6 +14,7 @@ const logoBlanco = imagen('logo-jdlp-blanco');
 const equipo = imagen('marco-equipo');
 const laMolina = imagen('cs-la-molina');
 const lurin = imagen('cs-lurin');
+const centro = imagen('cf-capilla');
 const galeria = (['galeria-1', 'galeria-2', 'galeria-3', 'galeria-4', 'galeria-5'] as const).map(imagen);
 
 const motivos = [
@@ -93,8 +94,8 @@ const motivos = [
   <!-- CAMPOSANTOS -->
   <section class="seccion seccion--gris" id="camposantos" aria-labelledby="camposantos-titulo">
     <div class="contenedor">
-      <h2 id="camposantos-titulo" class="aparece">Nuestros camposantos en Lima</h2>
-      <p class="intro aparece">Jardines amplios y cuidados, pensados para visitar a sus seres queridos con tranquilidad.</p>
+      <h2 id="camposantos-titulo" class="aparece">Nuestras sedes en Lima</h2>
+      <p class="intro aparece">Dos camposantos con jardines amplios y cuidados, pensados para visitar a sus seres queridos con tranquilidad, y un Centro Funerario dedicado a la cremación.</p>
 
       <div class="sedes">
         <article class="sede sede--grande aparece">
@@ -125,6 +126,17 @@ const motivos = [
                 <Icono nombre="arrow-square-out" tam={18} />
               </a>
             )}
+          </div>
+        </article>
+        <article class="sede aparece">
+          <Picture src={centro.src} alt={centro.alt} formats={['webp']} widths={[400, 700]} sizes="(min-width: 980px) 36vw, 100vw" />
+          <div class="sede__info">
+            <h3>Centro Funerario</h3>
+            <p>Dedicado solo a la cremación, con ambientes privados y una capilla ecuménica.</p>
+            <p class="sede__dir"><Icono nombre="map-pin" tam={20} /> {SITE.sedes[2].direccion}, {SITE.sedes[2].distrito}</p>
+            <a class="btn btn--contorno sede__recorrido" href="/servicio-funerario#sede-centro-funerario" data-ubicacion="sedes-centro-funerario">
+              Conocer el Centro Funerario <Icono nombre="arrow-right" tam={18} />
+            </a>
           </div>
         </article>
       </div>
@@ -264,7 +276,7 @@ const motivos = [
   @media (min-width: 980px) { .sedes { grid-template-columns: 1.6fr 1fr; } }
   .sede { background: #fff; border-radius: var(--radio); overflow: hidden; box-shadow: var(--sombra); display: flex; flex-direction: column; }
   .sede :global(img) { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-  @media (min-width: 980px) { .sede--grande :global(img) { aspect-ratio: 16 / 9.2; } .sede:not(.sede--grande) :global(img) { aspect-ratio: 1 / 0.82; } }
+  @media (min-width: 980px) { .sede--grande :global(img) { aspect-ratio: 16 / 9.2; } .sede:not(.sede--grande) :global(img) { aspect-ratio: 16 / 8; } }
   .sede__info { padding: 22px 24px 24px; }
   .sede__info h3 { margin-bottom: 6px; }
   .sede__dir { display: flex; gap: 8px; align-items: center; margin: 0; color: var(--texto-2); font-size: 0.95rem; }
@@ -273,6 +285,12 @@ const motivos = [
   .sede__info .sede__dir { margin-bottom: 18px; }
   .sede__recorrido { margin-top: auto; min-height: 48px; padding-inline: 18px; }
   @media (max-width: 520px) { .sede__recorrido { width: 100%; } }
+  /* Escritorio: La Molina ocupa la columna izquierda completa (su foto se estira); Lurín y el Centro Funerario se apilan a la derecha */
+  @media (min-width: 980px) {
+    .sede--grande { grid-row: span 2; display: grid; grid-template-rows: 1fr auto; }
+    .sede--grande :global(picture) { display: block; height: 100%; min-height: 0; }
+    .sede--grande :global(img) { height: 100%; aspect-ratio: auto; }
+  }
 
   .galeria { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
   .galeria__item :global(picture) { display: block; height: 100%; }

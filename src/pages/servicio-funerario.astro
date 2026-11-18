@@ -6,6 +6,7 @@ import BarraLlamada from '../components/BarraLlamada.astro';
 import { SITE, enlaceTelefono, enlaceWhatsApp } from '../config/site';
 import PlanesServicio from '../components/PlanesServicio.astro';
 import CarruselServicios from '../components/CarruselServicios.astro';
+import CentroFunerario from '../components/CentroFunerario.astro';
 
 const PAGINA = 'servicio-funerario';
 
@@ -73,6 +74,9 @@ const pasos = [
 
   <!-- SERVICIOS (escenarios fijos con tarjetas que suben; ver src/components/PlanesServicio.astro) -->
   <PlanesServicio />
+
+  <!-- CENTRO FUNERARIO (tercera sede, solo cremación; ver src/components/CentroFunerario.astro) -->
+  <CentroFunerario />
 
   <!-- TRASLADOS Y TRÁMITES -->
   <section class="seccion seccion--gris" aria-labelledby="tramites-titulo">

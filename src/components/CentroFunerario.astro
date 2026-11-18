@@ -1,0 +1,93 @@
+---
+// Centro Funerario: tercera sede de Jardines de la Paz, solo cremación (Villa El Salvador).
+// Textos en src/data/servicios.ts (centroFunerario); dirección, mapa y horario en src/config/site.ts (sedes);
+// fotos en imagenes.mapa.json (espacios cf-*).
+import { Picture } from 'astro:assets';
+import Icono from './Icono.astro';
+import { SITE, enlaceWhatsApp } from '../config/site';
+import { imagen } from '../lib/imagenes';
+import { centroFunerario as c } from '../data/servicios';
+
+const sede = SITE.sedes.find((s) => s.id === c.id);
+if (!sede) throw new Error(`Falta la sede "${c.id}" en src/config/site.ts`);
+const horario: readonly string[] = 'horario' in sede ? sede.horario : [];
+
+const principal = imagen('cf-capilla');
+const galeria = [
+  { img: imagen('cf-instalaciones'), texto: 'Instalaciones' },
+  { img: imagen('cf-jardin'), texto: 'Jardines' },
+  { img: imagen('cf-sala-espera'), texto: 'Sala de espera' },
+  { img: imagen('cf-cafeteria'), texto: 'Cafetería' },
+];
+---
+<section class="seccion cf" id={`sede-${c.id}`} aria-labelledby="cf-titulo">
+  <div class="contenedor">
+    <div class="cf__grid">
+      <div class="cf__texto aparece">
+        <p class="cf__etiqueta"><Icono nombre="flower-tulip" tam={20} /> Solo cremación</p>
+        <h2 id="cf-titulo">{c.nombre}</h2>
+        <p class="intro">{c.descripcion}</p>
+
+        <h3 class="cf__subtitulo">Servicios</h3>
+        <ul class="lista-check cf__servicios">
+          {c.servicios.map((s) => <li><Icono nombre="check" tam={18} />{s}</li>)}
+        </ul>
+
+        <div class="cf__datos">
+          <p><Icono nombre="map-pin" tam={20} /><span>{sede.direccion}, {sede.distrito}. <a href={sede.mapa} target="_blank" rel="noopener">Ver en el mapa<span class="sr-only"> (abre en otra pestaña)</span></a></span></p>
+          {horario.length > 0 && (
+            <p><Icono nombre="clock" tam={20} /><span>Horario del local:<br />{horario.map((h, i) => <>{i > 0 && <br />}{h}</>)}</span></p>
+          )}
+        </div>
+
+        <a class="btn btn--verde cf__cta" href={enlaceWhatsApp(`Hola Marco, quisiera información sobre la cremación en el ${c.nombre}.`)} target="_blank" rel="noopener" data-ubicacion={`sede-${c.id}`}>
+          <Icono nombre="whatsapp-logo" tam={20} /> Consultar por cremación<span class="sr-only"> (abre WhatsApp en otra pestaña)</span>
+        </a>
+      </div>
+
+      <div class="cf__foto aparece">
+        <Picture src={principal.src} alt={principal.alt} formats={['webp']} widths={[480, 800, 1200]} sizes="(min-width: 980px) 600px, 92vw" />
+      </div>
+    </div>
+
+    <ul class="cf__galeria" aria-label={`Fotos del ${c.nombre}`}>
+      {galeria.map((g) => (
+        <li class="aparece">
+          <figure>
+            <div class="cf__galeria-img"><Picture src={g.img.src} alt={g.img.alt} formats={['webp']} widths={[360, 640]} sizes="(min-width: 980px) 300px, 45vw" /></div>
+            <figcaption>{g.texto}</figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cf__grid { display: grid; gap: 32px; align-items: center; }
+  .cf__etiqueta {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 4px;
+    font-size: 0.85rem; font-weight: 600; color: var(--verde-medio); text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .cf__subtitulo { margin: 24px 0 10px; font: 600 0.95rem/1.3 var(--f-texto); color: var(--verde); text-transform: uppercase; letter-spacing: 0.06em; }
+  .cf__servicios { gap: 8px; }
+  @media (min-width: 640px) { .cf__servicios { grid-template-columns: 1fr 1fr; column-gap: 24px; } }
+  .cf__datos { display: grid; gap: 12px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--gris-borde); }
+  .cf__datos p { display: grid; grid-template-columns: 22px 1fr; gap: 10px; margin: 0; color: var(--texto-2); }
+  .cf__datos :global(.icono) { color: var(--verde-medio); margin-top: 3px; }
+  .cf__cta { margin-top: 24px; }
+  @media (max-width: 520px) { .cf__cta { width: 100%; } }
+  .cf__foto { border-radius: var(--radio); overflow: hidden; box-shadow: var(--sombra); aspect-ratio: 4 / 3; }
+  .cf__foto :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .cf__galeria { list-style: none; padding: 0; margin: 32px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cf__galeria figure { margin: 0; }
+  .cf__galeria-img { aspect-ratio: 4 / 3; border-radius: var(--radio); overflow: hidden; }
+  .cf__galeria-img :global(img) { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .cf__galeria figcaption { margin-top: 6px; font-size: 0.9rem; color: var(--texto-2); }
+
+  @media (min-width: 980px) {
+    .cf__grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+    .cf__galeria { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  }
+</style>
