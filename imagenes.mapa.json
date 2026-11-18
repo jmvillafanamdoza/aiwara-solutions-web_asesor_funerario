@@ -407,7 +407,7 @@
       "nota": "Extraída del catálogo 2026."
     },
     "serv-clasico-capilla": {
-      "usado_en": "Servicio funerario > Clásico (escenario, capilla ardiente)",
+      "usado_en": "Sin uso (servicio Clásico retirado de la venta el 2026-11-18; se conserva por si vuelve)",
       "origen": "fuentes/catalogo-2026/clasico-capilla.png",
       "recorte": null,
       "alt": "Capilla ardiente del servicio Clásico",
@@ -416,7 +416,7 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-clasico-ataud": {
-      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, ataúd cuadrado cerrado)",
+      "usado_en": "Sin uso (servicio Clásico retirado de la venta el 2026-11-18; se conserva por si vuelve)",
       "origen": "fuentes/catalogo-2026/clasico-ataud.png",
       "recorte": null,
       "alt": "Ataúd cuadrado del servicio Clásico, cerrado",
@@ -425,7 +425,7 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-clasico-ataud-abierto": {
-      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, ataúd cuadrado abierto)",
+      "usado_en": "Sin uso (servicio Clásico retirado de la venta el 2026-11-18; se conserva por si vuelve)",
       "origen": "fuentes/catalogo-2026/clasico-ataud-abierto.png",
       "recorte": null,
       "alt": "Ataúd cuadrado del servicio Clásico, abierto",
@@ -434,7 +434,7 @@
       "nota": "Extraída del catálogo 2026 (fondo transparente)."
     },
     "serv-clasico-carroza": {
-      "usado_en": "Servicio funerario > Clásico (franja de ataúd y carroza, carroza)",
+      "usado_en": "Sin uso (servicio Clásico retirado de la venta el 2026-11-18; se conserva por si vuelve)",
       "origen": "fuentes/catalogo-2026/clasico-carroza.png",
       "recorte": null,
       "alt": "Carroza y coche portaflores del servicio Clásico",

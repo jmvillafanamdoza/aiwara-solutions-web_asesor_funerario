@@ -6,7 +6,7 @@ Dominio previsto: `asesorfunerariolima.com` (se cambia en `src/config/site.ts`).
 | Página | URL | Para qué |
 |---|---|---|
 | Inicio | `/` | Presentación de Marco, camposantos, por qué un asesor, testimonios, contacto |
-| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, carrusel de servicios, primeras horas, 5 servicios sin precios (con ataúd y carroza), Cenizas al mar, descarga del catálogo PDF, traslados y trámites |
+| Servicio funerario | `/servicio-funerario` | Necesidad inmediata: teléfono 24 h, carrusel de servicios, primeras horas, 4 servicios sin precios (Platinum, Premium, Especial y Tradicional, con ataúd y carroza; el Clásico se retiró de la venta), Cenizas al mar, descarga del catálogo PDF, traslados y trámites |
 | Plan funerario | `/plan-funerario` | Previsión: beneficios, opciones y formulario de cotización que abre WhatsApp |
 | Privacidad | `/privacidad` | Política de datos (Ley 29733) y cookies. **Texto base: requiere revisión legal** |
 

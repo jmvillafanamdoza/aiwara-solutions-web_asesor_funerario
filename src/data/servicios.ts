@@ -4,7 +4,7 @@
 // Las imágenes de cada servicio están en imagenes.mapa.json (espacios serv-<id>-capilla/-ataud/-carroza).
 
 export type Servicio = {
-  id: 'platinum' | 'premium' | 'especial' | 'clasico' | 'tradicional';
+  id: 'platinum' | 'premium' | 'especial' | 'tradicional';
   nombre: string;
   lema: string;
   ataud: string;
@@ -19,6 +19,7 @@ export type Servicio = {
 const MOVILIDAD_A_ELEGIR =
   'Cintas de Honor Jardines y una movilidad a elegir: auto especial de lujo (4 pasajeros), miniván (10 pasajeros) o movilidad para 24 pasajeros.';
 
+// El servicio Clásico se retiró de la venta (2026-11-18): quedan 4 servicios funerarios.
 export const servicios: Servicio[] = [
   {
     id: 'platinum',
@@ -84,7 +85,7 @@ export const servicios: Servicio[] = [
     formas: [
       { forma: 'cuadrado', externas: 'L 1.92 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.80 m · Anch. 45.5 cm · Alt. 30 cm' },
     ],
-    tono: 'piedra',
+    tono: 'bosque',
     grupos: [
       { titulo: 'Ceremonia', items: [
         'Capilla ardiente (una noche)',
@@ -102,27 +103,6 @@ export const servicios: Servicio[] = [
       ] },
     ],
     cortesia: 'Cintas de Honor Jardines y movilidad en miniván para 10 pasajeros.',
-  },
-  {
-    id: 'clasico',
-    nombre: 'Clásico',
-    lema: 'Lo esencial para una despedida digna, con velatorio y cargadores.',
-    ataud: 'Ataúd de madera modelo Florencia, cuadrado',
-    formas: [
-      { forma: 'cuadrado', externas: 'L 1.93 m · Anch. 57 cm · Alt. 50 cm', internas: 'L 1.80 m · Anch. 47 cm · Alt. 30 cm' },
-    ],
-    tono: 'bosque',
-    grupos: [
-      { titulo: 'Ceremonia', items: ['Capilla ardiente (una noche)', 'Velatorio (una noche)', 'Cuatro cargadores'] },
-      { titulo: 'Traslado', items: ['Carroza', 'Un coche portaflores'] },
-      { titulo: 'Atención', items: [
-        'Preparación tanatológica',
-        'Trámites y traslados',
-        'Atención personalizada',
-        'Obituario en línea y Mural de Memorias',
-      ] },
-    ],
-    cortesia: 'Cintas de Honor Jardines.',
   },
   {
     id: 'tradicional',

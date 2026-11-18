@@ -33,7 +33,7 @@ const mayuscula = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 <section class="planes" id="servicios" aria-labelledby="servicios-titulo">
   <div class="contenedor planes__intro">
     <h2 id="servicios-titulo" class="aparece">Servicios funerarios</h2>
-    <p class="intro aparece">Cinco servicios para que cada familia elija según sus deseos. Baje para conocer qué incluye cada uno; le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
+    <p class="intro aparece">Cuatro servicios para que cada familia elija según sus deseos. Baje para conocer qué incluye cada uno; le explico las diferencias y le doy el precio por teléfono o WhatsApp.</p>
     <p class="planes__pago aparece"><Icono nombre="info" tam={20} /><span>En necesidad inmediata, el servicio funerario se paga al contado. Si prefiere dejarlo previsto, puede hacerlo con un <a href="/plan-funerario">plan de previsión</a>, al contado o en cuotas sin intereses.</span></p>
     <nav class="planes__indice aparece" aria-label="Ir a un servicio">
       {planes.map((p) => <a href={`#servicio-${p.id}`}>{p.nombre}</a>)}

@@ -39,7 +39,7 @@ export const SITE = {
    * Catálogo PDF que se descarga en /servicio-funerario (generado con npm run catalogo, con los datos de
    * Marco en la portada). Si cambia el catálogo, regenerarlo y actualizar aquí el peso que muestra el botón.
    */
-  catalogoPdf: { ruta: '/catalogo-servicio-funerario-2026.pdf', peso: '3.8 MB' },
+  catalogoPdf: { ruta: '/catalogo-servicio-funerario-2026.pdf', peso: '3.6 MB' },
 
   /**
    * Logo de Jardines de la Paz en la cabecera (espacio "logo-jdlp" de imagenes.mapa.json).
